@@ -1,0 +1,30 @@
+@use '../abstract' as *;
+
+:root {
+  --ff-primary: #{$ff-primary};
+  --ff-secondary: #{$ff-secondary};
+  --ff-accent: #{$ff-accent};
+
+  --spacer : #{$spacer};
+
+  @each $color, $shades in $colors {
+    @each $shade, $value in $shades {
+      --clr-#{$color}-#{$shade} : #{$value};
+    }
+  }
+
+  @each $screen-size, $property in $font-sizes {
+    @if $screen-size == small {
+      @each $prop, $value in $property { 
+        --fs-#{$prop}: #{$value};
+      }
+    } @else { 
+      @include mq($screen-size) {
+        @each $prop,
+        $value in $property {
+          --fs-#{$prop}: #{$value};
+        }
+      }
+    }
+  }
+}
