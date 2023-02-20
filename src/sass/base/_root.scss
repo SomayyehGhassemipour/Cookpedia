@@ -6,6 +6,8 @@
   --ff-accent: #{$ff-accent};
 
   --spacer : #{$spacer};
+  --gap : #{$gap};
+  --width : 500px;
 
   @each $color, $shades in $colors {
     @each $shade, $value in $shades {
