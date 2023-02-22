@@ -1,7 +1,7 @@
 @use '../utilities/flex' as *;
 .card {
   padding: var(--spacer);
-  background-size: cover;
+  background-color: var(--clr-neutral-100);
   margin: var(--spacer);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   max-width: 100%;
