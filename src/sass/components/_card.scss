@@ -1,6 +1,5 @@
 @use '../utilities/flex' as *;
 .card {
-  @include flex($justify:space-around);
   padding: var(--spacer);
   background-size: cover;
   margin: var(--spacer);
@@ -8,4 +7,8 @@
   max-width: 100%;
   height: 90vh;
   border-radius: 0.25rem;
+}
+
+.card-body {
+  @include flex($justify:flex-start);
 }

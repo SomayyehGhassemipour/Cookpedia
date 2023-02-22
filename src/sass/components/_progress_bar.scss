@@ -1,0 +1,23 @@
+.bar-holder {
+  width: 100%;
+  height: .75rem;
+  background-color: var(--clr-neutral-200);
+  border-radius: var(--radius-button);
+  margin: 2rem;
+}
+
+.bar {
+  height: .75rem;
+  background-color: var(--clr-primary-500);
+  border-radius: var(--radius-button);
+  position: relative;
+}
+
+.progress_text {
+  color: var(--clr-neutral-200);
+  font-weight:bold;
+  font-size:var(--fs-100);
+  position: absolute;
+  padding-right: 5px;
+  right: 0;
+}

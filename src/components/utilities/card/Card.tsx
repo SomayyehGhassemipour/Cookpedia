@@ -1,9 +1,10 @@
-interface CardProps {
+interface Props {
   children?: JSX.Element | JSX.Element[];
+  classname: string;
 }
-export const Card: React.FC<CardProps> = ({ children}) => {
+export const Card: React.FC<Props> = ({ children, classname}) => {
   return (
-    <div className="card">
+    <div className={`card ${classname}`}>
       {children}
     </div>
   )

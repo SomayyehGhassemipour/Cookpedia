@@ -1,0 +1,15 @@
+.textField{
+  background-color: var(--clr-neutral-200);
+  border: 0;
+  border-radius: var(--radius-inputBox);
+  height: 40px;
+  width: 100%;
+  &::placeholder {
+    color: var(--clr-neutral-400);
+    font-size: small;
+    padding: 0.5rem;
+  }
+  &:focus {
+    outline-color: var(--clr-primary-800);
+  }
+}

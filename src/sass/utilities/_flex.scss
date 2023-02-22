@@ -5,3 +5,12 @@
   align-items: $align;
   justify-content: $justify;
 }
+.flex-justify-space-around {
+  @include flex($justify:space-around);
+}
+.flex-justify-start {
+  @include flex($justify:flex-start);
+}
+.flex-row {
+  @include flex($direction:row);
+}
