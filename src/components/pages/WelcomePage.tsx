@@ -21,7 +21,7 @@ export default function WelcomePage() {
           <Button type={'google'} clickHandler={()=>navigate("/")}>
             <p>Continue With Google</p>
           </Button><br/>
-          <Button type={'primary'} clickHandler={()=>navigate("/signup")}>
+          <Button type={'primary'} clickHandler={()=>navigate("/signup-country")}>
           <p>Get Started</p>
           </Button>
           <br/>

@@ -62,7 +62,7 @@ export const CountryPage = () => {
           </List>
         </CardBody>
         <CardAction>
-          <Button type={'primary'} clickHandler={()=>navigate("/")}>
+          <Button type={'primary'} clickHandler={()=>navigate("/signup-cooking")}>
             <p>Continue</p>
           </Button>
         </CardAction>
