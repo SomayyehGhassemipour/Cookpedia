@@ -1,5 +1,6 @@
 @use '../utilities/flex' as *;
 .list {
+  @include flex($justify:space-around);
   width: 100%;
 }
 .list-item {
@@ -14,11 +15,4 @@
   &[data-type="column"] {
     @include flex($justify:flex-start,$direction:row);
   }
-}
-
-.align-vertical {
-  flex-direction: column;
-}
-.align-horizontal {
-  flex-direction:row;
 }

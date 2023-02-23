@@ -3,6 +3,6 @@ interface Props{
 }
 export const List : React.FC<Props> = ({children}) => {
   return (
-    <div className="list flex-justify-space-around">{children}</div>
+    <div className="list">{children}</div>
   )
 }

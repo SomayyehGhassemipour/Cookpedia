@@ -4,6 +4,6 @@ interface Props{
 }
 export const ListItem : React.FC<Props> = ({children, align}) => {
   return (
-    <div className="list-item" datatype={align} >{children}</div>
+    <div className="list-item" data-type={align} >{children}</div>
   )
 }

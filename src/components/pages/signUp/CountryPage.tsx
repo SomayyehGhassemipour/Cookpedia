@@ -9,6 +9,7 @@ import { List } from "../../utilities/list/List"
 import { ListItem } from "../../utilities/list/ListItem"
 import { Icon } from "../../utilities/Icon"
 import { Avatar } from "../../utilities/Avatar"
+import { CardAction } from "../../utilities/card/CardAction"
 
 export const CountryPage = () => {
   let navigate = useNavigate();
@@ -58,11 +59,13 @@ export const CountryPage = () => {
               <h5 className="text-neutral-400">AF</h5>
               <h5>Afghanistan</h5>
             </ListItem>
-            <Button type={'primary'} clickHandler={()=>navigate("/")}>
-              <p>Continue</p>
-            </Button>
           </List>
         </CardBody>
+        <CardAction>
+          <Button type={'primary'} clickHandler={()=>navigate("/")}>
+            <p>Continue</p>
+          </Button>
+        </CardAction>
       </Card>
     </div>
   )
