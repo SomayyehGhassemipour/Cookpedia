@@ -1,0 +1,24 @@
+@use '../utilities/flex' as *;
+.list {
+  width: 100%;
+}
+.list-item {
+  width: 100%;
+  border: 0.05rem solid var(--clr-neutral-200);
+  border-radius: var(--radius-inputBox);
+  padding: var(--spacer);
+
+  &[data-type="horizontal"] {
+    @include flex($justify:flex-start,$direction:row);
+  }
+  &[data-type="column"] {
+    @include flex($justify:flex-start,$direction:row);
+  }
+}
+
+.align-vertical {
+  flex-direction: column;
+}
+.align-horizontal {
+  flex-direction:row;
+}

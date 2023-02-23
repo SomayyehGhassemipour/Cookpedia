@@ -8,9 +8,10 @@
   --spacer : #{$spacer};
   --gap : #{$gap};
   --width : 500px;
-  --radius-button:#{$radius-button};
-  --radius-card:#{$radius-card};
-  --radius-inputBox:#{$radius-inputBox};
+  --radius-button: #{$radius-button};
+  --radius-card: #{$radius-card};
+  --radius-inputBox: #{$radius-inputBox};
+  --radius-circle: #{$radius-circle};
 
   @each $color, $shades in $colors {
     @each $shade, $value in $shades {
