@@ -1,9 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 interface Props{
   align: string,
+  type?: string,
   children?: JSX.Element | JSX.Element[]
 }
-export const ListItem : React.FC<Props> = ({children, align}) => {
+export const ListItem : React.FC<Props> = ({children, align, type}) => {
   return (
-    <div className="list-item" data-type={align} >{children}</div>
+    <button className="list-click-area"  data-type={type} type="button">
+      <div className="list-item" data-type={align} >{children}</div>
+    </button>
   )
 }

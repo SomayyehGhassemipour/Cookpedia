@@ -1,5 +1,5 @@
 
-.btn-simple {
+  .btn-simple {
   display:block;
   cursor: pointer;
    width: 100%;
@@ -29,7 +29,7 @@
   } 
 }
 
-.btn {
+.btn-icon {
   cursor: pointer;
   text-decoration: none;
   background-color:transparent;
@@ -37,4 +37,12 @@
   &:is(:hover, :focus) {
     border-color: var(--clr-primary-300);
   }
+
+}
+.btn-container {
+  cursor: pointer;
+  text-decoration: none;
+  background-color:transparent;
+  border: 0;
+  width: 100%;
 }

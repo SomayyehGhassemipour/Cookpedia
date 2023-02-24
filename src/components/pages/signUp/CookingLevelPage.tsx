@@ -5,6 +5,8 @@ import { CardAction } from "../../utilities/card/CardAction"
 import { CardBody } from "../../utilities/card/CardBody"
 import { Header } from "../../utilities/Header"
 import { Icon } from "../../utilities/Icon"
+import { List } from "../../utilities/list/List"
+import { ListItem } from "../../utilities/list/ListItem"
 import { ProgressBar } from "../../utilities/ProgressBar"
 
 export const CookingLevelPage  = () => {
@@ -23,6 +25,24 @@ export const CookingLevelPage  = () => {
         </Header>
         <CardBody>
           <label >Please select your cooking levelfor a better recommendations.</label>
+          <List>
+            <ListItem align="vertical">
+              <h4>Novice</h4>
+              <p>Basic understainding of kitchen tools and basic cooking techniques such as boiling and friying.</p>
+            </ListItem>
+            <ListItem align="vertical">
+              <h4>Intermediate</h4>
+              <p>Basic understainding of kitchen tools and basic cooking techniques such as boiling and friying.</p>
+            </ListItem>
+            <ListItem align="vertical">
+              <h4>Advanced</h4>
+              <p>Basic understainding of kitchen tools and basic cooking techniques such as boiling and friying.</p>
+            </ListItem>
+            <ListItem align="vertical">
+              <h4>Professional</h4>
+              <p>Basic understainding of kitchen tools and basic cooking techniques such as boiling and friying.</p>
+            </ListItem>
+          </List>
         </CardBody>
         <CardAction>
           <Button type={'primary'} clickHandler={()=>navigate("/")}>

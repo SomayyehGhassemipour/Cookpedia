@@ -1,14 +1,32 @@
 @use '../utilities/flex' as *;
+.list-click-area {
+  cursor: pointer;
+  text-decoration: none;
+  background-color:transparent;
+  border: 0;
+  width: 100%;
+  border: 0.08rem solid var(--clr-neutral-200);
+  border-radius: var(--radius-inputBox);
+  padding: var(--spacer);  
+  
+  
+  &[data-type="unclickable"] {
+    pointer-events: none;
+    cursor: default;
+  }
+  &:hover {
+    outline-style: solid;
+    outline-width: 0.125rem;
+    outline-color: var(--clr-primary-600);
+  }
+
+}
 .list {
   @include flex($justify:space-around);
   width: 100%;
 }
 .list-item {
-  width: 100%;
-  border: 0.05rem solid var(--clr-neutral-200);
-  border-radius: var(--radius-inputBox);
-  padding: var(--spacer);
-
+  text-align: left;
   &[data-type="horizontal"] {
     @include flex($justify:flex-start,$direction:row);
   }

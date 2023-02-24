@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+* {
+  &:focus {
+    outline-color: var(--clr-primary-600);
+  }
+}
 /* Remove default margin */
 body,
 h1,

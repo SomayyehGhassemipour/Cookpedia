@@ -34,12 +34,12 @@ export const CountryPage = () => {
               <h5 className="text-neutral-400">AD</h5>
               <h5>Andorra</h5>
             </ListItem>
-            <ListItem align="horizontal">
+            <ListItem align="horizontal" type="unclickable">
               <Avatar url={"flag-of-Afghanistan.png"} name={"AC"} type={"avatar-rectangle"} />
               <h5 className="text-neutral-400">AF</h5>
               <h5>Afghanistan</h5>
             </ListItem>
-            <ListItem align="horizontal">
+            <ListItem align="horizontal" >
               <Avatar url={"Flag_of_Albania.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
               <h5 className="text-neutral-400">AL</h5>
               <h5>Albania</h5>
