@@ -1,0 +1,26 @@
+@use '../utilities/flex' as *;
+
+.form {
+  @include flex($justify:flex-start,$align:none,$gapR: 1.5rem);
+  width:100%;
+}
+
+.field-set {
+  @include flex($justify:flex-start,$align:flex-start);
+
+  input {
+    border: 0;
+    border-bottom: 0.05rem solid var(--clr-primary-500);
+    width: 100%;
+    &::placeholder {
+      color: var(--clr-neutral-400);
+    }
+    &:focus {
+      border: 0;
+    }
+  }
+}
+.input-select {
+  border: 0;
+  border-bottom: 0.05rem solid var(--clr-primary-500);
+}

@@ -8,7 +8,6 @@
   height: 90vh;
   border-radius: 0.25rem;
 }
-
 .card-body {
   @include flex($justify:flex-start);
 }

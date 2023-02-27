@@ -1,8 +1,9 @@
 interface Props {
+  align?: string,
   children?: JSX.Element | JSX.Element[];
 }
-export const Header: React.FC<Props> = ({children}) => {
+export const Header: React.FC<Props> = ({align,children}) => {
   return (
-    <div className="header">{children}</div>
+    <div className="header" data-type={align}>{children}</div>
   )
 }

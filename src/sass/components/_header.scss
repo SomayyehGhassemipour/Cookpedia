@@ -1,0 +1,9 @@
+@use '../utilities/flex' as *;
+.header {
+  @include flex($justify:flex-start, $align:none,$gapR:0,$gapC:0);
+   width: 100%;
+   &[data-type="center"]{
+    @include flex($justify:flex-start,$gapR:0,$gapC:0);
+   }
+
+}

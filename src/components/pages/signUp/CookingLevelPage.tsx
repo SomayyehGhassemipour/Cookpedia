@@ -19,7 +19,7 @@ export const CookingLevelPage  = () => {
           <Button type={'icon'} clickHandler={()=>navigate("/signup-country")}>
             <Icon name="back"/>
           </Button>
-          <ProgressBar progress={20}/>
+          <ProgressBar progress={50}/>
         </div>
         <h1>What is your cooking level?</h1>
         </Header>
@@ -45,7 +45,7 @@ export const CookingLevelPage  = () => {
           </List>
         </CardBody>
         <CardAction>
-          <Button type={'primary'} clickHandler={()=>navigate("/")}>
+          <Button type={'primary'} clickHandler={()=>navigate("/signup-personal-data")}>
             <p>Continue</p>
           </Button>
         </CardAction>

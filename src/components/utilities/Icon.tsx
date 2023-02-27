@@ -1,12 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeftLong,faPen } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
   name: string,
 }
 export const Icon : React.FC<Props> = ({name}) => {
   if(name=="back") 
-    return <FontAwesomeIcon icon={faArrowLeftLong} />
+    return <div>
+      <FontAwesomeIcon icon={faArrowLeftLong} />
+    </div>
+  else if (name=="edit") 
+    return <div>
+      <FontAwesomeIcon icon={faPen} />
+    </div>
   else 
-    return <div></div>
+  return <div></div>
 }

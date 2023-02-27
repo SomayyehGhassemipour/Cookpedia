@@ -32,6 +32,23 @@ body {
   line-height: 1.5;
 }
 
+input::placeholder {
+  color: var(--clr-neutral-400); 
+  font-size: small;
+  padding: 0.5rem;
+}
+// input[type="date"]::before{
+//   color: var(--clr-neutral-400);
+//   content: attr(placeholder);
+//   margin-right: 122px;
+// }
+// input[type="date"]:focus::before {
+//     content: "" !important;
+//     display: none;
+// }
+::-webkit-calendar-picker-indicator {
+  background-image: url('../../../public/icons8-calendar-48.png');
+}
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;

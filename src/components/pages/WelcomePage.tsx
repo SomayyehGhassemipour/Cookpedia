@@ -9,7 +9,7 @@ export default function WelcomePage() {
   return (
     <div className='container'>
       <Card classname={"flex-justify-space-around"}>
-        <Header>
+        <Header align='center'>
         <h1 className='text-neutral-800'>Welcome to <br/>
           <h3 className='text-primary-500'>Cookpedia</h3>
         </h1>

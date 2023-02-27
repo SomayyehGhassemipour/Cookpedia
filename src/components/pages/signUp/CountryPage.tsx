@@ -30,32 +30,32 @@ export const CountryPage = () => {
           <TextField textholder={"Search Country"}/>
           <List>
             <ListItem align="horizontal">
-              <Avatar url={"Flag_of_Andorra.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
+              <Avatar classname={"avatar-image"} url={"Flag_of_Andorra.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
               <h5 className="text-neutral-400">AD</h5>
               <h5>Andorra</h5>
             </ListItem>
             <ListItem align="horizontal" type="unclickable">
-              <Avatar url={"flag-of-Afghanistan.png"} name={"AC"} type={"avatar-rectangle"} />
+              <Avatar classname={"avatar-image"} url={"flag-of-Afghanistan.png"} name={"AC"} type={"avatar-rectangle"} />
               <h5 className="text-neutral-400">AF</h5>
               <h5>Afghanistan</h5>
             </ListItem>
             <ListItem align="horizontal" >
-              <Avatar url={"Flag_of_Albania.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
+              <Avatar classname={"avatar-image"} url={"Flag_of_Albania.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
               <h5 className="text-neutral-400">AL</h5>
               <h5>Albania</h5>
             </ListItem>
             <ListItem align="horizontal">
-              <Avatar url={"Flag_of_Antigua_and_Barbuda.svg.png"} name={"AC"} type={"avatar-rectangle"} />
+              <Avatar classname={"avatar-image"} url={"Flag_of_Antigua_and_Barbuda.svg.png"} name={"AC"} type={"avatar-rectangle"} />
               <h5 className="text-neutral-400">AG</h5>
               <h5>Antigua And Barbuda</h5>
             </ListItem>
             <ListItem align="horizontal">
-              <Avatar url={"Flag_of_Andorra.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
+              <Avatar classname={"avatar-image"} url={"Flag_of_Andorra.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
               <h5 className="text-neutral-400">AD</h5>
               <h5>Andorra</h5>
             </ListItem>
             <ListItem align="horizontal">
-              <Avatar url={"flag-of-Afghanistan.png"} name={"AC"} type={"avatar-rectangle"} />
+              <Avatar classname={"avatar-image"} url={"flag-of-Afghanistan.png"} name={"AC"} type={"avatar-rectangle"} />
               <h5 className="text-neutral-400">AF</h5>
               <h5>Afghanistan</h5>
             </ListItem>
