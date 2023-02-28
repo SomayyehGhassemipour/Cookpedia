@@ -35,7 +35,6 @@ body {
 input::placeholder {
   color: var(--clr-neutral-400); 
   font-size: small;
-  padding-left: 0.5rem;
 }
 ::-webkit-calendar-picker-indicator {
   background-image: url('../../../public/icons8-calendar-48.png');
@@ -46,7 +45,6 @@ input[type="date"]::-webkit-datetime-edit-month-field,
 input[type="date"]::-webkit-datetime-edit-day-field,
 input[type="date"]::-webkit-datetime-edit-year-field {
   color: var(--clr-neutral-400);
-  padding-left: 0.5rem;
 }
 select {
   appearance: none;
@@ -54,7 +52,7 @@ select {
   background-repeat: no-repeat;
   background-position: calc(100% - 3px) center;
   background-size: 15px;
-  padding-left: 0.5rem; 
+   
 
   color: var(--clr-neutral-400);
   option:not(:first-of-type) {
@@ -64,6 +62,20 @@ select {
     background-color: var(--clr-primary-600);
   }
 }
+
+/* Set checkbox color*/
+// input[type=checkbox]{
+//     width: 15px;
+//     height: 15px;
+//     cursor: pointer;
+//   &:checked{
+//     accent-color: var(--clr-primary-500);
+//   }
+//   &::after {
+//     color: red;
+//   }
+// }
+
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;

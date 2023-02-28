@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { CookingLevelPage } from './components/pages/signUp/CookingLevelPage';
 import { CountryPage } from './components/pages/signUp/CountryPage';
+import { CreateAccountPage } from './components/pages/signUp/CreateAccountPage';
 import { PersonalDataPage } from './components/pages/signUp/PersonalDataPage';
 import WelcomePage  from './components/pages/WelcomePage';
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signup-country" element={<CountryPage/>}/>
         <Route path="/signup-cooking" element={<CookingLevelPage/>}/>
         <Route path="/signup-personal-data" element={<PersonalDataPage/>}/>
+        <Route path="/signup-create-account" element={<CreateAccountPage/>}/>
       </Routes>
       
     </div>

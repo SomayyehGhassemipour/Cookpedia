@@ -48,7 +48,7 @@ export const PersonalDataPage = () => {
           </Form>
         </CardBody>
         <CardAction>
-          <Button type={'primary'} clickHandler={()=>navigate("/")}>
+          <Button type={'primary'} clickHandler={()=>navigate("/signup-create-account")}>
             <p>Continue</p>
           </Button>
         </CardAction>
