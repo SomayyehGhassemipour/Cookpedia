@@ -1,4 +1,4 @@
-@use '../utilities/flex' as *;
+@use '../abstract/mixins' as *;
 .card {
   padding: var(--spacer);
   background-color: var(--clr-neutral-100);
@@ -9,7 +9,7 @@
   border-radius: 0.25rem;
 }
 .card-body {
-  @include flex($justify:flex-start);
+  @include flx($justify:flex-start);
 }
 .card-action {
   margin-top: auto;

@@ -1,0 +1,8 @@
+@function set-text-color($color) {
+  @if(lightness($color) > 50) {
+    @return var(--clr-neutral-900);
+  }
+  @else {
+    @return var(--clr-neutral-100)
+  }
+}

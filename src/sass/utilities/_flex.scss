@@ -1,16 +1,12 @@
-@mixin flex($direction: column,$align: center, $justify: space-between, $gapR:var(--gap), $gapC:var(--spacer)) {
-  display: flex;
-  gap: $gapR $gapC;
-  flex-direction:$direction;
-  align-items: $align;
-  justify-content: $justify;
-}
+@use '../abstract/mixins' as *;
+
+
 .flex-justify-space-around {
-  @include flex($justify:space-around);
+  @include flx($justify:space-around);
 }
 .flex-justify-start {
-  @include flex($justify:flex-start);
+  @include flx($justify:flex-start);
 }
 .flex-row {
-  @include flex($direction:row);
+  @include flx($direction:row);
 }

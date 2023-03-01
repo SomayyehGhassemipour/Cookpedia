@@ -1,12 +1,12 @@
-@use '../utilities/flex' as *;
+@use '../abstract/mixins' as *;
 
 .form {
-  @include flex($justify:flex-start,$align:none,$gapR: 1.5rem);
+  @include flx($justify:flex-start,$align:none,$gapR: 1.5rem);
   width:100%;
 }
 
 .field-set {
-  @include flex($justify:flex-start,$align:flex-start);
+  @include flx($justify:flex-start,$align:flex-start);
 
   input {
     border: 0;

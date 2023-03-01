@@ -1,4 +1,19 @@
 @use 'breakpoints' as *;
+@use 'variables' as *;
+@use 'functions' as *;
+
+@mixin set-background($color){
+  background-color: $color;
+  color: set-textcolor($color);
+}
+
+@mixin flx($direction: column,$align: center, $justify: space-between, $gapR:var(--gap), $gapC:var(--spacer)) {
+  display: flex;
+  gap: $gapR $gapC;
+  flex-direction:$direction;
+  align-items: $align;
+  justify-content: $justify;
+}  
 
 @mixin mq($key) {
   $size: map-get($breakpoints, $key);
@@ -7,3 +22,7 @@
     @content
   }
 }
+
+
+
+

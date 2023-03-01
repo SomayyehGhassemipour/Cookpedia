@@ -1,3 +1,4 @@
+@use '../abstract/mixins' as *;
 /* Box sizing rules */
 *,
 *::before,
@@ -63,19 +64,6 @@ select {
   }
 }
 
-/* Set checkbox color*/
-// input[type=checkbox]{
-//     width: 15px;
-//     height: 15px;
-//     cursor: pointer;
-//   &:checked{
-//     accent-color: var(--clr-primary-500);
-//   }
-//   &::after {
-//     color: red;
-//   }
-// }
-
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
@@ -109,5 +97,15 @@ select {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+
+.theme {
+  &-primary {
+    @include set-background(var(--clr-neutral-100));
+  }
+  &-secondary {
+    @include set-background(var(--clr-neutral-900));
   }
 }
