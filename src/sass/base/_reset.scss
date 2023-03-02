@@ -103,9 +103,9 @@ select {
 
 .theme {
   &-primary {
-    @include set-background(var(--clr-neutral-100));
+    @include set-background(white);
   }
   &-secondary {
-    @include set-background(var(--clr-neutral-900));
+    @include set-background(black);
   }
 }
