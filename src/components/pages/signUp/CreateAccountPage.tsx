@@ -38,7 +38,7 @@ export const CreateAccountPage : React.FC<Props> = ({}) => {
           </Form>
         </CardBody>
         <CardAction>
-          <Button type={'primary'} clickHandler={()=>navigate("/")}>
+          <Button type={'primary'} clickHandler={()=>navigate("/signin")}>
             <p>Continue</p>
           </Button>
         </CardAction>
