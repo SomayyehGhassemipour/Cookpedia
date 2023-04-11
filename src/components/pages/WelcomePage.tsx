@@ -25,7 +25,7 @@ export default function WelcomePage() {
           <p>Get Started</p>
           </Button>
           <br/>
-          <Button type={'secondary'} clickHandler={()=>navigate("/")}>
+          <Button type={'secondary'} clickHandler={()=>navigate("/signin")}>
           <p>I Already Have an Account</p>
           </Button>
         </div>

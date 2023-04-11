@@ -21,9 +21,9 @@ export const CookingLevelPage  = () => {
           </Button>
           <ProgressBar progress={50}/>
         </div>
-        <h1>What is your cooking level?</h1>
         </Header>
         <CardBody>
+          <h1>What is your cooking level?</h1>
           <label >Please select your cooking levelfor a better recommendations.</label>
           <List>
             <ListItem align="vertical">

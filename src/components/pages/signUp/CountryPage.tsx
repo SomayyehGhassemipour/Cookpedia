@@ -23,9 +23,9 @@ export const CountryPage = () => {
           </Button>
           <ProgressBar progress={20}/>
         </div>
-        <h1>Which country are you from?</h1>
         </Header>
         <CardBody>
+          <h1>Which country are you from?</h1>
           <label >Please select your country of origin for a better recommendations.</label>
           <TextField textholder={"Search Country"}/>
           <List>

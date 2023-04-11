@@ -5,6 +5,10 @@ interface Props {
   name: string,
 }
 export const Icon : React.FC<Props> = ({name}) => {
+  if(name=="google") 
+    return <div>
+      <FontAwesomeIcon icon={faArrowLeftLong} />
+    </div>
   if(name=="back") 
     return <div>
       <FontAwesomeIcon icon={faArrowLeftLong} />

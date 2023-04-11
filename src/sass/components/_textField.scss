@@ -7,7 +7,7 @@
   padding-left: 35px  ;
   border: 0;
   border-radius: var(--radius-inputBox);
-  height: 40px;
+  min-height: 40px;
   width: 100%;
   &::placeholder {
     color: var(--clr-neutral-400);

@@ -25,9 +25,9 @@ export const CreateAccountPage : React.FC<Props> = ({}) => {
             </Button>
             <ProgressBar progress={100}/>
           </div>
-          <h1>Create an Account</h1>
         </Header>
         <CardBody>
+          <h1>Create an Account</h1>
           <p >Enter your username, email & password. If you forget it, then you have to do forgot password.</p>   
           <Form>
             <FieldSet label={"Username"} placeholdertxt="Username" inputType="text" />
@@ -38,7 +38,7 @@ export const CreateAccountPage : React.FC<Props> = ({}) => {
           </Form>
         </CardBody>
         <CardAction>
-          <Button type={'primary'} clickHandler={()=>navigate("/signin")}>
+          <Button type={'primary'} clickHandler={()=>navigate("/")}>
             <p>Continue</p>
           </Button>
         </CardAction>

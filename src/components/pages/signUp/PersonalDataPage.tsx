@@ -24,9 +24,9 @@ export const PersonalDataPage = () => {
             </Button>
             <ProgressBar progress={75}/>
           </div>
-          <h1>Compelete Your Profile</h1>
         </Header>
         <CardBody>
+          <h1>Compelete Your Profile</h1>
           <label >Don't worry, only you can see your personal data. No one else will be able to see it.                    </label>   
           <div className="profile-avatar">
             <Avatar classname={"avatar-profile"} url={"user.png"} name={"AC"} type={"avatar-circle"} />

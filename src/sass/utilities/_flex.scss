@@ -10,3 +10,6 @@
 .flex-row {
   @include flx($direction:row);
 }
+.flex-column-center {
+  @include flx;
+}

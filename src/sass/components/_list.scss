@@ -8,7 +8,7 @@
   border: 0.08rem solid var(--clr-neutral-200);
   border-radius: var(--radius-inputBox);
   padding: var(--spacer);  
-  
+ 
   
   &[data-type="unclickable"] {
     pointer-events: none;
