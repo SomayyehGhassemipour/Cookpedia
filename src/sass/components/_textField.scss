@@ -1,12 +1,6 @@
 .textField{
   background-color: var(--clr-neutral-200);
-  background-image: url('../../../public/search-32.png'); 
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  padding-left: 35px  ;
   border: 0;
-  border-radius: var(--radius-inputBox);
   min-height: 40px;
   width: 100%;
   &::placeholder {
@@ -14,4 +8,12 @@
     font-size: small;
     padding: 0.5rem;
   }
+}
+.textField[data-type="search"]{
+  background-image: url('../../../public/search-32.png'); 
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  padding-left: 35px  ;
+  border-radius: var(--radius-inputBox);
 }

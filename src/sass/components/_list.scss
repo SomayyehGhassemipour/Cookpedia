@@ -22,9 +22,12 @@
 
 }
 .list {
-  @include flx($justify:space-around);
+  @include flx($justify:flex-start);
   width: 100%;
+  overflow: scroll;
+  padding: 0.2rem;
 }
+
 .list-item {
   text-align: left;
   &[data-type="horizontal"] {

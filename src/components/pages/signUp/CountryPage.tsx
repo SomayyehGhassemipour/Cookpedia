@@ -10,6 +10,7 @@ import { ListItem } from "../../utilities/list/ListItem"
 import { Icon } from "../../utilities/Icon"
 import { Avatar } from "../../utilities/Avatar"
 import { CardAction } from "../../utilities/card/CardAction"
+import data from '../../../data/allCountries.json';
 
 export const CountryPage = () => {
   let navigate = useNavigate();
@@ -27,38 +28,15 @@ export const CountryPage = () => {
         <CardBody>
           <h1>Which country are you from?</h1>
           <label >Please select your country of origin for a better recommendations.</label>
-          <TextField textholder={"Search Country"}/>
+          <TextField type="text" data_type="search" placeholder={"Search Country"}/>
           <List>
-            <ListItem align="horizontal">
-              <Avatar classname={"avatar-image"} url={"Flag_of_Andorra.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
-              <h5 className="text-neutral-400">AD</h5>
-              <h5>Andorra</h5>
-            </ListItem>
-            <ListItem align="horizontal" type="unclickable">
-              <Avatar classname={"avatar-image"} url={"flag-of-Afghanistan.png"} name={"AC"} type={"avatar-rectangle"} />
-              <h5 className="text-neutral-400">AF</h5>
-              <h5>Afghanistan</h5>
-            </ListItem>
+          {data.map((item) => ( 
             <ListItem align="horizontal" >
-              <Avatar classname={"avatar-image"} url={"Flag_of_Albania.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
-              <h5 className="text-neutral-400">AL</h5>
-              <h5>Albania</h5>
+              <Avatar classname={"avatar-image"} url={item.image} name={"AC"} type={"avatar-rectangle"} />
+              <h5 className="text-neutral-400">{item.code}</h5>
+              <h5>{item.name}</h5>
             </ListItem>
-            <ListItem align="horizontal">
-              <Avatar classname={"avatar-image"} url={"Flag_of_Antigua_and_Barbuda.svg.png"} name={"AC"} type={"avatar-rectangle"} />
-              <h5 className="text-neutral-400">AG</h5>
-              <h5>Antigua And Barbuda</h5>
-            </ListItem>
-            <ListItem align="horizontal">
-              <Avatar classname={"avatar-image"} url={"Flag_of_Andorra.svg.webp"} name={"AC"} type={"avatar-rectangle"} />
-              <h5 className="text-neutral-400">AD</h5>
-              <h5>Andorra</h5>
-            </ListItem>
-            <ListItem align="horizontal">
-              <Avatar classname={"avatar-image"} url={"flag-of-Afghanistan.png"} name={"AC"} type={"avatar-rectangle"} />
-              <h5 className="text-neutral-400">AF</h5>
-              <h5>Afghanistan</h5>
-            </ListItem>
+          ))}
           </List>
         </CardBody>
         <CardAction>

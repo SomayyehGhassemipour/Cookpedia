@@ -1,5 +1,8 @@
 body {
   font-family: var(--ff-primary);
-  background: url("../../../public/bg2.jpg") no-repeat center center/cover;
+  // background: url("../../../public/bg2.jpg") no-repeat center center/cover;
+  // background-color: var(--clr-primary-800);
+  background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%);
+
   background-size: cover;
 }

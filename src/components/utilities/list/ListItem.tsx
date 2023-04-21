@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 interface Props{
   align: string,
   type?: string,
-  children?: JSX.Element | JSX.Element[]
+  children?: JSX.Element | JSX.Element[] | any
 }
 export const ListItem : React.FC<Props> = ({children, align, type}) => {
   return (
