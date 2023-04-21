@@ -1,8 +1,9 @@
 interface Props {
+  align ?: string,
   children?: JSX.Element | JSX.Element[];
 }
-export const CardBody: React.FC<Props> = ({children}) => {
+export const CardBody: React.FC<Props> = ({align, children}) => {
   return (
-    <div className="card-body">{children}</div>
+    <div className="card-body" data-align={align}>{children}</div>
   )
 }

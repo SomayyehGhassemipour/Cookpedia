@@ -14,7 +14,7 @@ export default function WelcomePage() {
           <h3 className='text-primary-500'>Cookpedia</h3>
         </h1>
         </Header>
-        <CardBody>
+        <CardBody align='center'>
           <p>The best cooking and food recipies app of the century</p>
         </CardBody>
         <div className='flex-small-gap'>
