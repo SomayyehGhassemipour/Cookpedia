@@ -1,10 +1,12 @@
 interface Props {
-  children?: JSX.Element | JSX.Element[] 
+  children?: JSX.Element | JSX.Element[],
+  id ?: string,
+  onSubmit : React.FormEventHandler<HTMLFormElement>
 }
-export const Form:React.FC<Props> = ({children}) => {
+export const Form:React.FC<Props> = ({id, children, onSubmit}) => {
   return (
-    <div className="form">
+    <form className="form" id={id} onSubmit={onSubmit}>
       {children}
-    </div>
+    </form>
   )
 }

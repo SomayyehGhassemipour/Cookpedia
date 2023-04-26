@@ -9,17 +9,23 @@ import { FieldSet } from "../../utilities/form/FieldSet"
 import { Header } from "../../utilities/Header"
 import { Icon } from "../../utilities/Icon"
 import { ProgressBar } from "../../utilities/ProgressBar"
-import { TextField } from "../../utilities/TextField"
+
 
 
 export const PersonalDataPage = () => {
+
   let navigate = useNavigate(); 
+
+  const submitHandler = () => {
+    console.log("submited");
+  }
+
   return (
     <div className="container">
       <Card classname={"flex-justify-start"}>
         <Header>
           <div className="flex-row">
-            <Button type={'icon'} clickHandler={()=>navigate("/signup-cooking")}>
+            <Button data_type={'icon'} clickHandler={()=>navigate("/signup-cooking")}>
               <Icon name="back"/>
             </Button>
             <ProgressBar progress={75}/>
@@ -34,7 +40,7 @@ export const PersonalDataPage = () => {
                 <Icon name="edit"/>
               </div>
           </div>
-          <Form>
+          <Form onSubmit={submitHandler}>
             <FieldSet label={"Full Name"} placeholdertxt="Full Name" inputType="text" />
             <FieldSet label={"Phone Number"} placeholdertxt="+1 000 000 000" inputType="phone" />
             <h5>Gender</h5>
@@ -48,7 +54,7 @@ export const PersonalDataPage = () => {
           </Form>
         </CardBody>
         <CardAction>
-          <Button type={'primary'} clickHandler={()=>navigate("/signup-create-account")}>
+          <Button data_type={'primary'} clickHandler={()=>navigate("/signup-create-account")}>
             <p>Continue</p>
           </Button>
         </CardAction>

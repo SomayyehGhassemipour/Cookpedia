@@ -16,16 +16,28 @@ import { useState } from "react"
 export const CountryPage = () => {
   let navigate = useNavigate();
   const [searchItem, setSearchItem] = useState<string>("");
+  const [selectedCountry, setselectedCountry] = useState<string>("");
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => { 
+    setselectedCountry("");
     setSearchItem(e.target.value);
+  }
+
+  const selectCountry = (e: React.MouseEvent<HTMLElement>) => {
+    setselectedCountry(e.currentTarget.id);
+    console.log(e.currentTarget.id);
+  }
+
+  const countinueFn = (e: React.MouseEvent<HTMLElement>) => {
+    if(!selectedCountry) alert("Please select a country.")
+    else navigate("/signup-cooking")
   }
   return (
     <div className="container">
       <Card classname={"flex-justify-start"}>
         <Header>
         <div className="flex-row">
-          <Button type={'icon'} clickHandler={()=>navigate("/")}>
+          <Button data_type={'icon'} clickHandler={()=>navigate("/")}>
             <Icon name="back"/>
           </Button>
           <ProgressBar progress={20}/>
@@ -36,8 +48,8 @@ export const CountryPage = () => {
           <label >Please select your country of origin for a better recommendations.</label>
           <TextField type="text" data_type="search" placeholder={"Search Country"} onChange={handleOnChange}/>
           <List>
-          {data.filter(country => country.name.toLowerCase().startsWith(searchItem.toLowerCase())).map((item, index) => ( 
-            <ListItem align="horizontal" id={String(index)} >
+          {data.filter(country => country.name.toLowerCase().startsWith(searchItem.toLowerCase())).map((item) => ( 
+            <ListItem align="horizontal" id={item.name} onClick={selectCountry}>
               <Avatar classname={"avatar-image"} url={item.image} name={"AC"} type={"avatar-rectangle"} />
               <h5 className="text-neutral-400">{item.code}</h5>
               <h5>{item.name}</h5>
@@ -46,7 +58,7 @@ export const CountryPage = () => {
           </List>
         </CardBody>
         <CardAction>
-          <Button type={'primary'} clickHandler={()=>navigate("/signup-cooking")}>
+          <Button data_type={'primary'} clickHandler={countinueFn}>
             <p>Continue</p>
           </Button>
         </CardAction>

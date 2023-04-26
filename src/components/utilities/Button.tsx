@@ -1,16 +1,17 @@
 interface Props{
-  // title: String,
-  type: String,
-  clickHandler : React.MouseEventHandler<HTMLButtonElement>,
-  children?: JSX.Element | JSX.Element[];
+  type ?: 'submit' | 'reset' | 'button' | undefined,
+  data_type: String,
+  clickHandler ?: React.MouseEventHandler<HTMLButtonElement>,
+  children?: JSX.Element | JSX.Element[],
+  form ?: string,
 }
-export const Button: React.FC<Props> = ({type,clickHandler,children}) => {
-    if (type=="icon"){
-      return <button className='btn-icon' data-type={type} type="button" onClick={clickHandler}>{children}</button>
+export const Button: React.FC<Props> = ({form, type, data_type,clickHandler,children}) => {
+    if (data_type === "icon"){
+      return <button className='btn-icon' form={form} data-type={data_type} type={type} onClick={clickHandler}>{children}</button>
     }
-    if (type=="container"){
-      return <button className='btn-container' data-type={type} type="button" onClick={clickHandler}>{children}</button>
+    if (data_type === "container"){
+      return <button className='btn-container' form={form} data-type={data_type} type={type} onClick={clickHandler}>{children}</button>
     } else {
-      return <button className='btn-simple' data-type={type} type="button" onClick={clickHandler}>{children}</button>
+      return <button className='btn-simple' form={form} data-type={data_type} type={type} onClick={clickHandler}>{children}</button>
     }
 }

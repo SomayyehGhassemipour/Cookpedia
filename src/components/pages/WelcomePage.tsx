@@ -3,9 +3,34 @@ import { Card } from '../utilities/card/Card'
 import { Header } from '../utilities/Header'
 import { CardBody } from '../utilities/card/CardBody'
 import { useNavigate } from 'react-router-dom'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { auth, googleAuthProvider } from '../../redux/firebase'
 
 export default function WelcomePage() {
   let navigate = useNavigate();
+
+  const clickHandlerGoogle = async () => {
+    // try{
+    //   await signInWithPopup(auth, googleAuthProvider);
+    // }catch(error){
+    //   console.error(error);
+    // }
+    await signInWithPopup(auth, googleAuthProvider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken;
+
+      const user = result.user;
+      navigate("/home");
+      console.log(user);
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      const email = error.customData.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+    })
+  }
   return (
     <div className='container'>
       <Card classname={"flex-justify-space-around"}>
@@ -18,14 +43,14 @@ export default function WelcomePage() {
           <p>The best cooking and food recipies app of the century</p>
         </CardBody>
         <div className='flex-small-gap'>
-          <Button type={'google'} clickHandler={()=>navigate("/")}>
+          <Button data_type={'google'} clickHandler={clickHandlerGoogle}>
             <p>Continue With Google</p>
           </Button><br/>
-          <Button type={'primary'} clickHandler={()=>navigate("/signup-country")}>
+          <Button data_type={'primary'} clickHandler={()=>navigate("/signup-country")}>
           <p>Get Started</p>
           </Button>
           <br/>
-          <Button type={'secondary'} clickHandler={()=>navigate("/signin")}>
+          <Button data_type={'secondary'} clickHandler={()=>navigate("/signin")}>
           <p>I Already Have an Account</p>
           </Button>
         </div>
