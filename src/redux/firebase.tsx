@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore"
 import { getAuth, GoogleAuthProvider, FacebookAuthProvider  } from "firebase/auth";
 
 const firebaseConfig = {
@@ -22,4 +23,6 @@ const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
 const facebookAuthProvider = new FacebookAuthProvider();
 
-export {auth, googleAuthProvider, facebookAuthProvider}
+const db = getFirestore(app);
+
+export {auth, googleAuthProvider, facebookAuthProvider, db}

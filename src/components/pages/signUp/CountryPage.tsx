@@ -2,7 +2,7 @@ import { Card } from "../../utilities/card/Card"
 import { CardBody } from "../../utilities/card/CardBody"
 import { Header } from "../../utilities/Header"
 import { ProgressBar } from "../../utilities/ProgressBar"
-import { TextField } from "../../utilities/TextField"
+import { InputField } from "../../utilities/InputField"
 import { Button } from "../../utilities/Button"
 import { useNavigate } from "react-router-dom"
 import { List } from "../../utilities/list/List"
@@ -46,7 +46,7 @@ export const CountryPage = () => {
         <CardBody>
           <h1>Which country are you from?</h1>
           <label >Please select your country of origin for a better recommendations.</label>
-          <TextField type="text" data_type="search" placeholder={"Search Country"} onChange={handleOnChange}/>
+          <InputField type="text" data_type="search" placeholder={"Search Country"} onChange={handleOnChange}/>
           <List>
           {data.filter(country => country.name.toLowerCase().startsWith(searchItem.toLowerCase())).map((item) => ( 
             <ListItem align="horizontal" id={item.name} onClick={selectCountry}>

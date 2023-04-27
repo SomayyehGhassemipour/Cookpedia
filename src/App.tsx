@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
-import Home from './components/pages/Home';
+import { HomePage } from './components/pages/HomePage';
 import { SignInPage } from './components/pages/SignInPage';
 import { CookingLevelPage } from './components/pages/signUp/CookingLevelPage';
 import { CountryPage } from './components/pages/signUp/CountryPage';
@@ -18,8 +18,8 @@ function App() {
         <Route path="/signup-cooking" element={<CookingLevelPage/>}/>
         <Route path="/signup-personal-data" element={<PersonalDataPage/>}/>
         <Route path="/signup-create-account" element={<CreateAccountPage/>}/>
+        <Route path="/home" element={<HomePage/>}/>
         <Route path="/signin" element={<SignInPage/>}/>
-        <Route path="/home" element={<Home/>}/>
       </Routes>
       
     </div>

@@ -9,6 +9,7 @@ import { FieldSet } from "../../utilities/form/FieldSet"
 import { Header } from "../../utilities/Header"
 import { Icon } from "../../utilities/Icon"
 import { ProgressBar } from "../../utilities/ProgressBar"
+import { SelectInput } from "../../utilities/SelectInput"
 
 
 
@@ -19,7 +20,7 @@ export const PersonalDataPage = () => {
   const submitHandler = () => {
     console.log("submited");
   }
-
+  const options = ["gender","male", "female","other"];
   return (
     <div className="container">
       <Card classname={"flex-justify-start"}>
@@ -43,13 +44,7 @@ export const PersonalDataPage = () => {
           <Form onSubmit={submitHandler}>
             <FieldSet label={"Full Name"} placeholdertxt="Full Name" inputType="text" />
             <FieldSet label={"Phone Number"} placeholdertxt="+1 000 000 000" inputType="phone" />
-            <h5>Gender</h5>
-            <select className="input-select" id="gender" name="gender">
-              <option hidden disabled selected> Gender</option>
-              <option value="au">Male</option>
-              <option value="ca">Female</option>
-              <option value="usa">Other</option>
-            </select>
+            <SelectInput label={"Gender"} name="gender" placeholdertxt="Gender" options={options}/>            
             <FieldSet label={"Date of Birth"} placeholdertxt="MM/DD?YYYY" inputType="date" />
           </Form>
         </CardBody>

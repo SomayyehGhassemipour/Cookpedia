@@ -6,9 +6,10 @@
 }
 
 .field-set {
-  @include flx($justify:flex-start,$align:flex-start);
+  @include flx($justify:flex-start,$align:flex-start,$gapR:0.2rem);
+  
 
-  input {
+  .form input {
     border: 0;
     border-bottom: 0.05rem solid var(--clr-primary-500);
     width: 100%;
@@ -23,4 +24,16 @@
 .input-select {
   border: 0;
   border-bottom: 0.05rem solid var(--clr-primary-500);
+  width: 100%;
 }
+.span-error {
+  font-size: 0.7em;
+  padding: 0.07em;
+  color: var(--clr-primary-400);
+  display: none;
+}
+
+.form input:not(:focus):invalid:not(:placeholder-shown) ~ .span-error {
+  display: block;
+}
+

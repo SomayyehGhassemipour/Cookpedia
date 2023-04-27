@@ -1,5 +1,4 @@
-import { async } from "@firebase/util"
-import { signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { signInWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { auth } from "../../redux/firebase"
@@ -16,21 +15,44 @@ import { LineSeperator } from "../utilities/LineSeperator"
 import { ProgressBar } from "../utilities/ProgressBar"
 
 export const SignInPage : React.FC = () => {
-  console.log(auth?.currentUser?.email);
+  console.log(auth?.currentUser?.displayName);
   const [state, setstate] = useState({
     email:"",
     password: "",
   });
   const {email, password} = state;
 
+  const inputs = [
+    {
+      id: '1',
+      label: "Email", 
+      placeholdertxt: "Email",
+      inputType: "email",
+      name: "email" ,
+      value: email,
+      errorMessage: "It should be a valid email address.",
+      required: true
+    },
+    {
+      id: '2',
+      label: "Password", 
+      placeholdertxt: "Password",
+      inputType: "password",
+      name: "password" ,
+      value: password,
+      errorMessage: "The password you’ve entered is incorrect.",
+      required: true
+    }
+  ]
+
   let navigate = useNavigate();
 
-  const submitHandler = (e: any) => {
+  const submitHandler = async (e: any) => {
     e.preventDefault();
 
     console.log("submited",email, password);
 
-    signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
@@ -39,7 +61,7 @@ export const SignInPage : React.FC = () => {
     // ...
     })
     .catch((error) => {
-      const errorCode = error.code;
+      // const errorCode = error.code;
       const errorMessage = error.message;
       alert(errorMessage);
     });
@@ -65,8 +87,10 @@ export const SignInPage : React.FC = () => {
           <h1>Hello there</h1>
           <p>Please Enter your username/email & password to sign in.</p>   
           <Form id="myform" onSubmit={submitHandler}>
-            <FieldSet label={"Email"} placeholdertxt="Email" inputType="text" name="email" value={email} onChange={changeHandler}/>
-            <FieldSet label={"Password"} placeholdertxt="Password" inputType="password" name="password" value={password} onChange={changeHandler}/>
+            <>
+            {inputs.map((input) => 
+              <FieldSet key={input.id} {...input} onChange={changeHandler} />
+            )}
             <CheckBox label={"Remember me"}/>
             <LineSeperator/>
             <Button data_type="container" clickHandler={()=>navigate("/signup-create-account")}>
@@ -86,6 +110,7 @@ export const SignInPage : React.FC = () => {
                 </Button>
               </div>
             </div>
+            </>
           </Form>
         </CardBody>
         <CardAction>

@@ -11,10 +11,10 @@ import { Header } from "../../utilities/Header"
 import { Icon } from "../../utilities/Icon"
 import { ProgressBar } from "../../utilities/ProgressBar"
 import { auth } from "../../../redux/firebase"
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 
 export const CreateAccountPage : React.FC = () => {
-  console.log(auth?.currentUser?.email);
+  
   const [state, setState] = useState({
     displayName: "",
     email:"",
@@ -22,11 +22,57 @@ export const CreateAccountPage : React.FC = () => {
     passwordConfirm: ""
   });
   const {displayName,email, password,passwordConfirm} = state;
+
+  const inputs = [
+    {
+      id: '1',
+      label: "Username",
+      placeholdertxt: "Username",
+      inputType: "text",
+      name: "displayName",
+      value: displayName,
+      errorMessage: "Username should be 3-16 characters.",
+      pattern: "^[A-Za-z0-9]{3,16}$",
+      required: true
+    },
+    {
+      id: '2',
+      label: "Email", 
+      placeholdertxt: "Email",
+      inputType: "email",
+      name: "email" ,
+      value: email,
+      errorMessage: "It should be a valid email address.",
+      required: true
+    },
+    {
+      id: '3',
+      label: "Password", 
+      placeholdertxt: "Password",
+      inputType: "password",
+      name: "password" ,
+      value: password,
+      errorMessage: "Password should be 6-20 characters and include at least 1 letter, 1 number and 1 special character.",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$`,
+      required: true
+    },
+    {
+      id: '4',
+      label: "Confirm Password", 
+      placeholdertxt: "Password",
+      inputType: "password",
+      name: "passwordConfirm" ,
+      value: passwordConfirm,
+      errorMessage: "Passwords don't match.",
+      pattern: state.password,
+      required: true
+    }
+  ]
   
   let navigate = useNavigate();
 
   const submitHandler = async (e:any) => {
-    console.log("submited");
+    console.log("sdcsc",displayName);
     e.preventDefault();
     
     if (password !== passwordConfirm) {
@@ -36,8 +82,21 @@ export const CreateAccountPage : React.FC = () => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            console.log(user);
-            navigate("/home");
+            // const user = auth.currentUser;
+            updateProfile(user, {
+              displayName: displayName
+            }).then(() => {
+              // Profile updated!
+              console.log(auth.currentUser?.displayName);
+              
+              // ...
+            }).catch((error) => {
+              console.log(error);
+              // An error occurred
+              // ...
+            });
+
+            navigate("/signin");
             // ...
         })
         .catch((error) => {
@@ -55,6 +114,7 @@ export const CreateAccountPage : React.FC = () => {
     setState({...state, [name]: value});
   };
 
+
   return (
     <div className="container">
       <Card classname={"flex-justify-start"}>
@@ -70,11 +130,9 @@ export const CreateAccountPage : React.FC = () => {
           <h1>Create an Account</h1>
           <p >Enter your username, email & password. If you forget it, then you have to do forgot password.</p>   
           <Form id="myform" onSubmit={submitHandler}>
-            <FieldSet label={"Username"} placeholdertxt="Username" inputType="text" name="username" value={displayName} onChange={changeHandler}/>
-            <FieldSet label={"Email"} placeholdertxt="Email" inputType="email" name="email" value={email} onChange={changeHandler}/>
-            <FieldSet label={"Password"} placeholdertxt="Password" inputType="password" name="password" value={password} onChange={changeHandler}/>
-            <FieldSet label={"Confirm Password"} placeholdertxt="Confirm Password" inputType="password" name="passwordConfirm" value={passwordConfirm} onChange={changeHandler}/>
-            {/* <CheckBox label={"Remember me"}/> */}
+            {inputs.map((input) => 
+              <FieldSet key={input.id} {...input} onChange={changeHandler} />
+            )}
           </Form>
         </CardBody>
         <CardAction>
