@@ -21,7 +21,7 @@ export default function WelcomePage() {
       // const token = credential?.accessToken;
 
       const user = result.user;
-      navigate("/home");
+      navigate("/profile");
       console.log(user);
     }).catch((error) => {
       // const errorCode = error.code;

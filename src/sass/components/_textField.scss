@@ -1,12 +1,14 @@
 .textField{
   background-color: var(--clr-neutral-200);
-  border: 0;
+  border: none;
+  border-bottom: 0.1rem solid;
+  border-bottom-color: var(--clr-primary-600);
   min-height: 40px;
   width: 100%;
+  padding: 0.5rem;
   &::placeholder {
     color: var(--clr-neutral-400);
     font-size: small;
-    padding: 0.5rem;
   }
 }
 .textField[data-type="search"]{
@@ -15,5 +17,6 @@
   background-repeat: no-repeat;
   background-size: 20px 20px;
   padding-left: 35px  ;
+  border: none;
   border-radius: var(--radius-inputBox);
 }

@@ -1,48 +1,49 @@
 
-  .btn-simple {
+.btn {
   display:block;
   cursor: pointer;
-   width: 100%;
   text-decoration: none;
-  border-style: solid;
-  border-color: var(--clr-neutral-100);
-  border-radius: var(--radius-button);
   padding: 0.75em 2em;
-  background-color: var(--clr-primary-500);
-
+  background-color:transparent;
+  
   &[data-type="primary"] {
     background-color: var(--clr-primary-500);
     color: var(--clr-neutral-200);
+    border-style: solid;
+    border-color: var(--clr-neutral-100);
+    border-radius: var(--radius-button);
+    width: 100%;
   }
-
+  
   &[data-type="secondary"] {
     background-color: var(--clr-primary-900);
     color: var(--clr-primary-500);
+    border-style: solid;
+    border-color: var(--clr-neutral-100);
+    border-radius: var(--radius-button);
+    width: 100%;
   }
   &[data-type="google"] {
     background-color: var(--clr-neutral-100);
     border-color: var(--clr-primary-700);
     color: var(--clr-primary-500);
+    border-style: solid;
+    border-radius: var(--radius-button);
+    width: 100%;
   } 
-  &:is(:hover, :focus) {
-    border-color: var(--clr-primary-300);
-  } 
-}
+  &[data-type="icon"] {
+    color: var(--clr-neutral-700);
+    border: 0;
+    p{
+      font-size: small;
+    }
 
-.btn-icon {
-  cursor: pointer;
-  text-decoration: none;
-  background-color:transparent;
-  border: 0;
-  &:is(:hover, :focus) {
-    border-color: var(--clr-primary-300);
   }
-
-}
-.btn-container {
-  cursor: pointer;
-  text-decoration: none;
-  background-color:transparent;
-  border: 0;
-  width: 100%;
+  &[data-type="container"] {
+    border: 0;
+    
+  }
+  &:is(:hover, :focus) {
+    border-color: var(--clr-primary-300);
+  } 
 }

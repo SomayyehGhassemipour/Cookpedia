@@ -7,8 +7,12 @@
 .flex-justify-start {
   @include flx($justify:flex-start);
 }
+.flex-align-start {
+  @include flx($align:flex-start);
+}
 .flex-row {
-  @include flx($direction:row);
+  @include flx($direction:row, $justify:space-around);
+  width: 100%;
 }
 .flex-column-center {
   @include flx;

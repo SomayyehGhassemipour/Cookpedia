@@ -56,7 +56,7 @@ export const SignInPage : React.FC = () => {
     .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    navigate("/home");
+    navigate("/profile");
     console.log(user);
     // ...
     })
@@ -92,11 +92,11 @@ export const SignInPage : React.FC = () => {
               <FieldSet key={input.id} {...input} onChange={changeHandler} />
             )}
             <CheckBox label={"Remember me"}/>
-            <LineSeperator/>
+            <LineSeperator type="horizontal"/>
             <Button data_type="container" clickHandler={()=>navigate("/signup-create-account")}>
               <h5 className="text-primary-500">Forget Password</h5>
             </Button>
-            <LineSeperator content={"or continue with"}/>
+            <LineSeperator type="horizontal" content={"or continue with"}/>
             <div className="flex-column-center">
               <div className="flex-row">
                 <Button data_type={'container'} clickHandler={()=>navigate("/")}>

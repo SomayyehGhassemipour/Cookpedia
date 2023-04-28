@@ -27,10 +27,9 @@ export const HomePage : React.FC = () => {
       <Card classname={"flex-justify-start"}>
         <Header>
           <div className="flex-row">
-            <Button data_type={'icon'} clickHandler={() => navigate("/")}>
-              <Icon name="back"/>
-            </Button>
-            <ProgressBar progress={100}/>
+          {/* <a href="https://ibb.co/KxMk5K6">
+            <img src="https://i.ibb.co/KxMk5K6/IMG-20220418-0958112.jpg" alt="IMG-20220418-0958112" />
+            </a> */}
           </div>
         </Header>
         <CardBody>
