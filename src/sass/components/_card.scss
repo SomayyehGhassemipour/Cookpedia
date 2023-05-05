@@ -1,4 +1,5 @@
 @use '../abstract/mixins' as *;
+
 .card {
   padding: var(--spacer);
   margin: var(--spacer);
@@ -13,18 +14,19 @@
     height: 100vh;
     border-radius: 0;
   }
-}
-.card-body {
-  @include flx($justify:flex-start, $align:flex-start);
-  padding: 0.2rem 0.1rem;
-  width: 100%;
-  overflow: hidden;
-  overflow-y: scroll;
-}
-.card-body[data-align="center"]{
-  @include flx($justify:flex-start, $align:center);
-}
-.card-action {
-  margin-top: auto;
-  width: 100%;
+  .card-body {
+    @include flx($justify:flex-start, $align:flex-start);
+    padding: 0.2rem 0.1rem;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    
+    [data-align="center"]{
+      @include flx($justify:flex-start, $align:center);
+    }
+  }
+  .card-action {
+    margin-top: auto;
+    width: 100%;
+  }
 }

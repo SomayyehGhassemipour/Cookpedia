@@ -10,6 +10,7 @@ import { CardBody } from "../utilities/card/CardBody"
 import { Header } from "../utilities/Header"
 import { Icon } from "../utilities/Icon"
 import { LineSeperator } from "../utilities/LineSeperator";
+import { Navbar } from "../utilities/navbar/Navbar";
 import { ProgressBar } from "../utilities/ProgressBar";
 
 export const ProfilePage : React.FC = () => {
@@ -28,10 +29,10 @@ export const ProfilePage : React.FC = () => {
     <div className="container">
       <Card classname={"flex-justify-start"}>
         <Header>
-          <div className="flex-row">
+          <div className="flex-row-justify-start">
             <h2>Profile</h2>
-          <img src = "icons8-share.svg" alt="share"/>
-          <img src = "icons8-settings-28.svg" alt="settings"/>
+          <img style={{marginLeft: "auto"}} src = "icons8-share.svg" alt="share"/>
+          <img   src = "icons8-settings-28.svg" alt="settings"/>
           {/* <a href="https://ibb.co/KxMk5K6">
             <img src="https://i.ibb.co/KxMk5K6/IMG-20220418-0958112.jpg" alt="IMG-20220418-0958112" />
             </a> */}
@@ -39,38 +40,43 @@ export const ProfilePage : React.FC = () => {
           
         </Header>
         <CardBody>
-          <div className="flex-row">
+          <div className="flex-row-justify-start">
             <div className="profile-avatar">
               <Avatar classname={"avatar-profile"} url={"user.png"} name={"AC"} type={"avatar-circle"} />
             </div>
             <div className="flex-align-start">
               <h2>{auth.currentUser?.displayName}</h2>
-              <p>{auth.currentUser?.email}</p>
+              <p className="text-neutral-600">{auth.currentUser?.email}</p>
+            </div>
+            <div style={{marginLeft: "auto"}}>
+              <Button data_bg={'primary'} data_type={'container'} >
+                <p>Follow</p>
+              </Button>
             </div>
           </div>
           <LineSeperator type="horizontal"/>
-          <div className="flex-row flex-justify-space-around">
+          <div className="flex-row-justify-around">
             <div className="flex-column-center">
               <h3>125</h3>
-              <p>recipies</p>
+              <p className="text-neutral-600">recipies</p>
             </div>
             <LineSeperator type="vertical"/>
             <div className="flex-column-center">
               <h3>104</h3>
-              <p>following</p>
+              <p className="text-neutral-600">following</p>
             </div>
             <LineSeperator type="vertical"/>
             <div className="flex-column-center">
               <h3>2k</h3>
-              <p>followers</p>
+              <p className="text-neutral-600">followers</p>
             </div>
           </div>
           <LineSeperator type="horizontal"/>
-          <div className="flex-row">
-            <Button data_type={'container'} >
+          <div className="flex-row-justify-around">
+            <Button data_type={'container'} data_bg={'transparent'}>
               <h4>Recipes</h4>
             </Button>
-            <Button data_type={'container'} >
+            <Button data_type={'container'} data_bg={'transparent'} >
               <h4>About</h4>
             </Button>
           </div>
@@ -78,27 +84,27 @@ export const ProfilePage : React.FC = () => {
           {/* <h1>Hello <p>{auth.currentUser?.displayName}</p></h1> */}
           </CardBody>
         <CardAction>
-          <div className="flex-row flex-justify-space-around">
-            <Button data_type={'icon'} >
+          <Navbar>
+            <Button data_type={'container'} data_bg={'transparent'}>
               <Icon name="home"/>
               <p>Home</p>
             </Button>
-            <Button data_type={'icon'} >
+            <Button data_type={'container'} data_bg={'transparent'} >
               <Icon name="discover"/>
               <p>Discover</p>
             </Button>
-            <Button data_type={'icon'} >
+            <Button data_type={'container'} data_bg={'circle'}>
               <Icon name="add"/>
             </Button>
-            <Button data_type={'icon'} >
+            <Button data_type={'container'} data_bg={'transparent'}>
               <Icon name="recipe"/>
               <p>My Recipes</p>
             </Button>
-            <Button data_type={'icon'} >
+            <Button data_type={'container'} data_bg={'transparent'}>
               <Icon name="profile"/>
               <p>Profile</p>
             </Button>
-          </div>
+          </Navbar>
         </CardAction>
       </Card>  
     </div>

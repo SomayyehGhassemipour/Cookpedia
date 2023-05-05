@@ -76,8 +76,8 @@ export const SignInPage : React.FC = () => {
     <div className="container">
       <Card classname={"flex-justify-start"}>
         <Header>
-          <div className="flex-row">
-            <Button data_type={'icon'} clickHandler={() => navigate("/")}>
+          <div className="flex-row-justify-around">
+            <Button data_type={'container'} data_bg={'transparent'} clickHandler={() => navigate("/")}>
               <Icon name="back"/>
             </Button>
             <ProgressBar progress={100}/>
@@ -93,19 +93,19 @@ export const SignInPage : React.FC = () => {
             )}
             <CheckBox label={"Remember me"}/>
             <LineSeperator type="horizontal"/>
-            <Button data_type="container" clickHandler={()=>navigate("/signup-create-account")}>
+            <Button data_type="container" data_bg={'transparent'} clickHandler={()=>navigate("/signup-create-account")}>
               <h5 className="text-primary-500">Forget Password</h5>
             </Button>
             <LineSeperator type="horizontal" content={"or continue with"}/>
             <div className="flex-column-center">
-              <div className="flex-row">
-                <Button data_type={'container'} clickHandler={()=>navigate("/")}>
+              <div className="flex-row-justify-around">
+                <Button data_type={'container'} data_bg={'transparent'} clickHandler={()=>navigate("/")}>
                   <div style={{backgroundImage:  "url(icons8-google-28.png)", height:28, width:28}} />
                 </Button>
-                <Button data_type={'container'} clickHandler={()=>navigate("/")}>
+                <Button data_type={'container'} data_bg={'transparent'} clickHandler={()=>navigate("/")}>
                   <div style={{backgroundImage:  "url(icons8-facebook-28.png)", height:28, width:28}} />
                 </Button>
-                <Button data_type={'container'} clickHandler={()=>navigate("/")}>
+                <Button data_type={'container'} data_bg={'transparent'} clickHandler={()=>navigate("/")}>
                   <div style={{backgroundImage:  "url(icons8-apple-logo-28.png)", height:28, width:28}} />
                 </Button>
               </div>
@@ -114,7 +114,7 @@ export const SignInPage : React.FC = () => {
           </Form>
         </CardBody>
         <CardAction>
-        <Button form="myform" data_type={'primary'} type='submit'>
+        <Button form="myform"  data_type={'container'} data_bg={'primary'} type='submit'>
             <p>Sign In</p>
           </Button>
         </CardAction>

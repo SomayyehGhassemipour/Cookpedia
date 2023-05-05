@@ -43,14 +43,14 @@ export default function WelcomePage() {
           <p>The best cooking and food recipies app of the century</p>
         </CardBody>
         <div className='flex-small-gap'>
-          <Button data_type={'google'} clickHandler={clickHandlerGoogle}>
+          <Button data_bg={'google'} data_type={'container'} clickHandler={clickHandlerGoogle}>
             <p>Continue With Google</p>
           </Button><br/>
-          <Button data_type={'primary'} clickHandler={()=>navigate("/signup-country")}>
+          <Button data_bg={'primary'} data_type={'container'} clickHandler={()=>navigate("/signup-country")}>
           <p>Get Started</p>
           </Button>
           <br/>
-          <Button data_type={'secondary'} clickHandler={()=>navigate("/signin")}>
+          <Button data_bg={'secondary'}  data_type={'container'} clickHandler={()=>navigate("/signin")}>
           <p>I Already Have an Account</p>
           </Button>
         </div>

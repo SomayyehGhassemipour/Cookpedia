@@ -25,8 +25,8 @@ export const PersonalDataPage = () => {
     <div className="container">
       <Card classname={"flex-justify-start"}>
         <Header>
-          <div className="flex-row">
-            <Button data_type={'icon'} clickHandler={()=>navigate("/signup-cooking")}>
+          <div className="flex-row-justify-around">
+            <Button data_type={'container'} data_bg={'transparent'} clickHandler={()=>navigate("/signup-cooking")}>
               <Icon name="back"/>
             </Button>
             <ProgressBar progress={75}/>
@@ -35,11 +35,13 @@ export const PersonalDataPage = () => {
         <CardBody>
           <h1>Compelete Your Profile</h1>
           <label >Don't worry, only you can see your personal data. No one else will be able to see it.                    </label>   
-          <div className="profile-avatar">
-            <Avatar classname={"avatar-profile"} url={"user.png"} name={"AC"} type={"avatar-circle"} />
-              <div className="edit-avatar">
-                <Icon name="edit"/>
-              </div>
+          <div className="flex-row-justify-around">
+            <div className="profile-avatar">
+              <Avatar classname={"avatar-profile"} url={"user.png"} name={"AC"} type={"avatar-circle"} />
+                <div className="edit-avatar">
+                  <Icon name="edit"/>
+                </div>
+            </div>
           </div>
           <Form onSubmit={submitHandler}>
             <FieldSet label={"Full Name"} placeholdertxt="Full Name" inputType="text" />
@@ -49,7 +51,7 @@ export const PersonalDataPage = () => {
           </Form>
         </CardBody>
         <CardAction>
-          <Button data_type={'primary'} clickHandler={()=>navigate("/signup-create-account")}>
+          <Button  data_type={'container'} data_bg={'primary'} clickHandler={()=>navigate("/signup-create-account")}>
             <p>Continue</p>
           </Button>
         </CardAction>

@@ -119,8 +119,8 @@ export const CreateAccountPage : React.FC = () => {
     <div className="container">
       <Card classname={"flex-justify-start"}>
         <Header>
-          <div className="flex-row">
-            <Button data_type={'icon'} clickHandler={() => navigate("/signup-personal-data")}>
+          <div className="flex-row-justify-around">
+            <Button data_type={'container'} data_bg={'transparent'} clickHandler={() => navigate("/signup-personal-data")}>
               <Icon name="back"/>
             </Button>
             <ProgressBar progress={100}/>
@@ -136,7 +136,7 @@ export const CreateAccountPage : React.FC = () => {
           </Form>
         </CardBody>
         <CardAction>
-          <Button form="myform" data_type={'primary'} type='submit'>
+          <Button form="myform"  data_type={'container'} data_bg={'primary'} type='submit'>
             <p>Sign Up</p>
           </Button>
         </CardAction>

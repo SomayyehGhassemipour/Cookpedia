@@ -15,8 +15,8 @@ export const CookingLevelPage  = () => {
     <div className="container">
       <Card classname={"flex-justify-start"}>
         <Header>
-        <div className="flex-row">
-          <Button data_type={'icon'} clickHandler={()=>navigate("/signup-country")}>
+        <div className="flex-row-justify-around">
+          <Button data_type={'container'} data_bg={'transparent'} clickHandler={()=>navigate("/signup-country")}>
             <Icon name="back"/>
           </Button>
           <ProgressBar progress={50}/>
@@ -45,7 +45,7 @@ export const CookingLevelPage  = () => {
           </List>
         </CardBody>
         <CardAction>
-          <Button data_type={'primary'} clickHandler={()=>navigate("/signup-personal-data")}>
+          <Button data_bg={'primary'}  data_type={'container'} clickHandler={()=>navigate("/signup-personal-data")}>
             <p>Continue</p>
           </Button>
         </CardAction>

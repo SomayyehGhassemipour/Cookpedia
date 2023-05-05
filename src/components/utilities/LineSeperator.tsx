@@ -8,7 +8,7 @@ export const LineSeperator: React.FC<Props> = ({type, content}) => {
        {type ==="vertical" ?
          <div style={{ height: "100%",borderLeft: "1px solid #f2f2f2 "}}/>
        : content ? 
-        <div className="flex-row">
+        <div className="flex-row-justify-around">
           <div style={{ width: "30%",borderTop: "1px solid #f2f2f2 "}}/>
           <p className="text-neutral-500">{content}</p>
           <div style={{ width: "30%",borderTop: "1px solid #f2f2f2 "}}/>

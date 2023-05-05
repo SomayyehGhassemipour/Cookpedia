@@ -36,8 +36,8 @@ export const CountryPage = () => {
     <div className="container">
       <Card classname={"flex-justify-start"}>
         <Header>
-        <div className="flex-row">
-          <Button data_type={'icon'} clickHandler={()=>navigate("/")}>
+        <div className="flex-row-justify-around">
+          <Button data_type={'container'} data_bg={'transparent'} clickHandler={()=>navigate("/")}>
             <Icon name="back"/>
           </Button>
           <ProgressBar progress={20}/>
@@ -58,7 +58,7 @@ export const CountryPage = () => {
           </List>
         </CardBody>
         <CardAction>
-          <Button data_type={'primary'} clickHandler={countinueFn}>
+          <Button data_type={'container'} data_bg={'primary'} clickHandler={countinueFn}>
             <p>Continue</p>
           </Button>
         </CardAction>

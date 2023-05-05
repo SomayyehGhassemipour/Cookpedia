@@ -36,7 +36,7 @@ export const HomePage : React.FC = () => {
           <h1>Hello <p>{auth.currentUser?.displayName}</p></h1>
           </CardBody>
         <CardAction>
-        <Button  data_type={'primary'} clickHandler={signOutHandler}>
+        <Button data_type={'container'} data_bg={'primary'} clickHandler={signOutHandler}>
             <p>Sign out</p>
           </Button>
         </CardAction>
