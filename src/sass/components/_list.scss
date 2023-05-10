@@ -19,7 +19,11 @@
     outline-width: 0.125rem;
     outline-color: var(--clr-primary-600);
   }
-
+  &[data-select=true] {
+    outline-style: solid;
+    outline-width: 0.125rem;
+    outline-color: var(--clr-primary-600);
+  }
 }
 .list {
   @include flx($justify:flex-start);
@@ -36,4 +40,5 @@
   &[data-type="column"] {
     @include flx($justify:flex-start,$direction:row);
   }
+  
 }

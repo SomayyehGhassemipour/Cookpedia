@@ -1,7 +1,7 @@
 interface Props {
-  children?: JSX.Element | JSX.Element[],
+  children?: React.ReactNode[],
   id ?: string,
-  onSubmit : React.FormEventHandler<HTMLFormElement>
+  onSubmit : React.FormEventHandler<HTMLFormElement> 
 }
 export const Form:React.FC<Props> = ({id, children, onSubmit}) => {
   return (

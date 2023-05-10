@@ -15,10 +15,11 @@ import { LineSeperator } from "../utilities/LineSeperator"
 import { ProgressBar } from "../utilities/ProgressBar"
 
 export const SignInPage : React.FC = () => {
-  console.log(auth?.currentUser?.displayName);
+
   const [state, setstate] = useState({
     email:"",
     password: "",
+    rememberMe: true
   });
   const {email, password} = state;
 
@@ -71,14 +72,16 @@ export const SignInPage : React.FC = () => {
     let {name, value} = e.target;
     setstate({...state, [name]: value});
   }
-
+  const checkboxChangeHandler = () => {
+    setstate({...state, rememberMe: !state.rememberMe});
+  }
   return (
     <div className="container">
       <Card classname={"flex-justify-start"}>
         <Header>
           <div className="flex-row-justify-around">
             <Button data_type={'container'} data_bg={'transparent'} clickHandler={() => navigate("/")}>
-              <Icon name="back"/>
+              <Icon name="back" size='lg'/>
             </Button>
             <ProgressBar progress={100}/>
           </div>
@@ -87,11 +90,10 @@ export const SignInPage : React.FC = () => {
           <h1>Hello there</h1>
           <p>Please Enter your username/email & password to sign in.</p>   
           <Form id="myform" onSubmit={submitHandler}>
-            <>
             {inputs.map((input) => 
               <FieldSet key={input.id} {...input} onChange={changeHandler} />
             )}
-            <CheckBox label={"Remember me"}/>
+            <CheckBox label={"Remember me"} checked={state.rememberMe} onChange={checkboxChangeHandler}/>
             <LineSeperator type="horizontal"/>
             <Button data_type="container" data_bg={'transparent'} clickHandler={()=>navigate("/signup-create-account")}>
               <h5 className="text-primary-500">Forget Password</h5>
@@ -110,7 +112,6 @@ export const SignInPage : React.FC = () => {
                 </Button>
               </div>
             </div>
-            </>
           </Form>
         </CardBody>
         <CardAction>

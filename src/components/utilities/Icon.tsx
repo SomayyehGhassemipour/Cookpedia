@@ -7,46 +7,59 @@ import { faArrowLeftLong,
   faGear, 
   faHouse, 
   faPlus, 
-  faFileLines, 
-  faUser, faLocationDot, faGlobe, faCompass,faH} from '@fortawesome/free-solid-svg-icons'
-import {faBookmark,faCommentDots} from '@fortawesome/free-regular-svg-icons'
+  faFileLines, faBars,
+  faUser, faLocationDot, faGlobe, faCompass,faH,faEdit,faShareNodes} from '@fortawesome/free-solid-svg-icons'
+import {faBookmark,faCommentDots,faShareFromSquare,faPenToSquare} from '@fortawesome/free-regular-svg-icons'
 // import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 interface Props {
   name: string,
+  size: 'lg' | 'sm'|'xs',
 }
-export const Icon : React.FC<Props> = ({name}) => {
+export const Icon : React.FC<Props> = ({name, size}) => {
   if(name==="google") 
     return <div>
-      <FontAwesomeIcon icon={faArrowLeftLong} />
+      <FontAwesomeIcon icon={faArrowLeftLong} size={size} />
     </div>
   if(name==="back") 
     return <div>
-      <FontAwesomeIcon icon={faArrowLeftLong} />
+      <FontAwesomeIcon icon={faArrowLeftLong} size={size}/>
     </div>
   else if (name==="edit") 
     return <div>
-      <FontAwesomeIcon icon={faPen} />
+      <FontAwesomeIcon icon={faPen} size={size} />
     </div>
   else if (name==="home") 
     return <div>
-      <FontAwesomeIcon icon={faHouse} size={'lg'}/>
+      <FontAwesomeIcon icon={faHouse} size={size}/>
     </div>
   else if (name==="discover") 
     return <div>
-      <FontAwesomeIcon icon={faCompass} size={'lg'}/>
+      <FontAwesomeIcon icon={faCompass} size={size}/>
     </div>
   else if (name==="add") 
     return <div>
-      <FontAwesomeIcon icon={faPlus} size={'lg'}/>
+      <FontAwesomeIcon icon={faPlus} size={size}/>
     </div>
   else if (name==="recipe") 
     return <div>
-      <FontAwesomeIcon icon={faFileLines} size={'lg'}/>
+      <FontAwesomeIcon icon={faFileLines} size={size}/>
     </div>
   else if (name==="profile") 
     return <div>
-      <FontAwesomeIcon icon={faUser} size={'lg'}/>
+      <FontAwesomeIcon icon={faUser} size={size}/>
+    </div>
+    else if (name==="edit") 
+    return <div>
+      <FontAwesomeIcon icon={faEdit} size={size}/>
+    </div>
+    else if (name==="settings") 
+    return <div>
+      <FontAwesomeIcon icon={faBars} size={size}/>
+    </div>
+    else if (name==="share") 
+    return <div>
+      <FontAwesomeIcon icon={faShareFromSquare} size={size}/>
     </div>
   else 
   return <div></div>

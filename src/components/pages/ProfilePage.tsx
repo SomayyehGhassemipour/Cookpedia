@@ -1,5 +1,6 @@
-import { signOut } from "firebase/auth";
-import { useState } from "react";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { doc, DocumentSnapshot, getDoc, getFirestore } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { auth } from "../../redux/firebase"
 import { Avatar } from "../utilities/Avatar";
@@ -11,11 +12,42 @@ import { Header } from "../utilities/Header"
 import { Icon } from "../utilities/Icon"
 import { LineSeperator } from "../utilities/LineSeperator";
 import { Navbar } from "../utilities/navbar/Navbar";
-import { ProgressBar } from "../utilities/ProgressBar";
-
+interface UserData {
+  userName: string,
+  email: string,
+  fullname: string,
+  birthday: string,
+  cookLevel: string,
+  country: string,
+  phoneNumber: string,
+  image: string,
+  gender: string,
+  facebook: string
+}
 export const ProfilePage : React.FC = () => {
+  const [userData,setUserData] = useState<UserData | null >(null);
   let navigate = useNavigate();
-  
+  useEffect(()=>{
+    const auth = getAuth();
+    const db = getFirestore();
+    const unsubscribe = onAuthStateChanged(auth, async(user) => {
+      if(user) {
+        const userId:string = user.uid;
+
+        const userRef = doc(db, "users", userId);
+        const userDoc: DocumentSnapshot = await getDoc(userRef);
+
+        if(userDoc.exists()){
+          setUserData(userDoc.data() as UserData);
+        } else {
+          console.log("no such document!");
+        }
+      } else {
+        setUserData(null);
+      }
+    });
+    return () => unsubscribe();
+  },[])
   const signOutHandler = async () => {
     if(auth.currentUser)
       signOut(auth).then(() => {
@@ -31,13 +63,17 @@ export const ProfilePage : React.FC = () => {
         <Header>
           <div className="flex-row-justify-start">
             <h2>Profile</h2>
-          <img style={{marginLeft: "auto"}} src = "icons8-share.svg" alt="share"/>
-          <img   src = "icons8-settings-28.svg" alt="settings"/>
-          {/* <a href="https://ibb.co/KxMk5K6">
-            <img src="https://i.ibb.co/KxMk5K6/IMG-20220418-0958112.jpg" alt="IMG-20220418-0958112" />
-            </a> */}
-          </div>
-          
+            <div style={{display:"flex",marginLeft: "auto"}}>
+              <Button data_type={'container'} data_bg={'transparent'} clickHandler={() => navigate("/")}>
+                <Icon name="share" size='lg'/>
+                {/* <img  src = "icons8-share.svg" alt="share"/> */}
+              </Button>
+              <Button data_type={'container'} data_bg={'transparent'} clickHandler={() => navigate("/")}>
+                <Icon name="settings" size='lg'/>
+                {/* <img src = "icons8-settings-28.svg" alt="settings"/> */}
+              </Button>
+            </div>
+          </div> 
         </Header>
         <CardBody>
           <div className="flex-row-justify-start">
@@ -45,12 +81,15 @@ export const ProfilePage : React.FC = () => {
               <Avatar classname={"avatar-profile"} url={"user.png"} name={"AC"} type={"avatar-circle"} />
             </div>
             <div className="flex-align-start">
-              <h2>{auth.currentUser?.displayName}</h2>
-              <p className="text-neutral-600">{auth.currentUser?.email}</p>
+              <h2>{userData?.fullname}</h2>
+              <p className="text-neutral-600">{userData?.userName}</p>
             </div>
             <div style={{marginLeft: "auto"}}>
               <Button data_bg={'primary'} data_type={'container'} >
-                <p>Follow</p>
+                <div className="flex-row-justify-around">
+                  <Icon name="edit" size='xs'/>
+                  <p>Edit</p>
+                </div>
               </Button>
             </div>
           </div>
@@ -81,27 +120,26 @@ export const ProfilePage : React.FC = () => {
             </Button>
           </div>
           <LineSeperator type="horizontal"/>
-          {/* <h1>Hello <p>{auth.currentUser?.displayName}</p></h1> */}
           </CardBody>
         <CardAction>
           <Navbar>
             <Button data_type={'container'} data_bg={'transparent'}>
-              <Icon name="home"/>
+              <Icon name="home" size='lg'/>
               <p>Home</p>
             </Button>
             <Button data_type={'container'} data_bg={'transparent'} >
-              <Icon name="discover"/>
+              <Icon name="discover" size='lg'/>
               <p>Discover</p>
             </Button>
             <Button data_type={'container'} data_bg={'circle'}>
-              <Icon name="add"/>
+              <Icon name="add" size='lg'/>
             </Button>
             <Button data_type={'container'} data_bg={'transparent'}>
-              <Icon name="recipe"/>
+              <Icon name="recipe" size='lg'/>
               <p>My Recipes</p>
             </Button>
             <Button data_type={'container'} data_bg={'transparent'}>
-              <Icon name="profile"/>
+              <Icon name="profile" size='lg'/>
               <p>Profile</p>
             </Button>
           </Navbar>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../../utilities/Button"
 import { Card } from "../../utilities/card/Card"
@@ -10,8 +10,11 @@ import { Form } from "../../utilities/form/Form"
 import { Header } from "../../utilities/Header"
 import { Icon } from "../../utilities/Icon"
 import { ProgressBar } from "../../utilities/ProgressBar"
-import { auth } from "../../../redux/firebase"
+import { auth, db } from "../../../redux/firebase"
+import { doc, setDoc } from "firebase/firestore"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserData, setUserEmail, setUserName } from '../../../redux/features/user/currentUserSlice' 
 
 export const CreateAccountPage : React.FC = () => {
   
@@ -69,10 +72,12 @@ export const CreateAccountPage : React.FC = () => {
     }
   ]
   
+  const userData = useSelector(getUserData);
   let navigate = useNavigate();
-
-  const submitHandler = async (e:any) => {
-    console.log("sdcsc",displayName);
+  const dispatch = useDispatch();
+  
+  const submitHandler = async (e:React.FormEvent<HTMLFormElement>) => {
+    console.log("sunbmited!");
     e.preventDefault();
     
     if (password !== passwordConfirm) {
@@ -82,22 +87,17 @@ export const CreateAccountPage : React.FC = () => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            // const user = auth.currentUser;
-            updateProfile(user, {
-              displayName: displayName
-            }).then(() => {
-              // Profile updated!
-              console.log(auth.currentUser?.displayName);
-              
-              // ...
-            }).catch((error) => {
-              console.log(error);
-              // An error occurred
-              // ...
-            });
+            
+            const completeUserData = {...userData, email: email, userName: displayName}
 
+            setDoc(doc(db, "users", user.uid), completeUserData)
+            .then(() => {
+              console.log("update successful")
+            })
+            .catch((error)=>{
+              console.log("error:", error)
+            })
             navigate("/signin");
-            // ...
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -121,7 +121,7 @@ export const CreateAccountPage : React.FC = () => {
         <Header>
           <div className="flex-row-justify-around">
             <Button data_type={'container'} data_bg={'transparent'} clickHandler={() => navigate("/signup-personal-data")}>
-              <Icon name="back"/>
+              <Icon name="back" size='lg'/>
             </Button>
             <ProgressBar progress={100}/>
           </div>

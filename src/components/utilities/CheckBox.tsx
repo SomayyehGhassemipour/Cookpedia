@@ -1,10 +1,12 @@
 interface Props {
-  label: string  
+  label: string ,
+  checked : boolean,
+  onChange ?: React.ChangeEventHandler<HTMLInputElement>
 }
-export const CheckBox : React.FC<Props> = ({label}) => {
+export const CheckBox : React.FC<Props> = ({label, checked, onChange}) => {
   return (
     <label className="checkbox-container">{label}
-      <input type="checkbox" checked/>
+      <input type="checkbox"  onChange={onChange} checked={checked}/>
       <span className="checkmark"></span>
     </label>
   )
