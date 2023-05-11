@@ -3,6 +3,6 @@ interface Props {
 }
 export const CardAction: React.FC<Props> = ({children}) => {
   return (
-    <div className="card-action">{children}</div>
+    <div className="mt-auto card-action">{children}</div>
   )
 }

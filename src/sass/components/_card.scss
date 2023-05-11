@@ -9,9 +9,16 @@
   height: 98vh;
   border-radius: 0.25rem; 
 
-  @include mq("small") {
+  @include mq("tablet") {
     margin: 0;
     height: 100vh;
+    width: 100vw;
+    border-radius: 0;
+  }
+  @include mq("phone") {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
     border-radius: 0;
   }
   .card-body {
@@ -26,7 +33,7 @@
     }
   }
   .card-action {
-    margin-top: auto;
+    // margin-top: auto;
     width: 100%;
   }
 }

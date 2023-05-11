@@ -1,5 +1,12 @@
+@use '../abstract/mixins' as *;
 .navbar {
   &>* {
     flex-grow: 1;
+  }
+  
+  @include mq("phone"){
+    .label {
+      display: none;
+    }
   }
 }

@@ -6,3 +6,12 @@ $radius-button: 2rem;
 $radius-inputBox : 0.75rem;
 $radius-circle : 50%;
 
+// ========================== //
+// Device breakpoints (width) //
+// ========================== //
+$breakpoints: (
+  phone:25em,
+  tablet: 35em,
+  desktop: 50em,
+  lgDesktop: 65em
+);

@@ -1,4 +1,3 @@
-@use 'breakpoints' as *;
 @use 'variables' as *;
 @use 'functions' as *;
 
@@ -7,6 +6,40 @@
   color:set-text-color($color);
 }
 
+
+// ========== //
+// Font sizes //
+// ========== //
+@mixin font-sizes($h1, $h2, $h3, $h4, $p) {
+  $font-sizes: (
+      "h1": $h1,
+      "h2": $h2,
+      "h3": $h3,
+      "h4": $h4,
+      "p": $p,
+  );
+  @each $tag, $size in $font-sizes {
+      @if $tag== "p" {
+          #{$tag},
+          span,
+          strong,
+          label,
+          a,
+          li {
+              font-size: $size;
+          }
+      } @else {
+          #{$tag} {
+              font-size: $size;
+          }
+      }
+  }
+}
+
+// ============= //
+//      Flex     //
+// ============= //
+
 @mixin flx($direction: column,$align: center, $justify: space-between, $gapR:var(--gap), $gapC:var(--spacer)) {
   display: flex;
   gap: $gapR $gapC;
@@ -14,6 +47,10 @@
   align-items: $align;
   justify-content: $justify;
 }  
+
+// ============= //
+// Media Queries //
+// ============= //
 
 @mixin mq($key) {
   $size: map-get($breakpoints, $key);

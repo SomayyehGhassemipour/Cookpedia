@@ -20,7 +20,7 @@
   }
 
   @each $screen-size, $property in $font-sizes {
-    @if $screen-size == small {
+    @if $screen-size == "phone" {
       @each $prop, $value in $property { 
         --fs-#{$prop}: #{$value};
       }

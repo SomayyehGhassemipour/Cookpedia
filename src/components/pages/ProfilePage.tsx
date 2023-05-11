@@ -63,7 +63,7 @@ export const ProfilePage : React.FC = () => {
         <Header>
           <div className="flex-row-justify-start">
             <h2>Profile</h2>
-            <div style={{display:"flex",marginLeft: "auto"}}>
+            <div className="ml-auto" style={{display:"flex"}}>
               <Button data_type={'container'} data_bg={'transparent'} clickHandler={() => navigate("/")}>
                 <Icon name="share" size='lg'/>
                 {/* <img  src = "icons8-share.svg" alt="share"/> */}
@@ -76,7 +76,7 @@ export const ProfilePage : React.FC = () => {
           </div> 
         </Header>
         <CardBody>
-          <div className="flex-row-justify-start">
+          <div className="container flex-row-justify-start">
             <div className="profile-avatar">
               <Avatar classname={"avatar-profile"} url={"user.png"} name={"AC"} type={"avatar-circle"} />
             </div>
@@ -84,7 +84,7 @@ export const ProfilePage : React.FC = () => {
               <h2>{userData?.fullname}</h2>
               <p className="text-neutral-600">{userData?.userName}</p>
             </div>
-            <div style={{marginLeft: "auto"}}>
+            <div className="ml-auto">
               <Button data_bg={'primary'} data_type={'container'} >
                 <div className="flex-row-justify-around">
                   <Icon name="edit" size='xs'/>
@@ -125,22 +125,22 @@ export const ProfilePage : React.FC = () => {
           <Navbar>
             <Button data_type={'container'} data_bg={'transparent'}>
               <Icon name="home" size='lg'/>
-              <p>Home</p>
+              <p className="label">Home</p>
             </Button>
             <Button data_type={'container'} data_bg={'transparent'} >
               <Icon name="discover" size='lg'/>
-              <p>Discover</p>
+              <p className="label">Discover</p>
             </Button>
             <Button data_type={'container'} data_bg={'circle'}>
               <Icon name="add" size='lg'/>
             </Button>
             <Button data_type={'container'} data_bg={'transparent'}>
               <Icon name="recipe" size='lg'/>
-              <p>My Recipes</p>
+              <p className="label">My Recipes</p>
             </Button>
             <Button data_type={'container'} data_bg={'transparent'}>
               <Icon name="profile" size='lg'/>
-              <p>Profile</p>
+              <p className="label">Profile</p>
             </Button>
           </Navbar>
         </CardAction>
