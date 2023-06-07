@@ -10,7 +10,7 @@ import { Icon } from "../../utilities/Icon"
 import { List } from "../../utilities/list/List"
 import { ListItem } from "../../utilities/list/ListItem"
 import { ProgressBar } from "../../utilities/ProgressBar"
-import { setUserCookLevel } from "../../../redux/features/user/currentUserSlice"
+import { setUserCookLevel } from "../../../redux/features/users/currentUserSlice"
 
 export const CookingLevelPage  = () => {
   let navigate = useNavigate();

@@ -88,6 +88,8 @@ select {
 ::-webkit-scrollbar {
   display: none;
 }
+/* disable horizontal resize */
+textarea { resize:vertical; }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {

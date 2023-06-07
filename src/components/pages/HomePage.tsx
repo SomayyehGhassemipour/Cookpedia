@@ -24,7 +24,7 @@ export const HomePage : React.FC = () => {
   console.log(auth.currentUser?.displayName);
   return(
     <div className="container">
-      <Card classname={"flex-justify-start"}>
+      <Card classname="flex-justify-start">
         <Header>
           <div className="flex-row">
           {/* <a href="https://ibb.co/KxMk5K6">

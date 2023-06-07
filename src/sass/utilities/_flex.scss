@@ -10,6 +10,9 @@
 .flex-align-start {
   @include flx($align:flex-start);
 }
+.flex-align-center {
+  @include flx($align:center);
+}
 .flex-row-justify-around {
   @include flx($direction:row, $justify:space-around);
   width: 100%;

@@ -14,7 +14,7 @@ import { auth, db } from "../../../redux/firebase"
 import { doc, setDoc } from "firebase/firestore"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserData, setUserEmail, setUserName } from '../../../redux/features/user/currentUserSlice' 
+import { getUserData, setUserEmail, setUserName } from '../../../redux/features/users/currentUserSlice' 
 
 export const CreateAccountPage : React.FC = () => {
   

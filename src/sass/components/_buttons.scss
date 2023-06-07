@@ -3,7 +3,7 @@
 @mixin btn-primary {
   border-style: solid;
   border-radius: var(--radius-button);
-  padding: 0.75em 2em;
+  padding: 0.5em 1.5em;
 }
 
 .btn {
@@ -18,7 +18,7 @@
     color: var(--clr-neutral-200);
     @include btn-primary();
     width: 100%;
-    border-color: var(--clr-neutral-100);
+    border-color: var(--clr-primary-500);
   }
   
   &[data-bg="secondary"] {
@@ -33,6 +33,7 @@
     color: var(--clr-primary-500);
     @include btn-primary();
     width: 100%;
+    // box-shadow: 0px -3px 0px var(--clr-primary-700) inset; 
     border-color: var(--clr-primary-700);
   } 
   &[data-bg="circle"] {

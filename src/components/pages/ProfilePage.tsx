@@ -131,7 +131,7 @@ export const ProfilePage : React.FC = () => {
               <Icon name="discover" size='lg'/>
               <p className="label">Discover</p>
             </Button>
-            <Button data_type={'container'} data_bg={'circle'}>
+            <Button data_type={'container'} data_bg={'circle'} clickHandler={()=>{navigate("/create-recipe")}}>
               <Icon name="add" size='lg'/>
             </Button>
             <Button data_type={'container'} data_bg={'transparent'}>

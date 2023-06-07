@@ -13,7 +13,7 @@ import { CardAction } from "../../utilities/card/CardAction"
 import data from '../../../data/allCountries.json'
 import { useState } from "react"
 import { useDispatch } from 'react-redux'
-import { setUserCountry } from '../../../redux/features/user/currentUserSlice'
+import { setUserCountry } from '../../../redux/features/users/currentUserSlice'
 
 export const CountryPage = () => {
   
@@ -54,7 +54,7 @@ export const CountryPage = () => {
         <CardBody>
           <h1>Which country are you from?</h1>
           <label >Please select your country of origin for a better recommendations.</label>
-          <InputField type="text" data_type="search" placeholder={"Search Country"} value={searchItem} onChange={handleOnChange}/>
+          <InputField type="text" data_type="input" data_icon="search" placeholder={"Search Country"} value={searchItem} onChange={handleOnChange}/>
           <List>
           {data.filter(country => country.name.toLowerCase().startsWith(searchItem.toLowerCase())).map((item) => ( 
             <ListItem key={item.name} align="horizontal" id={item.name} onClick={selectCountryFn} selected={item.name === selectedCountry? true : false}>

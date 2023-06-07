@@ -11,12 +11,20 @@
     font-size: small;
   }
 }
-.textField[data-type="search"]{
+.textField[data-icon="search"]{
   background-image: url('../../../public/search-32.png'); 
   background-position: 10px 10px;
   background-repeat: no-repeat;
   background-size: 20px 20px;
   padding-left: 35px  ;
+  
+}
+.textField[data-type="input"]{
   border: none;
   border-radius: var(--radius-inputBox);
+}
+.textField[data-type="textarea"]{
+  border: none;
+  border-radius: var(--radius-inputBox);
+  
 }

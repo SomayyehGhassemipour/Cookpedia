@@ -4,6 +4,6 @@ interface Props {
 }
 export const CardBody: React.FC<Props> = ({align, children}) => {
   return (
-    <div className="card-body" data-align={align}>{children}</div>
+    align === 'center' ? <div className="card-body flex-align-center">{children}</div> : <div className="card-body flex-align-start">{children}</div>
   )
 }

@@ -12,7 +12,7 @@ import { ProgressBar } from "../../utilities/ProgressBar"
 import { SelectInput } from "../../utilities/SelectInput"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { setUserPersonalData } from '../../../redux/features/user/currentUserSlice'
+import { setUserPersonalData } from '../../../redux/features/users/currentUserSlice'
 
 
 export const PersonalDataPage = () => {

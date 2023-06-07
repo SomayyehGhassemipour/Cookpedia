@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
+import { CreateRecipe } from './components/pages/CreateRecipe';
 import { HomePage } from './components/pages/HomePage';
 import { ProfilePage } from './components/pages/ProfilePage';
 import { SignInPage } from './components/pages/SignInPage';
@@ -22,6 +23,7 @@ function App() {
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/profile" element={<ProfilePage/>}/>
         <Route path="/signin" element={<SignInPage/>}/>
+        <Route path="/create-recipe" element={<CreateRecipe/>}/>
       </Routes>
       
     </div>

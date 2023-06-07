@@ -8,8 +8,8 @@ import { faArrowLeftLong,
   faHouse, 
   faPlus, 
   faFileLines, faBars,
-  faUser, faLocationDot, faGlobe, faCompass,faH,faEdit,faShareNodes} from '@fortawesome/free-solid-svg-icons'
-import {faBookmark,faCommentDots,faShareFromSquare,faPenToSquare} from '@fortawesome/free-regular-svg-icons'
+  faUser, faLocationDot, faGlobe, faCompass,faH,faEdit,faShareNodes, faXmark} from '@fortawesome/free-solid-svg-icons'
+import {faBookmark,faCommentDots,faShareFromSquare,faPenToSquare,faTrashCan} from '@fortawesome/free-regular-svg-icons'
 // import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 interface Props {
@@ -57,9 +57,17 @@ export const Icon : React.FC<Props> = ({name, size}) => {
     return <div>
       <FontAwesomeIcon icon={faBars} size={size}/>
     </div>
+    else if (name === "close")
+    return <div>
+      <FontAwesomeIcon icon={faXmark} size={size}/>
+    </div>
     else if (name==="share") 
     return <div>
       <FontAwesomeIcon icon={faShareFromSquare} size={size}/>
+    </div>
+    else if (name==="trash") 
+    return <div>
+      <FontAwesomeIcon icon={faTrashCan} size={size}/>
     </div>
   else 
   return <div></div>
