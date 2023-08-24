@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import {
   doc,
   DocumentSnapshot,
@@ -7,7 +7,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../redux/firebase";
+import { auth } from "../sevices/firebase/config";
 import { Avatar } from "../sharedComponents/Avatar";
 import { Button } from "../sharedComponents/Button";
 import { Card } from "../sharedComponents/card/Card";
@@ -17,6 +17,9 @@ import { Header } from "../sharedComponents/Header";
 import { Icon } from "../sharedComponents/Icon";
 import { LineSeperator } from "../sharedComponents/LineSeperator";
 import { Navbar } from "../sharedComponents/navbar/Navbar";
+import { useUserAuth } from "../sevices/firebase/AthenicationService";
+import messages from "../data/message.json";
+
 interface UserData {
   userName: string;
   email: string;
@@ -30,40 +33,38 @@ interface UserData {
   facebook: string;
 }
 export const ProfilePage: React.FC = () => {
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const userAuth = useUserAuth();
   let navigate = useNavigate();
+  const db = getFirestore();
+
+  const [userData, setUserData] = useState<UserData | null>(null);
   useEffect(() => {
-    const auth = getAuth();
-    const db = getFirestore();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const userId: string = user.uid;
-
         const userRef = doc(db, "users", userId);
         const userDoc: DocumentSnapshot = await getDoc(userRef);
 
         if (userDoc.exists()) {
           setUserData(userDoc.data() as UserData);
         } else {
-          console.log("no such document!");
+          console.log(messages.FETCH_USER_INFO_ERORR);
         }
       } else {
         setUserData(null);
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [db]);
+
   const signOutHandler = async () => {
-    if (auth.currentUser)
-      signOut(auth)
-        .then(() => {
-          navigate("/");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    try {
+      await userAuth.logOut();
+      navigate("/");
+    } catch (error: any) {
+      alert(error.Message);
+    }
   };
-  console.log(auth.currentUser?.displayName);
   return (
     <div className="container">
       <Card classname="flex-justify-start">
@@ -74,7 +75,7 @@ export const ProfilePage: React.FC = () => {
               <Button
                 data_type="container"
                 data_bg="transparent"
-                clickHandler={() => navigate("/")}
+                clickHandler={signOutHandler}
               >
                 <Icon name="share" size="lg" />
               </Button>

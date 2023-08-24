@@ -1,27 +1,29 @@
-@use '../abstract/mixins' as *;
-
+@use "../abstract/mixins" as *;
 
 .flex-justify-space-around {
-  @include flx($justify:space-around);
+  @include flx($justify: space-around);
 }
 .flex-justify-start {
-  @include flx($justify:flex-start);
+  @include flx($justify: flex-start);
 }
 .flex-align-start {
-  @include flx($align:flex-start);
+  @include flx($align: flex-start);
 }
 .flex-align-center {
-  @include flx($align:center);
+  @include flx($align: center);
 }
 .flex-row-justify-around {
-  @include flx($direction:row, $justify:space-around);
+  @include flx($direction: row, $justify: space-around);
   width: 100%;
 }
 .flex-row-justify-start {
-  @include flx($direction:row, $justify:flex-start);
+  @include flx($direction: row, $justify: flex-start);
   width: 100%;
 }
 .flex-column-center {
   @include flx;
 }
-
+.flex-center {
+  @include flx($align: center);
+  @include flx($justify: space-around);
+}

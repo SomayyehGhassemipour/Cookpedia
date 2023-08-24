@@ -1,0 +1,131 @@
+{
+  "cookingLevel": [
+    {
+      "title": "Novice",
+      "description": "Basic understainding of kitchen tools and basic cooking techniques such as boiling, and friying."
+    },
+    {
+      "title": "Intermediate",
+      "description": "Ability to follow recipes, prepare simple dishes, and basic knife skills."
+    },
+    {
+      "title": "Advanced",
+      "description": "underestanding of cooking principles, create recipes and proficiency in various cooking techniques such as baking, grilling, and roasting."
+    },
+    {
+      "title": "Professional",
+      "description": "Expert with extensive education, training, and experience in cooking techniques, menu planing, and kitchen management."
+    }
+  ],
+  "CreateAcountInputs": [
+    {
+      "id": "1",
+      "label": "Username",
+      "placeholdertxt": "Username",
+      "inputType": "text",
+      "name": "displayName",
+      "value": "{displayName}",
+      "errorMessage": "Username should be 3-16 characters.",
+      "pattern": "^[A-Za-z0-9]{3,16}$",
+      "required": true
+    },
+    {
+      "id": "2",
+      "label": "Email",
+      "placeholdertxt": "Email",
+      "inputType": "email",
+      "name": "email",
+      "value": "email",
+      "errorMessage": "It should be a valid email address.",
+      "required": true
+    },
+    {
+      "id": "3",
+      "label": "Password",
+      "placeholdertxt": "Password",
+      "inputType": "password",
+      "name": "password",
+      "value": "password",
+      "errorMessage": "Password should be 6-20 characters and include at least 1 letter, 1 number and 1 special character.",
+      "pattern": "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$",
+      "required": true
+    },
+    {
+      "id": "4",
+      "label": "Confirm Password",
+      "placeholdertxt": "Password",
+      "inputType": "password",
+      "name": "passwordConfirm",
+      "value": "passwordConfirm",
+      "errorMessage": "Passwords don't match.",
+      "required": true
+    }
+  ],
+  "PersonalDataInputs": [
+    {
+      "id": "1",
+      "label": "Full Name",
+      "placeholdertxt": "Full Name",
+      "inputType": "text",
+      "name": "fullname",
+      "value": "fullname",
+      "errorMessage": "Username should be 3-16 characters.",
+      "pattern": "^[A-Za-z ]{3,16}$",
+      "required": true
+    },
+    {
+      "id": "2",
+      "label": "Phone Number",
+      "placeholdertxt": "+1 000 000 000",
+      "inputType": "phone",
+      "name": "phoneNumber",
+      "value": "phoneNumber",
+      "errorMessage": "It should be a valid number.",
+      "pattern": "^[0-9+]{12}$",
+      "required": true
+    },
+    {
+      "id": "3",
+      "label": "Date of Birth",
+      "placeholdertxt": "MM/DD?YYYY",
+      "inputType": "date",
+      "name": "birthday",
+      "value": "birthday",
+      "errorMessage": "Please put your birthday",
+      "required": true
+    },
+    {
+      "id": "4",
+      "label": "Gender",
+      "placeholdertxt": "Gender",
+      "inputType": "select",
+      "name": "gender",
+      "value": "gender",
+      "errorMessage": "Please select the gender.",
+      "options": ["gender", "male", "female", "other"],
+      "required": true
+    }
+  ],
+  "signInInputs": [
+    {
+      "id": "1",
+      "label": "Email",
+      "placeholdertxt": "Email",
+      "inputType": "email",
+      "name": "email",
+      "value": "email",
+      "errorMessage": "It should be a valid email address.",
+      "required": true
+    },
+    {
+      "id": "2",
+      "label": "Password",
+      "placeholdertxt": "Password",
+      "inputType": "password",
+      "name": "password",
+      "value": "password",
+      "errorMessage": "The password you’ve entered is incorrect.",
+      "required": true
+    }
+  ]
+}

@@ -10,10 +10,11 @@ import { CountryPage } from "./pages/signUp/CountryPage";
 import { CreateAccountPage } from "./pages/signUp/CreateAccountPage";
 import { PersonalDataPage } from "./pages/signUp/PersonalDataPage";
 import WelcomePage from "./pages/WelcomePage";
+import { UserAuthContextProvider } from "./sevices/firebase/AthenicationService";
 
 function App() {
   return (
-    <div className="App">
+    <UserAuthContextProvider>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/signup-country" element={<CountryPage />} />
@@ -25,7 +26,7 @@ function App() {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/create-recipe" element={<CreateRecipe />} />
       </Routes>
-    </div>
+    </UserAuthContextProvider>
   );
 }
 

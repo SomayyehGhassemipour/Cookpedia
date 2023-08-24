@@ -8,12 +8,14 @@ import { Icon } from "../sharedComponents/Icon";
 import { InputField } from "../sharedComponents/InputField";
 import { LineSeperator } from "../sharedComponents/LineSeperator";
 import { Shape } from "../sharedComponents/Shape";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Form } from "../sharedComponents/form/Form";
+import { ImageUploader } from "../sharedComponents/ImageUploader";
 
 export const CreateRecipe = () => {
   const navigate = useNavigate();
   const [state, setState] = useState({
+    image: null,
     title: "",
     description: "",
     cookTime: "",
@@ -23,6 +25,10 @@ export const CreateRecipe = () => {
     instructions: [""],
   });
 
+  const getImage = (event: any) => {
+    const image = event.target.files[0];
+    if (image) setState({ ...state, image: image });
+  };
   const addHandler = (type: string) => {
     type === "ingredient"
       ? setState({ ...state, ingredients: [...state.ingredients, ""] })
@@ -80,6 +86,7 @@ export const CreateRecipe = () => {
         </Header>
         <CardBody>
           <Form id="myForm" onSubmit={submitHandler}>
+            <ImageUploader image={state.image} changeHandler={getImage} />
             <h4>Title</h4>
             <InputField
               type="text"
@@ -96,7 +103,9 @@ export const CreateRecipe = () => {
               data_type="textarea"
               value={state.description}
               placeholder="Description"
-              onChange={() => console.log("textarea")}
+              onChange={(event: any) =>
+                setState({ ...state, description: event.target.value })
+              }
             />
             <h4>Cook Time</h4>
             <InputField

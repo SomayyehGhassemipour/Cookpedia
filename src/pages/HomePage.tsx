@@ -1,14 +1,11 @@
 import { signOut } from "firebase/auth";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../redux/firebase";
+import { auth } from "../sevices/firebase/config";
 import { Button } from "../sharedComponents/Button";
 import { Card } from "../sharedComponents/card/Card";
 import { CardAction } from "../sharedComponents/card/CardAction";
 import { CardBody } from "../sharedComponents/card/CardBody";
 import { Header } from "../sharedComponents/Header";
-import { Icon } from "../sharedComponents/Icon";
-import { ProgressBar } from "../sharedComponents/ProgressBar";
 
 export const HomePage: React.FC = () => {
   let navigate = useNavigate();
@@ -23,7 +20,7 @@ export const HomePage: React.FC = () => {
           console.error(error);
         });
   };
-  console.log(auth.currentUser?.displayName);
+
   return (
     <div className="container">
       <Card classname="flex-justify-start">

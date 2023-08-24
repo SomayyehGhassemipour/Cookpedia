@@ -14,6 +14,7 @@ import data from "../../data/allCountries.json";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUserCountry } from "../../redux/features/users/currentUserSlice";
+import messages from "../../data/message.json";
 
 export const CountryPage = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export const CountryPage = () => {
   };
 
   const countinueFn = (e: React.MouseEvent<HTMLElement>) => {
-    if (!selectedCountry) alert("Please select a country.");
+    if (!selectedCountry) alert(messages.SELECT_COUNTRY);
     else {
       dispatch(setUserCountry({ country: selectedCountry }));
       navigate("/signup-cooking");

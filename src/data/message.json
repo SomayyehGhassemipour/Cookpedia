@@ -1,0 +1,8 @@
+{
+  "FETCH_USER_INFO_ERORR": "Requested user data could not be found.",
+  "SELECT_COUNTRY": "Please select a country.",
+  "NOT_MATCH_PASSWORDS": "Passwords don't match",
+  "SUCCESSFUL_UPDATE": "Update was successsful.",
+  "ERROR_IN_ADDING_USER": "There is an error in adding user.",
+  "ERROR_IN_SIGN_UP": "There is an error in signing up the user."
+}

@@ -13,6 +13,7 @@ import { SelectInput } from "../../sharedComponents/SelectInput";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUserPersonalData } from "../../redux/features/users/currentUserSlice";
+import mockData from "../../data/mockData.json";
 
 export const PersonalDataPage = () => {
   let navigate = useNavigate();
@@ -26,61 +27,18 @@ export const PersonalDataPage = () => {
   });
   const { fullname, phoneNumber, birthday, gender } = state;
 
-  const inputs = [
-    {
-      id: "1",
-      label: "Full Name",
-      placeholdertxt: "Full Name",
-      inputType: "text",
-      name: "fullname",
-      value: fullname,
-      errorMessage: "Username should be 3-16 characters.",
-      pattern: "^[A-Za-z ]{3,16}$",
-      required: true,
-    },
-    {
-      id: "2",
-      label: "Phone Number",
-      placeholdertxt: "+1 000 000 000",
-      inputType: "phone",
-      name: "phoneNumber",
-      value: phoneNumber,
-      errorMessage: "It should be a valid number.",
-      pattern: "^[0-9+]{12}$",
-      required: true,
-    },
-    {
-      id: "3",
-      label: "Date of Birth",
-      placeholdertxt: "MM/DD?YYYY",
-      inputType: "date",
-      name: "birthday",
-      value: birthday,
-      errorMessage: "Please put your birthday",
-      required: true,
-    },
-    {
-      id: "4",
-      label: "Gender",
-      placeholdertxt: "Gender",
-      inputType: "select",
-      name: "gender",
-      value: gender,
-      errorMessage: "Please select the gender.",
-      options: ["gender", "male", "female", "other"],
-      required: true,
-    },
-  ];
+  const PersonalDataInputs = mockData.PersonalDataInputs;
+  PersonalDataInputs.map((input) => (input.value = eval(input.value)));
 
-  const submitHandler = () => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     dispatch(setUserPersonalData(state));
-    console.log("submited");
+
     navigate("/signup-create-account");
   };
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    console.log(e.target.value);
     let { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
@@ -120,7 +78,7 @@ export const PersonalDataPage = () => {
             </div>
           </div>
           <Form id="myForm" onSubmit={submitHandler}>
-            {inputs.map((input) =>
+            {PersonalDataInputs.map((input) =>
               input.name === "gender" ? (
                 <SelectInput
                   key={input.id}

@@ -2,50 +2,65 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userName: "",
-  email:"",
-  fullname:"",
-  birthday:"",
-  cookLevel:"",
-  country:"",
-  phoneNumber:"",
-  image:"",
-  gender:"",
-  facebook:""
-}
+  email: "",
+  fullname: "",
+  aboutme: "",
+  birthday: "",
+  cookLevel: "",
+  country: "",
+  phoneNumber: "",
+  image: "",
+  gender: "",
+  facebook: "",
+  recipies: [],
+  followers: [],
+  following: [],
+};
 export const currentUserSlice = createSlice({
-  name: 'currentUser',
+  name: "currentUser",
   initialState,
   reducers: {
-    setUserName : (state, action) => {
-      state.userName = action.payload.userName
+    setUserName: (state, action) => {
+      state.userName = action.payload.userName;
     },
-    setUserEmail : (state, action) => {
-      state.email = action.payload.email
+    setUserEmail: (state, action) => {
+      state.email = action.payload.email;
     },
-    setUserCountry : (state, action) => {
-      state.country = action.payload.country
+    setUserCountry: (state, action) => {
+      state.country = action.payload.country;
     },
-    setUserCookLevel : (state, action) => {
-      state.cookLevel = action.payload.cookLevel
+    setUserCookLevel: (state, action) => {
+      state.cookLevel = action.payload.cookLevel;
     },
-    setUserPersonalData : (state, action) => {
+    setUserPersonalData: (state, action) => {
       state.fullname = action.payload.fullname;
       state.phoneNumber = action.payload.phoneNumber;
       state.birthday = action.payload.birthday;
       state.gender = action.payload.gender;
-    }
-  }
-})
+    },
+  },
+});
 
-export const {setUserName, setUserCountry, setUserCookLevel, setUserEmail, setUserPersonalData} =   currentUserSlice.actions
+export const {
+  setUserName,
+  setUserCountry,
+  setUserCookLevel,
+  setUserEmail,
+  setUserPersonalData,
+} = currentUserSlice.actions;
 
-export  const getUserData = (state: { currentUser: { userName: string,email: string,
-fullname: string,
-birthday: string,
-cookLevel: string,
-country: string,
-phoneNumber: string,
-image: string,
-gender: string,
-facebook: string  }; }) => state.currentUser
-export default currentUserSlice.reducer 
+export const getUserData = (state: {
+  currentUser: {
+    userName: string;
+    email: string;
+    fullname: string;
+    birthday: string;
+    cookLevel: string;
+    country: string;
+    phoneNumber: string;
+    image: string;
+    gender: string;
+    facebook: string;
+  };
+}) => state.currentUser;
+export default currentUserSlice.reducer;

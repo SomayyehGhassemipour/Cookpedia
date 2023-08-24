@@ -3,23 +3,16 @@ import { Card } from "../sharedComponents/card/Card";
 import { Header } from "../sharedComponents/Header";
 import { CardBody } from "../sharedComponents/card/CardBody";
 import { useNavigate } from "react-router-dom";
-import { signInWithPopup } from "firebase/auth";
-import { auth, googleAuthProvider } from "../redux/firebase";
+import { useUserAuth } from "../sevices/firebase/AthenicationService";
 
 export default function WelcomePage() {
   let navigate = useNavigate();
+  const userAuth = useUserAuth();
 
   const clickHandlerGoogle = async () => {
-    await signInWithPopup(auth, googleAuthProvider)
-      .then((result) => {
-        const user = result.user;
-        navigate("/profile");
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.error(errorMessage);
-      });
+    const response = await userAuth.logInWithGoogle();
+    if (response) navigate("/profile");
+    else console.log(response.error);
   };
   return (
     <div className="container">
@@ -27,7 +20,7 @@ export default function WelcomePage() {
         <Header align="center">
           <h1 className="text-neutral-800">
             Welcome to <br />
-            <h3 className="text-primary-500">Cookpedia</h3>
+            <div className="text-primary-500">Cookpedia</div>
           </h1>
         </Header>
         <CardBody align="center">

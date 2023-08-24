@@ -1,7 +1,5 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../redux/firebase";
 import { Button } from "../sharedComponents/Button";
 import { Card } from "../sharedComponents/card/Card";
 import { CardAction } from "../sharedComponents/card/CardAction";
@@ -13,8 +11,13 @@ import { Header } from "../sharedComponents/Header";
 import { Icon } from "../sharedComponents/Icon";
 import { LineSeperator } from "../sharedComponents/LineSeperator";
 import { ProgressBar } from "../sharedComponents/ProgressBar";
+import { useUserAuth } from "../sevices/firebase/AthenicationService";
+import mockData from "../data/mockData.json";
 
 export const SignInPage: React.FC = () => {
+  const userAuth = useUserAuth();
+  let navigate = useNavigate();
+
   const [state, setstate] = useState({
     email: "",
     password: "",
@@ -22,49 +25,14 @@ export const SignInPage: React.FC = () => {
   });
   const { email, password } = state;
 
-  const inputs = [
-    {
-      id: "1",
-      label: "Email",
-      placeholdertxt: "Email",
-      inputType: "email",
-      name: "email",
-      value: email,
-      errorMessage: "It should be a valid email address.",
-      required: true,
-    },
-    {
-      id: "2",
-      label: "Password",
-      placeholdertxt: "Password",
-      inputType: "password",
-      name: "password",
-      value: password,
-      errorMessage: "The password you’ve entered is incorrect.",
-      required: true,
-    },
-  ];
-
-  let navigate = useNavigate();
+  const signInInputs = mockData.signInInputs;
+  signInInputs.map((input) => (input.value = eval(input.value)));
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
-
-    console.log("submited", email, password);
-
-    await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        navigate("/profile");
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
+    const response = await userAuth.logIn(email, password);
+    if (response) navigate("/profile");
+    else console.log(response.error);
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,7 +61,7 @@ export const SignInPage: React.FC = () => {
           <h1>Hello there</h1>
           <p>Please Enter your username/email & password to sign in.</p>
           <Form id="myform" onSubmit={submitHandler}>
-            {inputs.map((input) => (
+            {signInInputs.map((input) => (
               <FieldSet key={input.id} {...input} onChange={changeHandler} />
             ))}
             <CheckBox

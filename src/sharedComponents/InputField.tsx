@@ -34,7 +34,6 @@ export const InputField: React.FC<Props> = ({
       placeholder={placeholder}
       name={name}
       value={value}
-      // onChange={onChange}
       onChangeCapture={onChange}
       onBlur={focusHandler}
     />

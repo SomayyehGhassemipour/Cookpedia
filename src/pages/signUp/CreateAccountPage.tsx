@@ -1,24 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../sharedComponents/Button";
 import { Card } from "../../sharedComponents/card/Card";
 import { CardAction } from "../../sharedComponents/card/CardAction";
 import { CardBody } from "../../sharedComponents/card/CardBody";
-import { CheckBox } from "../../sharedComponents/CheckBox";
 import { FieldSet } from "../../sharedComponents/form/FieldSet";
 import { Form } from "../../sharedComponents/form/Form";
 import { Header } from "../../sharedComponents/Header";
 import { Icon } from "../../sharedComponents/Icon";
 import { ProgressBar } from "../../sharedComponents/ProgressBar";
-import { auth, db } from "../../redux/firebase";
-import { doc, setDoc } from "firebase/firestore";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getUserData,
-  setUserEmail,
-  setUserName,
-} from "../../redux/features/users/currentUserSlice";
+import { useSelector } from "react-redux";
+import { getUserData } from "../../redux/features/users/currentUserSlice";
+import { useUserAuth } from "../../sevices/firebase/AthenicationService";
+import { addUser } from "../../sevices/user/UserService";
+import mockData from "../../data/mockData.json";
+import messages from "../../data/message.json";
 
 export const CreateAccountPage: React.FC = () => {
   const [state, setState] = useState({
@@ -28,69 +24,21 @@ export const CreateAccountPage: React.FC = () => {
     passwordConfirm: "",
   });
   const { displayName, email, password, passwordConfirm } = state;
-
-  const inputs = [
-    {
-      id: "1",
-      label: "Username",
-      placeholdertxt: "Username",
-      inputType: "text",
-      name: "displayName",
-      value: displayName,
-      errorMessage: "Username should be 3-16 characters.",
-      pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true,
-    },
-    {
-      id: "2",
-      label: "Email",
-      placeholdertxt: "Email",
-      inputType: "email",
-      name: "email",
-      value: email,
-      errorMessage: "It should be a valid email address.",
-      required: true,
-    },
-    {
-      id: "3",
-      label: "Password",
-      placeholdertxt: "Password",
-      inputType: "password",
-      name: "password",
-      value: password,
-      errorMessage:
-        "Password should be 6-20 characters and include at least 1 letter, 1 number and 1 special character.",
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$`,
-      required: true,
-    },
-    {
-      id: "4",
-      label: "Confirm Password",
-      placeholdertxt: "Password",
-      inputType: "password",
-      name: "passwordConfirm",
-      value: passwordConfirm,
-      errorMessage: "Passwords don't match.",
-      pattern: state.password,
-      required: true,
-    },
-  ];
+  const CreateAcountInputs = mockData.CreateAcountInputs;
+  CreateAcountInputs.map((input) => (input.value = eval(input.value)));
 
   const userData = useSelector(getUserData);
   let navigate = useNavigate();
-  const dispatch = useDispatch();
+  const userAuth = useUserAuth();
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("sunbmited!");
     e.preventDefault();
 
     if (password !== passwordConfirm) {
-      return;
-    }
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
+      alert(messages.NOT_MATCH_PASSWORDS);
+    } else {
+      try {
+        const credentioalUser = await userAuth.signUp(email, password);
 
         const completeUserData = {
           ...userData,
@@ -98,23 +46,24 @@ export const CreateAccountPage: React.FC = () => {
           userName: displayName,
         };
 
-        setDoc(doc(db, "users", user.uid), completeUserData)
-          .then(() => {
-            console.log("update successful");
-          })
-          .catch((error) => {
-            console.log("error:", error);
-          });
-        navigate("/signin");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
-      });
+        try {
+          await addUser(credentioalUser.uid, completeUserData);
+          console.log(messages.SUCCESSFUL_UPDATE);
+          navigate("/profile");
+        } catch (error: any) {
+          alert(messages.ERROR_IN_ADDING_USER + error);
+        }
+      } catch (error: any) {
+        alert(messages.ERROR_IN_SIGN_UP + error);
+      }
 
-    setState({ displayName: "", email: "", password: "", passwordConfirm: "" });
+      setState({
+        displayName: "",
+        email: "",
+        password: "",
+        passwordConfirm: "",
+      });
+    }
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -144,7 +93,7 @@ export const CreateAccountPage: React.FC = () => {
             have to do forgot password.
           </p>
           <Form id="myform" onSubmit={submitHandler}>
-            {inputs.map((input) => (
+            {CreateAcountInputs.map((input) => (
               <FieldSet key={input.id} {...input} onChange={changeHandler} />
             ))}
           </Form>

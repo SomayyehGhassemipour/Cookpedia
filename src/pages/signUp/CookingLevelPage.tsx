@@ -11,33 +11,13 @@ import { List } from "../../sharedComponents/list/List";
 import { ListItem } from "../../sharedComponents/list/ListItem";
 import { ProgressBar } from "../../sharedComponents/ProgressBar";
 import { setUserCookLevel } from "../../redux/features/users/currentUserSlice";
+import mockData from "../../data/mockData.json";
 
 export const CookingLevelPage = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const [selectedLevel, setselectedLevel] = useState<string>("");
-  const cookingLevel = [
-    {
-      title: "Novice",
-      description:
-        "Basic understainding of kitchen tools and basic cooking techniques such as boiling, and friying.",
-    },
-    {
-      title: "Intermediate",
-      description:
-        "Ability to follow recipes, prepare simple dishes, and basic knife skills.",
-    },
-    {
-      title: "Advanced",
-      description:
-        "underestanding of cooking principles, create recipes and proficiency in various cooking techniques such as baking, grilling, and roasting.",
-    },
-    {
-      title: "Professional",
-      description:
-        "Expert with extensive education, training, and experience in cooking techniques, menu planing, and kitchen management.",
-    },
-  ];
+  const cookingLevel = mockData.cookingLevel;
   const selectLevel = (e: React.MouseEvent<HTMLElement>) => {
     setselectedLevel(e.currentTarget.id);
   };
