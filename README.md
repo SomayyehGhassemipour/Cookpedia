@@ -9,19 +9,20 @@
 
 ## General info
 
-This is a social media for cooks that they can post their recepies and also connect to eachother.
+This is a social media for cooks that they can post their recepies and also connect to eachother. I used Firebase as backend service for hosting databases and authenication.
 
 ## Technologies
 
 project is created with:
 
+- JavaScript
 - HTML
 - CSS
-- JavaScript
 - Typescript
 - React js
 - Redux
 - Sass
+- Firebase
 
 ## Authors
 
