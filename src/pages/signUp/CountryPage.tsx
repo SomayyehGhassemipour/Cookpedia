@@ -62,6 +62,7 @@ export const CountryPage = () => {
           </label>
           <InputField
             type="text"
+            name="search-input"
             data_type="input"
             data_icon="search"
             placeholder="Search Country"

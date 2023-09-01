@@ -40,6 +40,7 @@ export const InputField: React.FC<Props> = ({
   ) : (
     <input
       className="textField"
+      role="input"
       data-type={data_type}
       data-icon={data_icon}
       type={type}

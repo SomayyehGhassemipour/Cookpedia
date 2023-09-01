@@ -17,6 +17,9 @@ interface Props {
 export const UserAuthContextProvider: React.FC<Props> = ({ children }) => {
   const [user, setuser] = useState({});
 
+  const getIdToken = () => {
+    return auth.currentUser?.getIdToken();
+  };
   const logInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleAuthProvider);
@@ -69,7 +72,7 @@ export const UserAuthContextProvider: React.FC<Props> = ({ children }) => {
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, logInWithGoogle }}
+      value={{ user, getIdToken, logIn, signUp, logOut, logInWithGoogle }}
     >
       {children}
     </userAuthContext.Provider>

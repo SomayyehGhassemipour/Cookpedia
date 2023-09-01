@@ -1,8 +1,10 @@
-interface Props{
-  children?: JSX.Element | JSX.Element[]
+interface Props {
+  children?: JSX.Element | JSX.Element[];
 }
-export const List : React.FC<Props> = ({children}) => {
+export const List: React.FC<Props> = ({ children }) => {
   return (
-    <div className="list">{children}</div>
-  )
-}
+    <div className="list" role="list">
+      {children}
+    </div>
+  );
+};
