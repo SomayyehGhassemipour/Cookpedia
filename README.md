@@ -9,15 +9,20 @@
 
 ## General info
 
-This is a social media for cooks that they can post their recepies and also connect to eachother. I used Firebase as backend service for hosting databases and authenication.
+Cookpedia - A Culinary Community for Recipe Sharing
+Cookpedia is a vibrant online platform that brings together cooks and food enthusiasts to share their favorite recipes and culinary creations. It combines Firebase for backend functionality and React.js for an interactive user experience.
+
+Backend: Firebase - Provides real-time database and user authentication.
+Frontend: React.js - Powers an engaging user interface.
+Database: Firebase Realtime Database - Ensures real-time data synchronization.
 
 ## Technologies
 
 project is created with:
 
 - JavaScript
-- HTML
-- CSS
+- HTML5
+- CSS3
 - Typescript
 - React js
 - Redux
