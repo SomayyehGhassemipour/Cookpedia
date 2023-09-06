@@ -33,7 +33,6 @@
     color: var(--clr-primary-500);
     @include btn-primary();
     width: 100%;
-    // box-shadow: 0px -3px 0px var(--clr-primary-700) inset;
     border-color: var(--clr-primary-700);
   }
   &[data-bg="circle"] {

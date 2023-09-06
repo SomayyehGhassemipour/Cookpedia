@@ -18,10 +18,10 @@ export const CookingLevelPage = () => {
   const dispatch = useDispatch();
   const [selectedLevel, setselectedLevel] = useState<string>("");
   const cookingLevel = mockData.cookingLevel;
-  const selectLevel = (e: React.MouseEvent<HTMLElement>) => {
-    setselectedLevel(e.currentTarget.id);
+  const selectLevel = (event: React.MouseEvent<HTMLElement>) => {
+    setselectedLevel(event.currentTarget.id);
   };
-  const countinueFn = (e: React.MouseEvent<HTMLElement>) => {
+  const countinueFn = (event: React.MouseEvent<HTMLElement>) => {
     dispatch(setUserCookLevel({ cookLevel: selectedLevel }));
     navigate("/signup-personal-data");
   };

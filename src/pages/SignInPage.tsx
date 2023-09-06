@@ -28,15 +28,15 @@ export const SignInPage: React.FC = () => {
   const signInInputs = mockData.signInInputs;
   signInInputs.map((input) => (input.value = eval(input.value)));
 
-  const submitHandler = async (e: any) => {
-    e.preventDefault();
+  const submitHandler = async (event: any) => {
+    event.preventDefault();
     const response = await userAuth.logIn(email, password);
     if (response) navigate("/profile");
     else console.log(response.error);
   };
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let { name, value } = e.target;
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let { name, value } = event.target;
     setstate({ ...state, [name]: value });
   };
   const checkboxChangeHandler = () => {

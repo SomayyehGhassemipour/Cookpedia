@@ -23,17 +23,17 @@ export const CountryPage = () => {
   const [searchItem, setSearchItem] = useState<string>("");
   const [selectedCountry, setselectedCountry] = useState<string>("");
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setselectedCountry("");
-    setSearchItem(e.target.value);
+    setSearchItem(event.target.value);
   };
 
-  const selectCountryFn = (e: React.MouseEvent<HTMLElement>) => {
-    setselectedCountry(e.currentTarget.id);
-    setSearchItem(e.currentTarget.id);
+  const selectCountryFn = (event: React.MouseEvent<HTMLElement>) => {
+    setselectedCountry(event.currentTarget.id);
+    setSearchItem(event.currentTarget.id);
   };
 
-  const countinueFn = (e: React.MouseEvent<HTMLElement>) => {
+  const countinueFn = () => {
     if (!selectedCountry) alert(messages.SELECT_COUNTRY);
     else {
       dispatch(setUserCountry({ country: selectedCountry }));

@@ -1,20 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { User } from "../../../data/objects";
 
-const initialState = {
+const initialState: User = {
   userName: "",
   email: "",
   fullname: "",
   aboutme: "",
-  birthday: "",
+  birthday: null,
   cookLevel: "",
   country: "",
+  city: "",
   phoneNumber: "",
   image: "",
   gender: "",
   facebook: "",
-  recipies: [],
-  followers: [],
-  following: [],
+  instagram: "",
+  twitter: "",
+  joinedDate: null,
 };
 export const currentUserSlice = createSlice({
   name: "currentUser",

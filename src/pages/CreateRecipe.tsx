@@ -11,23 +11,38 @@ import { Shape } from "../sharedComponents/Shape";
 import { useState } from "react";
 import { Form } from "../sharedComponents/form/Form";
 import { ImageUploader } from "../sharedComponents/ImageUploader";
+import { Recipe } from "../data/objects";
+import { addRecipe } from "../sevices/recipie/RecipieService";
+import { useUserAuth } from "../sevices/firebase/AthenicationService";
+import messages from "../data/message.json";
 
 export const CreateRecipe = () => {
+  const userAuth = useUserAuth();
+  const UserID = userAuth.user.uid;
+
   const navigate = useNavigate();
-  const [state, setState] = useState({
+
+  const initialState: Recipe = {
+    userID: "",
     image: null,
     title: "",
     description: "",
     cookTime: "",
     serves: "",
+    published: false,
     origin: "",
-    ingredients: [""],
-    instructions: [""],
-  });
+    ingredients: [],
+    instructions: [],
+  };
+  const [state, setState] = useState<Recipe>(initialState);
 
   const getImage = (event: any) => {
     const image = event.target.files[0];
-    if (image) setState({ ...state, image: image });
+    console.log("image:" + image);
+    if (image) {
+      setState({ ...state, image: image });
+      event.target.files = null;
+    }
   };
   const addHandler = (type: string) => {
     type === "ingredient"
@@ -52,7 +67,7 @@ export const CreateRecipe = () => {
         }));
   };
 
-  const changeHandler = (
+  const changeHandlerListItem = (
     event: React.ChangeEvent<HTMLInputElement>,
     type: string,
     index: number
@@ -68,6 +83,21 @@ export const CreateRecipe = () => {
 
   const submitHandler = () => {
     console.log("submited!");
+  };
+
+  const saveHandler = async (event: React.MouseEvent<HTMLElement>) => {
+    try {
+      await addRecipe(UserID, state);
+    } catch (error: any) {
+      alert(messages.ERROR_IN_ADDING_USER + error);
+    }
+    setState(initialState);
+  };
+  const changeHandlerInputField = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const field = event.target.name;
+    setState({ ...state, [field]: event.target.value });
   };
   return (
     <div className="container">
@@ -90,52 +120,47 @@ export const CreateRecipe = () => {
             <h4>Title</h4>
             <InputField
               type="text"
+              name="title"
               data_type="input"
               value={state.title}
               placeholder="Recipe Title"
-              onChange={(event: any) =>
-                setState({ ...state, title: event.target.value })
-              }
+              onChange={changeHandlerInputField}
             />
             <h4>Description</h4>
             <InputField
               type="text"
+              name="description"
               data_type="textarea"
               value={state.description}
               placeholder="Description"
-              onChange={(event: any) =>
-                setState({ ...state, description: event.target.value })
-              }
+              onChange={changeHandlerInputField}
             />
             <h4>Cook Time</h4>
             <InputField
               type="text"
+              name="cookTime"
               data_type="input"
               value={state.cookTime}
               placeholder="1 hour, 30 mins, etc"
-              onChange={(event: any) =>
-                setState({ ...state, cookTime: event.target.value })
-              }
+              onChange={changeHandlerInputField}
             />
             <h4>Serves</h4>
             <InputField
               type="text"
+              name="serves"
               data_type="input"
               value={state.serves}
               placeholder="3 people"
-              onChange={(event: any) =>
-                setState({ ...state, serves: event.target.value })
-              }
+              onChange={changeHandlerInputField}
             />
             <h4>Origin</h4>
             <InputField
               type="text"
+              name="origin"
               data_type="input"
               value={state.origin}
               placeholder="Location"
-              onChange={(event: any) =>
-                setState({ ...state, origin: event.target.value })
-              }
+              onChange={changeHandlerInputField}
             />
             <LineSeperator type="horizontal" />
             <div
@@ -159,8 +184,8 @@ export const CreateRecipe = () => {
                     data_type="input"
                     value={ingredient}
                     placeholder={`Ingredient ${index + 1}`}
-                    onChange={(event: any) =>
-                      changeHandler(event, "ingredient", index)
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                      changeHandlerListItem(event, "ingredient", index)
                     }
                   />
                   <div className="text-primary-600">
@@ -207,7 +232,7 @@ export const CreateRecipe = () => {
                     value={instruction}
                     placeholder={`Instruction ${index + 1}`}
                     onChange={(event: any) =>
-                      changeHandler(event, "instruction", index)
+                      changeHandlerListItem(event, "instruction", index)
                     }
                   />
                   <div className="text-primary-600">
@@ -235,7 +260,11 @@ export const CreateRecipe = () => {
         </CardBody>
         <CardAction>
           <div className="flex-row-justify-start">
-            <Button data_bg="primary" data_type="container">
+            <Button
+              data_bg="primary"
+              data_type="container"
+              clickHandler={saveHandler}
+            >
               <p>Save</p>
             </Button>
             <Button

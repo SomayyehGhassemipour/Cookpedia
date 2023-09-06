@@ -31,8 +31,8 @@ export const CreateAccountPage: React.FC = () => {
   let navigate = useNavigate();
   const userAuth = useUserAuth();
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     if (password !== passwordConfirm) {
       alert(messages.NOT_MATCH_PASSWORDS);
@@ -44,6 +44,7 @@ export const CreateAccountPage: React.FC = () => {
           ...userData,
           email: email,
           userName: displayName,
+          joinedDate: new Date(Date.now()),
         };
 
         try {
@@ -66,8 +67,8 @@ export const CreateAccountPage: React.FC = () => {
     }
   };
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let { name, value } = e.target;
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let { name, value } = event.target;
     setState({ ...state, [name]: value });
   };
 

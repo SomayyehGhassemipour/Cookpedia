@@ -37,9 +37,9 @@ export const PersonalDataPage = () => {
     navigate("/signup-create-account");
   };
   const changeHandler = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    let { name, value } = e.target;
+    let { name, value } = event.target;
     setState({ ...state, [name]: value });
   };
   const options = ["gender", "male", "female", "other"];
