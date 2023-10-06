@@ -58,7 +58,7 @@ export const PersonalDataPage = () => {
             <ProgressBar progress={75} />
           </div>
         </Header>
-        <CardBody>
+        <CardBody classname="flex-align-start">
           <h1>Compelete Your Profile</h1>
           <label>
             Don't worry, only you can see your personal data. No one else will

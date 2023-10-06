@@ -31,7 +31,7 @@ export const ImageUploader: React.FC<Props> = ({ image, changeHandler }) => {
         />
       ) : (
         <div className="flex-center">
-          <img src="icons8-photo-64.png" alt="image_icon" />
+          <img src="../icons8-photo-64.png" alt="image_icon" />
           <p className="text-neutral-400">Add recipe cover image</p>
         </div>
       )}

@@ -1,4 +1,4 @@
-@use '../abstract/mixins' as *;
+@use "../abstract/mixins" as *;
 
 .card {
   padding: var(--spacer);
@@ -7,7 +7,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   max-width: 100%;
   height: 98vh;
-  border-radius: 0.25rem; 
+  border-radius: var(--radius-card);
 
   @include mq("tablet") {
     margin: 0;
@@ -27,9 +27,9 @@
     width: 100%;
     overflow: hidden;
     overflow-y: scroll;
-    
-    [data-align="center"]{
-      @include flx($justify:flex-start, $align:center);
+
+    [data-align="center"] {
+      @include flx($justify: flex-start, $align: center);
     }
   }
   .card-action {

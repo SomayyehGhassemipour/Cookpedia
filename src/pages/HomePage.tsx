@@ -22,26 +22,15 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <Card classname="flex-justify-start">
-        <Header>
-          <div className="flex-row"></div>
-        </Header>
-        <CardBody>
-          <h1>
-            Hello <p>{auth.currentUser?.displayName}</p>
-          </h1>
-        </CardBody>
-        <CardAction>
-          <Button
-            data_type="container"
-            data_bg="primary"
-            clickHandler={signOutHandler}
-          >
-            <p>Sign out</p>
-          </Button>
-        </CardAction>
-      </Card>
-    </div>
+    <>
+      <Header>
+        <div className="flex-row"></div>
+      </Header>
+      <CardBody classname="flex-align-start">
+        <h1>
+          Hello <p>{auth.currentUser?.displayName}</p>
+        </h1>
+      </CardBody>
+    </>
   );
 };

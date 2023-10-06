@@ -31,7 +31,7 @@ export const SignInPage: React.FC = () => {
   const submitHandler = async (event: any) => {
     event.preventDefault();
     const response = await userAuth.logIn(email, password);
-    if (response) navigate("/profile");
+    if (response) navigate("/user/home");
     else console.log(response.error);
   };
 
@@ -46,7 +46,7 @@ export const SignInPage: React.FC = () => {
     <div className="container">
       <Card classname="flex-justify-start">
         <Header>
-          <div className="flex-row-justify-around">
+          <div className="flex-row-justify-start">
             <Button
               data_type="container"
               data_bg="transparent"
@@ -54,10 +54,9 @@ export const SignInPage: React.FC = () => {
             >
               <Icon name="back" size="lg" />
             </Button>
-            <ProgressBar progress={100} />
           </div>
         </Header>
-        <CardBody>
+        <CardBody classname="flex-align-start">
           <h1>Hello there</h1>
           <p>Please Enter your username/email & password to sign in.</p>
           <Form id="myform" onSubmit={submitHandler}>

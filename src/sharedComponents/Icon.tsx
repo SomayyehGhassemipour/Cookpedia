@@ -18,6 +18,7 @@ import {
   faH,
   faEdit,
   faShareNodes,
+  faSearch,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -29,14 +30,31 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 
 interface Props {
-  name: string;
-  size: "lg" | "sm" | "xs";
+  name?: string;
+  size?: "lg" | "sm" | "xs";
 }
 export const Icon: React.FC<Props> = ({ name, size }) => {
   if (name === "google")
     return (
       <div>
         <FontAwesomeIcon icon={faArrowLeftLong} size={size} />
+      </div>
+    );
+
+  if (name === "more")
+    return (
+      <div
+        style={{
+          backgroundImage: "url(../icons8-more-28.png)",
+          height: 28,
+          width: 28,
+        }}
+      />
+    );
+  if (name === "search")
+    return (
+      <div>
+        <FontAwesomeIcon icon={faSearch} size={size} />
       </div>
     );
   if (name === "back")

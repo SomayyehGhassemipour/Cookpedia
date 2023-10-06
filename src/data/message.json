@@ -5,5 +5,6 @@
   "SUCCESSFUL_UPDATE": "Update was successsful.",
   "ERROR_IN_ADDING_USER": "There is an error in adding user.",
   "ERROR_IN_SIGN_UP": "There is an error in signing up the user.",
-  "ERROR_IN_ADDING_RECIPIE": "There is an error in adding new recipie."
+  "ERROR_IN_ADDING_RECIPIE": "There is an error in adding new recipie.",
+  "ERROR_IN_READING_RECIPIES_OF_USER": "There is an error in reading recipes of current user."
 }

@@ -23,7 +23,7 @@ export default function WelcomePage() {
             <div className="text-primary-500">Cookpedia</div>
           </h1>
         </Header>
-        <CardBody align="center">
+        <CardBody classname="flex-align-center">
           <p>The best cooking and food recipies app of the century</p>
         </CardBody>
         <div className="flex-small-gap">

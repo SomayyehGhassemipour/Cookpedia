@@ -44,7 +44,7 @@ export const CreateAccountPage: React.FC = () => {
           ...userData,
           email: email,
           userName: displayName,
-          joinedDate: new Date(Date.now()),
+          joinedDate: new Date(Date.now()).toISOString().substring(0, 10),
         };
 
         try {
@@ -87,7 +87,7 @@ export const CreateAccountPage: React.FC = () => {
             <ProgressBar progress={100} />
           </div>
         </Header>
-        <CardBody>
+        <CardBody classname="flex-align-start">
           <h1>Create an Account</h1>
           <p>
             Enter your username, email & password. If you forget it, then you

@@ -6,7 +6,6 @@ interface Recipe {
   cookTime: string;
   serves: string;
   origin: string;
-  published: boolean;
   ingredients: string[];
   instructions: string[];
 }
@@ -26,6 +25,6 @@ interface User {
   facebook?: string;
   instagram?: string;
   twitter?: string;
-  joinedDate: Date | null;
+  joinedDate: string | null;
 }
 export type { Recipe, User };

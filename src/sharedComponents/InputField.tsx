@@ -34,6 +34,7 @@ export const InputField: React.FC<Props> = ({
       placeholder={placeholder}
       name={name}
       value={value}
+      required={required}
       onChangeCapture={onChange}
       onBlur={focusHandler}
     />
@@ -47,7 +48,7 @@ export const InputField: React.FC<Props> = ({
       placeholder={placeholder}
       name={name}
       value={value}
-      required
+      required={required}
       pattern={pattern}
       onChange={onChange}
       onBlur={focusHandler}

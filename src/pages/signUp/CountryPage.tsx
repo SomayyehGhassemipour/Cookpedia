@@ -55,7 +55,7 @@ export const CountryPage = () => {
             <ProgressBar progress={20} />
           </div>
         </Header>
-        <CardBody>
+        <CardBody classname="flex-align-start">
           <h1>Which country are you from?</h1>
           <label>
             Please select your country of origin for a better recommendations.

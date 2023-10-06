@@ -40,7 +40,7 @@ export const CookingLevelPage = () => {
             <ProgressBar progress={50} />
           </div>
         </Header>
-        <CardBody>
+        <CardBody classname="flex-align-start">
           <h1>What is your cooking level?</h1>
           <label>
             Please select your cooking levelfor a better recommendations.

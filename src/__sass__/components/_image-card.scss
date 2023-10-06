@@ -1,0 +1,26 @@
+.image-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  border-radius: var(--radius-inputBox);
+  width: 150px;
+  height: 200px;
+}
+
+.card__title {
+  position: absolute;
+  align-self: flex-end;
+  padding: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(22, 22, 22, 0.7);
+  font-size: 0.8rem;
+  line-height: 1;
+  font-weight: 200;
+  width: 100%;
+}
+
+.has-bg-img {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}

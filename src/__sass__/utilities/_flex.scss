@@ -16,6 +16,10 @@
   @include flx($direction: row, $justify: space-around);
   width: 100%;
 }
+.flex-row-justify-space-between {
+  @include flx($direction: row, $justify: space-between);
+  width: 100%;
+}
 .flex-row-justify-start {
   @include flx($direction: row, $justify: flex-start);
   width: 100%;
@@ -26,4 +30,7 @@
 .flex-center {
   @include flx($align: center);
   @include flx($justify: space-around);
+}
+.flex-wrap {
+  flex-wrap: wrap;
 }
