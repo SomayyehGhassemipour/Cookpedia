@@ -85,8 +85,9 @@ export const CountryPage = () => {
                   <Avatar
                     classname="avatar-image"
                     url={item.image}
-                    name="AC"
-                    type="avatar-rectangle"
+                    name={item.code}
+                    type={"rectangle"}
+                    size={"sm"}
                   />
                   <h5 className="text-neutral-400">{item.code}</h5>
                   <h5>{item.name}</h5>

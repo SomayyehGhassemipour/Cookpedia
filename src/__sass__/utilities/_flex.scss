@@ -31,6 +31,10 @@
   @include flx($align: center);
   @include flx($justify: space-around);
 }
-.flex-wrap {
+.flex-row-wrap {
+  @include flx($direction: row);
   flex-wrap: wrap;
+}
+.flex-row {
+  @include flx($direction: row);
 }

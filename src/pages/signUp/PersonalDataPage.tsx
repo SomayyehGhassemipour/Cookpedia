@@ -70,7 +70,8 @@ export const PersonalDataPage = () => {
                 classname="avatar-profile"
                 url="user.png"
                 name="AC"
-                type="avatar-circle"
+                type={"circle"}
+                size={"lg"}
               />
               <div className="edit-avatar">
                 <Icon name="edit" size="sm" />

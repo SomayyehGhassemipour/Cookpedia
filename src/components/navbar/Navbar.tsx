@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "../Button";
-import { Icon } from "../Icon";
+import { Button } from "../../sharedComponents/Button";
+import { Icon } from "../../sharedComponents/Icon";
 
 export const Navbar = () => {
   let navigate = useNavigate();
@@ -21,6 +21,7 @@ export const Navbar = () => {
         <p className="label">Discover</p>
       </Button>
       <Button
+        classname="big-circle-button"
         data_type="container"
         data_bg="circle"
         clickHandler={() => {

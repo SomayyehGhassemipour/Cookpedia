@@ -1,5 +1,13 @@
 import { db } from "../firebase/config";
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { Recipe } from "../../data/objects";
 import { uploadImage } from "../image/ImageService";
 
@@ -29,10 +37,21 @@ export const getAllRecipesByUserID = async (userId: string) => {
 
     const querySnapshot = await getDocs(recipesRef);
     querySnapshot.forEach((doc) => {
-      recipesData.push(doc.data());
+      recipesData.push({ recipeID: doc.id, ...doc.data() });
     });
 
     return recipesData;
+  } catch (error: any) {
+    return { error: error.message };
+  }
+};
+
+export const getRecipe = async (recipeId: string) => {
+  const recipeRef = doc(db, "recipes", recipeId);
+  try {
+    const recipeSnap = await getDoc(recipeRef);
+    const recipeData: any = { recipeID: recipeId, ...recipeSnap.data() };
+    return recipeData;
   } catch (error: any) {
     return { error: error.message };
   }

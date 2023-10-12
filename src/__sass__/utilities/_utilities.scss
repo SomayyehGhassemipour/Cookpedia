@@ -1,5 +1,5 @@
-@use 'sass:math';
-@use '../base/base' as *;
+@use "sass:math";
+@use "../base/base" as *;
 
 $utilities: (
   "padding": (
@@ -15,6 +15,17 @@ $utilities: (
   ),
   "padding-left": (
     "prefix": "pl",
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 3,
+      "4": $base-padding * 4,
+      "5": $base-padding * 5,
+    ),
+  ),
+  "padding-right": (
+    "prefix": "pr",
     "values": (
       "0": 0,
       "1": $base-padding,
@@ -46,7 +57,7 @@ $utilities: (
       "5": $base-padding * 5,
     ),
   ),
-  "margin" : (
+  "margin": (
     "prefix": "m",
     "values": (
       "auto": auto,
@@ -58,7 +69,7 @@ $utilities: (
       "5": $base-margin * 5,
     ),
   ),
-  "margin-left" : (
+  "margin-left": (
     "prefix": "ml",
     "values": (
       "auto": auto,
@@ -70,7 +81,7 @@ $utilities: (
       "5": $base-margin * 5,
     ),
   ),
-  "margin-right" : (
+  "margin-right": (
     "prefix": "mr",
     "values": (
       "auto": auto,
@@ -82,7 +93,7 @@ $utilities: (
       "5": $base-margin * 5,
     ),
   ),
-  "margin-top" : (
+  "margin-top": (
     "prefix": "mt",
     "values": (
       "auto": auto,
@@ -94,7 +105,7 @@ $utilities: (
       "5": $base-margin * 5,
     ),
   ),
-  "margin-bottom" : (
+  "margin-bottom": (
     "prefix": "mb",
     "values": (
       "auto": auto,
@@ -113,10 +124,10 @@ $utilities: (
       "none": 0,
       "xs": math.div($base-border-radius, 4),
       "sm": math.div($base-border-radius, 2),
-      "lg":$base-border-radius * 2,
+      "lg": $base-border-radius * 2,
       "full": 50%,
-    )
-  )
+    ),
+  ),
 );
 
 @each $property, $map in $utilities {
@@ -124,7 +135,7 @@ $utilities: (
   $values: map-get($map, "values");
   @debug #{$property};
   @each $k, $v in $values {
-    @if($k == "default") {
+    @if ($k == "default") {
       .#{$prefix} {
         #{$property}: $v;
       }

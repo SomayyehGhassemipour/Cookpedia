@@ -1,20 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "../sharedComponents/Button";
-import { Card } from "../sharedComponents/card/Card";
-import { CardAction } from "../sharedComponents/card/CardAction";
-import { CardBody } from "../sharedComponents/card/CardBody";
-import { Header } from "../sharedComponents/Header";
-import { Icon } from "../sharedComponents/Icon";
-import { InputField } from "../sharedComponents/InputField";
-import { LineSeperator } from "../sharedComponents/LineSeperator";
-import { Shape } from "../sharedComponents/Shape";
+import { Button } from "../../sharedComponents/Button";
+import { CardBody } from "../../sharedComponents/card/CardBody";
+import { Header } from "../../sharedComponents/Header";
+import { Icon } from "../../sharedComponents/Icon";
+import { InputField } from "../../sharedComponents/InputField";
+import { LineSeperator } from "../../sharedComponents/LineSeperator";
+import { Shape } from "../../sharedComponents/Shape";
 import { useState } from "react";
-import { Form } from "../sharedComponents/form/Form";
-import { ImageUploader } from "../sharedComponents/ImageUploader";
-import { Recipe } from "../data/objects";
-import { addRecipe } from "../sevices/recipie/RecipieService";
-import { useUserAuth } from "../sevices/firebase/AthenicationService";
-import messages from "../data/message.json";
+import { Form } from "../../sharedComponents/form/Form";
+import { ImageUploader } from "../../sharedComponents/ImageUploader";
+import { Recipe } from "../../data/objects";
+import { addRecipe } from "../../sevices/recipie/RecipieService";
+import { useUserAuth } from "../../sevices/firebase/AthenicationService";
+import messages from "../../data/message.json";
 
 export const CreateRecipe = () => {
   const userAuth = useUserAuth();
@@ -23,6 +21,7 @@ export const CreateRecipe = () => {
   const navigate = useNavigate();
 
   const initialState: Recipe = {
+    recipeID: "",
     userID: "",
     image: null,
     title: "",
@@ -87,7 +86,7 @@ export const CreateRecipe = () => {
       alert(messages.ERROR_IN_ADDING_RECIPIE + error);
     }
     setState(initialState);
-    navigate("/profile");
+    navigate("/user/my-recipes");
   };
 
   const changeHandlerInputField = (
@@ -108,7 +107,7 @@ export const CreateRecipe = () => {
             <Icon name="close" size="lg" />
           </Button>
           <h2>Create Recipe</h2>
-          <div className="ml-auto" style={{ display: "flex", gap: "1rem" }}>
+          <div className="ml-auto flex-row">
             <Button
               data_bg="primary"
               data_type="container"
@@ -274,18 +273,6 @@ export const CreateRecipe = () => {
           </div>
         </Form>
       </CardBody>
-      {/* <CardAction>
-        <div className="flex-row-justify-start">
-          <Button
-            data_bg="primary"
-            data_type="container"
-            form="myForm"
-            type="submit"
-          >
-            <p>Publish</p>
-          </Button>
-        </div>
-      </CardAction> */}
     </>
   );
 };

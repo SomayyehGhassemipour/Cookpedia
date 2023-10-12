@@ -11,7 +11,7 @@ export default function WelcomePage() {
 
   const clickHandlerGoogle = async () => {
     const response = await userAuth.logInWithGoogle();
-    if (response) navigate("/profile");
+    if (response) navigate("/user/home");
     else console.log(response.error);
   };
   return (

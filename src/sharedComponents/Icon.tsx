@@ -1,31 +1,21 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeftLong,
-  faArrowRightLong,
-  faEllipsisVertical,
   faPen,
-  faBell,
-  faBookBookmark,
-  faGear,
   faHouse,
   faPlus,
   faFileLines,
   faBars,
   faUser,
-  faLocationDot,
-  faGlobe,
   faCompass,
-  faH,
   faEdit,
-  faShareNodes,
+  faClock,
   faSearch,
   faXmark,
+  faCommentAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import {
-  faBookmark,
-  faCommentDots,
   faShareFromSquare,
-  faPenToSquare,
   faTrashCan,
 } from "@fortawesome/free-regular-svg-icons";
 
@@ -41,15 +31,11 @@ export const Icon: React.FC<Props> = ({ name, size }) => {
       </div>
     );
 
-  if (name === "more")
+  if (name === "comment")
     return (
-      <div
-        style={{
-          backgroundImage: "url(../icons8-more-28.png)",
-          height: 28,
-          width: 28,
-        }}
-      />
+      <div>
+        <FontAwesomeIcon icon={faCommentAlt} size={size} />
+      </div>
     );
   if (name === "search")
     return (
@@ -57,10 +43,76 @@ export const Icon: React.FC<Props> = ({ name, size }) => {
         <FontAwesomeIcon icon={faSearch} size={size} />
       </div>
     );
+  if (name === "location")
+    return (
+      <div
+        style={{
+          backgroundImage: "url(../icons8-location-28.png)",
+          height: 28,
+          width: 28,
+        }}
+      />
+    );
+  if (name === "info")
+    return (
+      <div
+        style={{
+          backgroundImage: "url(../icons8-info-28.png)",
+          height: 28,
+          width: 28,
+        }}
+      />
+    );
+  if (name === "whatsapp")
+    return (
+      <div
+        style={{
+          backgroundImage: "url(../icons8-whatsapp-28.png)",
+          height: 28,
+          width: 28,
+        }}
+      />
+    );
+  if (name === "twitter")
+    return (
+      <div
+        style={{
+          backgroundImage: "url(../icons8-twitter-28.png)",
+          height: 28,
+          width: 28,
+        }}
+      />
+    );
+  if (name === "instagram")
+    return (
+      <div
+        style={{
+          backgroundImage: "url(../icons8-instagram-28.png)",
+          height: 28,
+          width: 28,
+        }}
+      />
+    );
+  if (name === "facebook")
+    return (
+      <div
+        style={{
+          backgroundImage: "url(../icons8-facebook-28.png)",
+          height: 28,
+          width: 28,
+        }}
+      />
+    );
   if (name === "back")
     return (
       <div>
         <FontAwesomeIcon icon={faArrowLeftLong} size={size} />
+      </div>
+    );
+  if (name === "clock")
+    return (
+      <div>
+        <FontAwesomeIcon icon={faClock} size={size} />
       </div>
     );
   else if (name === "edit")

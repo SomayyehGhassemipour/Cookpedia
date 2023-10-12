@@ -35,10 +35,21 @@ export const currentUserSlice = createSlice({
       state.cookLevel = action.payload.cookLevel;
     },
     setUserPersonalData: (state, action) => {
+      state.userName = action.payload.userName;
+      state.email = action.payload.email;
       state.fullname = action.payload.fullname;
-      state.phoneNumber = action.payload.phoneNumber;
+      state.aboutme = action.payload.aboutme;
       state.birthday = action.payload.birthday;
+      state.cookLevel = action.payload.cookLevel;
+      state.country = action.payload.country;
+      state.city = action.payload.city;
+      state.phoneNumber = action.payload.phoneNumber;
+      state.image = action.payload.image;
       state.gender = action.payload.gender;
+      state.facebook = action.payload.facebook;
+      state.instagram = action.payload.instagram;
+      state.twitter = action.payload.twitter;
+      state.joinedDate = action.payload.joinedDate;
     },
   },
 });
@@ -56,13 +67,18 @@ export const getUserData = (state: {
     userName: string;
     email: string;
     fullname: string;
-    birthday: string;
+    aboutme: string;
+    birthday: Date | null;
     cookLevel: string;
     country: string;
+    city: string;
     phoneNumber: string;
-    image: string;
+    image?: string;
     gender: string;
-    facebook: string;
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+    joinedDate: string | null;
   };
 }) => state.currentUser;
 export default currentUserSlice.reducer;

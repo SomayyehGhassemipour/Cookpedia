@@ -10,13 +10,14 @@ import { Form } from "../sharedComponents/form/Form";
 import { Header } from "../sharedComponents/Header";
 import { Icon } from "../sharedComponents/Icon";
 import { LineSeperator } from "../sharedComponents/LineSeperator";
-import { ProgressBar } from "../sharedComponents/ProgressBar";
 import { useUserAuth } from "../sevices/firebase/AthenicationService";
 import mockData from "../data/mockData.json";
+import { useDispatch } from "react-redux";
 
 export const SignInPage: React.FC = () => {
   const userAuth = useUserAuth();
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [state, setstate] = useState({
     email: "",
@@ -31,8 +32,9 @@ export const SignInPage: React.FC = () => {
   const submitHandler = async (event: any) => {
     event.preventDefault();
     const response = await userAuth.logIn(email, password);
-    if (response) navigate("/user/home");
-    else console.log(response.error);
+    if (response) {
+      navigate("/user/profile");
+    } else console.log(response.error);
   };
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

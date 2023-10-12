@@ -1,0 +1,9 @@
+@use "../abstract" as *;
+
+@each $fontsize, $shades in $font-sizes {
+  @each $shade, $value in $shades {
+    .fs-#{$fontsize}-#{$shade} {
+      font-size: var(--fs-#{$fontsize}-#{$shade});
+    }
+  }
+}

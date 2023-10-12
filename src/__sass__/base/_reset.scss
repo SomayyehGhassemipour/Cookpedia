@@ -1,4 +1,4 @@
-@use '../abstract/mixins' as *;
+@use "../abstract/mixins" as *;
 /* Box sizing rules */
 *,
 *::before,
@@ -34,11 +34,11 @@ body {
 }
 
 input::placeholder {
-  color: var(--clr-neutral-400); 
+  color: var(--clr-neutral-400);
   font-size: small;
 }
 ::-webkit-calendar-picker-indicator {
-  background-image: url('../../../public/icons8-calendar-48.png');
+  background-image: url("../../../public/icons8-calendar-48.png");
 }
 /* placeholder text style */
 input[type="date"]::-webkit-datetime-edit-text,
@@ -49,11 +49,10 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 }
 select {
   appearance: none;
-  background-image: url('../../../public/icons8-down-button-30.png');
+  background-image: url("../../../public/icons8-down-button-30.png");
   background-repeat: no-repeat;
   background-position: calc(100% - 3px) center;
   background-size: 15px;
-   
 
   color: var(--clr-neutral-400);
   option:not(:first-of-type) {
@@ -89,7 +88,9 @@ select {
   display: none;
 }
 /* disable horizontal resize */
-textarea { resize:vertical; }
+textarea {
+  resize: vertical;
+}
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
@@ -107,6 +108,9 @@ textarea { resize:vertical; }
   }
 }
 
+button {
+  padding-inline: 0;
+}
 
 .theme {
   &-primary {

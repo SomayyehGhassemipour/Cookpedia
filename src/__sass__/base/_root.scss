@@ -1,13 +1,13 @@
-@use '../abstract' as *;
+@use "../abstract" as *;
 
 :root {
   --ff-primary: #{$ff-primary};
   --ff-secondary: #{$ff-secondary};
   --ff-accent: #{$ff-accent};
 
-  --spacer : #{$spacer};
-  --gap : #{$gap};
-  --width : 35em;
+  --spacer: #{$spacer};
+  --gap: #{$gap};
+  --width: 35em;
   --radius-button: #{$radius-button};
   --radius-card: #{$radius-card};
   --radius-inputBox: #{$radius-inputBox};
@@ -15,19 +15,24 @@
 
   @each $color, $shades in $colors {
     @each $shade, $value in $shades {
-      --clr-#{$color}-#{$shade} : #{$value};
+      --clr-#{$color}-#{$shade}: #{$value};
+    }
+  }
+
+  @each $fontsize, $shades in $font-sizes {
+    @each $shade, $value in $shades {
+      --fs-#{$fontsize}-#{$shade}: #{$value};
     }
   }
 
   @each $screen-size, $property in $font-sizes {
     @if $screen-size == "phone" {
-      @each $prop, $value in $property { 
+      @each $prop, $value in $property {
         --fs-#{$prop}: #{$value};
       }
-    } @else { 
+    } @else {
       @include mq($screen-size) {
-        @each $prop,
-        $value in $property {
+        @each $prop, $value in $property {
           --fs-#{$prop}: #{$value};
         }
       }
