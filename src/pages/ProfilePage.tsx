@@ -19,7 +19,10 @@ import messages from "../data/message.json";
 import { User } from "../data/objects";
 import { useDispatch } from "react-redux";
 import { getUserData } from "../sevices/user/UserService";
-import { setUserPersonalData } from "../redux/features/users/currentUserSlice";
+import {
+  setUserDataEmpty,
+  setAllUserData,
+} from "../redux/features/users/currentUserSlice";
 
 export const ProfilePage = () => {
   const userAuth = useUserAuth();
@@ -35,7 +38,7 @@ export const ProfilePage = () => {
         try {
           const userData = await getUserData(userId);
           setUserData(userData as User);
-          dispatch(setUserPersonalData(userData));
+          dispatch(setAllUserData(userData));
         } catch (error) {
           console.log(messages.FETCH_USER_INFO_ERORR);
         }
@@ -49,6 +52,7 @@ export const ProfilePage = () => {
   const signOutHandler = async () => {
     try {
       await userAuth.logOut();
+      dispatch(setUserDataEmpty());
       navigate("/");
     } catch (error: any) {
       alert(error.Message);
@@ -82,7 +86,7 @@ export const ProfilePage = () => {
           <div className="profile-avatar">
             <Avatar
               classname="avatar-profile"
-              url="../user.png"
+              url={userData?.avatar ? userData.avatar : "../user.png"}
               name="AC"
               type={"circle"}
               size={"lg"}

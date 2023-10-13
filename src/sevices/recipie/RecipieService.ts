@@ -13,7 +13,11 @@ import { uploadImage } from "../image/ImageService";
 
 export const addRecipe = async (UserId: string, newRecipe: Recipe) => {
   try {
-    const uploadImageResult = await uploadImage(newRecipe.image);
+    const uploadImageResult = await uploadImage(
+      newRecipe.image,
+      "/images/recipes/",
+      "recipe_"
+    );
     newRecipe.userID = UserId;
     newRecipe.image = uploadImageResult;
     try {
@@ -37,7 +41,9 @@ export const getAllRecipesByUserID = async (userId: string) => {
 
     const querySnapshot = await getDocs(recipesRef);
     querySnapshot.forEach((doc) => {
-      recipesData.push({ recipeID: doc.id, ...doc.data() });
+      const tempData = doc.data();
+      tempData.recipeID = doc.id;
+      recipesData.push(tempData);
     });
 
     return recipesData;

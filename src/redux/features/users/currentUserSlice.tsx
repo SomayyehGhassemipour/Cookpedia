@@ -11,7 +11,7 @@ const initialState: User = {
   country: "",
   city: "",
   phoneNumber: "",
-  image: "",
+  avatar: "",
   gender: "",
   facebook: "",
   instagram: "",
@@ -35,6 +35,17 @@ export const currentUserSlice = createSlice({
       state.cookLevel = action.payload.cookLevel;
     },
     setUserPersonalData: (state, action) => {
+      state.fullname = action.payload.fullname;
+      state.birthday = action.payload.birthday;
+      state.phoneNumber = action.payload.phoneNumber;
+      state.avatar = action.payload.avatar;
+      state.gender = action.payload.gender;
+    },
+    setUserAccountData: (state, action) => {
+      state.userName = action.payload.userName;
+      state.email = action.payload.email;
+    },
+    setAllUserData: (state, action) => {
       state.userName = action.payload.userName;
       state.email = action.payload.email;
       state.fullname = action.payload.fullname;
@@ -44,12 +55,15 @@ export const currentUserSlice = createSlice({
       state.country = action.payload.country;
       state.city = action.payload.city;
       state.phoneNumber = action.payload.phoneNumber;
-      state.image = action.payload.image;
+      state.avatar = action.payload.avatar;
       state.gender = action.payload.gender;
       state.facebook = action.payload.facebook;
       state.instagram = action.payload.instagram;
       state.twitter = action.payload.twitter;
       state.joinedDate = action.payload.joinedDate;
+    },
+    setUserDataEmpty: (state) => {
+      state = initialState;
     },
   },
 });
@@ -60,6 +74,8 @@ export const {
   setUserCookLevel,
   setUserEmail,
   setUserPersonalData,
+  setAllUserData,
+  setUserDataEmpty,
 } = currentUserSlice.actions;
 
 export const getUserData = (state: {
@@ -73,7 +89,7 @@ export const getUserData = (state: {
     country: string;
     city: string;
     phoneNumber: string;
-    image?: string;
+    avatar?: string;
     gender: string;
     facebook?: string;
     instagram?: string;

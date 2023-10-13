@@ -24,11 +24,20 @@ export const PersonalDataPage = () => {
     phoneNumber: "",
     birthday: "",
     gender: "",
+    avatar: "",
   });
-  const { fullname, phoneNumber, birthday, gender } = state;
+  const { fullname, phoneNumber, birthday, gender, avatar } = state;
 
   const PersonalDataInputs = mockData.PersonalDataInputs;
   PersonalDataInputs.map((input) => (input.value = eval(input.value)));
+
+  const getImage = (event: any) => {
+    const image = event.target.files[0];
+    if (image) {
+      setState({ ...state, avatar: image });
+      event.target.files = null;
+    }
+  };
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,6 +45,7 @@ export const PersonalDataPage = () => {
 
     navigate("/signup-create-account");
   };
+
   const changeHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -51,7 +61,7 @@ export const PersonalDataPage = () => {
             <Button
               data_type="container"
               data_bg="transparent"
-              clickHandler={() => navigate("/signup-cooking")}
+              clickHandler={() => navigate(-1)}
             >
               <Icon name="back" size="lg" />
             </Button>
@@ -65,18 +75,15 @@ export const PersonalDataPage = () => {
             be able to see it.
           </label>
           <div className="flex-row-justify-around">
-            <div className="profile-avatar">
-              <Avatar
-                classname="avatar-profile"
-                url="user.png"
-                name="AC"
-                type={"circle"}
-                size={"lg"}
-              />
-              <div className="edit-avatar">
-                <Icon name="edit" size="sm" />
-              </div>
-            </div>
+            <Avatar
+              classname="avatar-profile"
+              url={avatar ? avatar : "user.png"}
+              name="avatar-photo"
+              type={"circle"}
+              size={"lg"}
+              editable={true}
+              changeHandler={getImage}
+            />
           </div>
           <Form id="myForm" onSubmit={submitHandler}>
             {PersonalDataInputs.map((input) =>

@@ -102,7 +102,7 @@ export const CreateRecipe = () => {
           <Button
             data_type="container"
             data_bg="transparent"
-            clickHandler={() => navigate("/user/home")}
+            clickHandler={() => navigate(-1)}
           >
             <Icon name="close" size="lg" />
           </Button>
@@ -129,7 +129,11 @@ export const CreateRecipe = () => {
       </Header>
       <CardBody classname="flex-align-start">
         <Form id="myForm" onSubmit={publishHandler}>
-          <ImageUploader image={state.image} changeHandler={getImage} />
+          <ImageUploader
+            type="rectangle"
+            image={state.image}
+            changeHandler={getImage}
+          />
           <h4>Title</h4>
           <InputField
             type="text"

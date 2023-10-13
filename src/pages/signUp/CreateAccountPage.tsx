@@ -50,7 +50,7 @@ export const CreateAccountPage: React.FC = () => {
         try {
           await addUser(credentioalUser.uid, completeUserData);
           console.log(messages.SUCCESSFUL_UPDATE);
-          navigate("/profile");
+          navigate("/signin");
         } catch (error: any) {
           alert(messages.ERROR_IN_ADDING_USER + error);
         }
@@ -80,7 +80,7 @@ export const CreateAccountPage: React.FC = () => {
             <Button
               data_type="container"
               data_bg="transparent"
-              clickHandler={() => navigate("/signup-personal-data")}
+              clickHandler={() => navigate(-1)}
             >
               <Icon name="back" size="lg" />
             </Button>

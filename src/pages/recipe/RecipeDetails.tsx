@@ -53,7 +53,7 @@ export const RecipeDetails = () => {
           <Button
             data_type="container"
             data_bg="transparent"
-            clickHandler={() => navigate("/user/my-recipes/")}
+            clickHandler={() => navigate(-1)}
           >
             <Icon name="back" size="lg" />
           </Button>
@@ -67,7 +67,7 @@ export const RecipeDetails = () => {
           <div className="profile-avatar">
             <Avatar
               classname="avatar-profile"
-              url={userData.image ? userData.image : "../../user.png"}
+              url={userData.avatar ? userData.avatar : "../../user.png"}
               name="AC"
               type={"circle"}
               size={"sm"}

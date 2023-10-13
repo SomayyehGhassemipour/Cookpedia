@@ -33,7 +33,7 @@ export const CookingLevelPage = () => {
             <Button
               data_type="container"
               data_bg="transparent"
-              clickHandler={() => navigate("/signup-country")}
+              clickHandler={() => navigate(-1)}
             >
               <Icon name="back" size="lg" />
             </Button>

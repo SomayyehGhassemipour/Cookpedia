@@ -1,10 +1,10 @@
 import { storage } from "../firebase/config";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
-export const uploadImage = (imageFile: any) => {
+export const uploadImage = (imageFile: any, url: string, prefix: string) => {
   return new Promise((resolve, reject) => {
-    var name = "recipe_" + Date.now();
-    const storageRef = ref(storage, "/images/recipes/" + name);
+    var name = prefix + Date.now();
+    const storageRef = ref(storage, url + name);
 
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
 

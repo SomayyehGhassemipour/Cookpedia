@@ -25,6 +25,7 @@ export const MyRecipesPage = () => {
         const userId: string = user.uid;
         try {
           const recipesData = await getAllRecipesByUserID(userId);
+          console.log(recipesData);
           setRecipes(recipesData);
           dispatch(setRecipesData(recipesData));
         } catch (error: any) {

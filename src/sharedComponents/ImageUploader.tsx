@@ -1,16 +1,22 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 
 interface Props {
   image: any;
   changeHandler: any;
+  type: "rectangle" | "circle";
 }
 
-export const ImageUploader: React.FC<Props> = ({ image, changeHandler }) => {
+export const ImageUploader: React.FC<Props> = ({
+  type,
+  image,
+  changeHandler,
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div
       className="flex-center image-frame"
+      data-type={type}
       onClick={() => {
         inputRef.current?.click();
       }}

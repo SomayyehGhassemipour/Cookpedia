@@ -1,11 +1,22 @@
 import { db } from "../firebase/config";
 import { setDoc, doc, getDoc } from "firebase/firestore";
+import { uploadImage } from "../image/ImageService";
 
 export const addUser = async (userId: string, newUser: any) => {
-  console.log(newUser);
   try {
-    const userRef = await setDoc(doc(db, "users", userId), newUser);
-    return userRef;
+    const uploadImageResult = await uploadImage(
+      newUser.avatar,
+      "/images/avatars/",
+      "avatar_" + newUser.userName + "_"
+    );
+    newUser.avatar = uploadImageResult;
+    try {
+      console.log(newUser);
+      const userRef = await setDoc(doc(db, "users", userId), newUser);
+      return userRef;
+    } catch (error: any) {
+      return { error: error.message };
+    }
   } catch (error: any) {
     return { error: error.message };
   }

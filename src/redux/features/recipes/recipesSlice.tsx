@@ -8,7 +8,6 @@ export const recipesSlice = createSlice({
   initialState,
   reducers: {
     setRecipesData: (state, action) => {
-      console.log(action.payload);
       state = action.payload;
     },
   },

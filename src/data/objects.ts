@@ -21,7 +21,7 @@ interface User {
   country: string;
   city: string;
   phoneNumber: string;
-  image?: string;
+  avatar?: any;
   gender: string;
   facebook?: string;
   instagram?: string;

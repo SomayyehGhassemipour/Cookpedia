@@ -48,7 +48,7 @@ export const CountryPage = () => {
             <Button
               data_type="container"
               data_bg="transparent"
-              clickHandler={() => navigate("/")}
+              clickHandler={() => navigate(-1)}
             >
               <Icon name="back" size="lg" />
             </Button>
