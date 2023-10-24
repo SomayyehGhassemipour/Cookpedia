@@ -35,7 +35,7 @@ export const InputField: React.FC<Props> = ({
       name={name}
       value={value}
       required={required}
-      onChangeCapture={onChange}
+      onChange={onChange}
       onBlur={focusHandler}
     />
   ) : (

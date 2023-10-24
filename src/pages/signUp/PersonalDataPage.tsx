@@ -34,7 +34,7 @@ export const PersonalDataPage = () => {
   const getImage = (event: any) => {
     const image = event.target.files[0];
     if (image) {
-      setState({ ...state, avatar: image });
+      setState({ ...state, avatar: URL.createObjectURL(image) });
       event.target.files = null;
     }
   };

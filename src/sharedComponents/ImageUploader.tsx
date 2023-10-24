@@ -12,7 +12,7 @@ export const ImageUploader: React.FC<Props> = ({
   changeHandler,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
+  console.log(image instanceof Object);
   return (
     <div
       className="flex-center image-frame"
@@ -33,11 +33,11 @@ export const ImageUploader: React.FC<Props> = ({
         <img
           className="image"
           alt="uploaded_image"
-          src={URL.createObjectURL(image)}
+          src={image instanceof Object ? URL.createObjectURL(image) : image}
         />
       ) : (
         <div className="flex-center">
-          <img src="../icons8-photo-64.png" alt="image_icon" />
+          <img src={"../icons8-photo-64.png"} alt="image_icon" />
           <p className="text-neutral-400">Add recipe cover image</p>
         </div>
       )}

@@ -1,5 +1,10 @@
 import { storage } from "../firebase/config";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+  deleteObject,
+} from "firebase/storage";
 
 export const uploadImage = (imageFile: any, url: string, prefix: string) => {
   return new Promise((resolve, reject) => {
@@ -33,4 +38,15 @@ export const uploadImage = (imageFile: any, url: string, prefix: string) => {
       }
     );
   });
+};
+
+export const deleteImage = (imageURL: string) => {
+  const imageRef = ref(storage, imageURL);
+  deleteObject(imageRef)
+    .then(() => {
+      return true;
+    })
+    .catch((error) => {
+      console.log("Uh-oh, an error occurred!");
+    });
 };

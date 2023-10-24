@@ -32,7 +32,7 @@
   @include flx($justify: space-around);
 }
 .flex-row-wrap {
-  @include flx($direction: row);
+  @include flx($direction: row, $justify: none);
   flex-wrap: wrap;
 }
 .flex-row {

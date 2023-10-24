@@ -24,20 +24,23 @@ export const Avatar: React.FC<Props> = ({
   return (
     <div className="profile-avatar">
       {editable ? (
-        <div
-          className="edit-avatar"
-          onClick={() => {
-            inputRef.current?.click();
-          }}
-        >
+        <>
           <img
             className={`${classname}`}
-            src={URL.createObjectURL(url)}
+            src={url}
             alt={name}
             data-size={size}
             data-type={type}
           />
-          <Icon name="edit" size="sm" />
+
+          <div
+            className="edit-avatar"
+            onClick={() => {
+              inputRef.current?.click();
+            }}
+          >
+            <Icon name="edit" size="sm" />
+          </div>
           <input
             type="file"
             accept="image/png, image/jpeg, image/jpg"
@@ -46,7 +49,7 @@ export const Avatar: React.FC<Props> = ({
             ref={inputRef}
             onChange={changeHandler}
           />
-        </div>
+        </>
       ) : (
         <img
           className={`${classname}`}

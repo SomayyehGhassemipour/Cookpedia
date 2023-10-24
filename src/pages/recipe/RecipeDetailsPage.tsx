@@ -14,7 +14,7 @@ import { Shape } from "../../sharedComponents/Shape";
 import { useSelector } from "react-redux";
 import { getUserData } from "../../redux/features/users/currentUserSlice";
 
-export const RecipeDetails = () => {
+export const RecipeDetailsPage = () => {
   const userAuth = useUserAuth();
   const navigate = useNavigate();
 
@@ -57,6 +57,22 @@ export const RecipeDetails = () => {
           >
             <Icon name="back" size="lg" />
           </Button>
+          {userAuth.user.uid === state.userID && (
+            <div className="ml-auto flex-row">
+              <Button
+                data_bg="google"
+                data_type="container"
+                clickHandler={() =>
+                  navigate(`/user/recipe-edit/${state.recipeID}`)
+                }
+              >
+                <div className="flex-row-justify-around">
+                  <Icon name="edit" size="xs" />
+                  <p>Edit </p>
+                </div>
+              </Button>
+            </div>
+          )}
         </div>
       </Header>
       <CardBody classname="flex-align-start">
@@ -78,17 +94,10 @@ export const RecipeDetails = () => {
             <p className="text-neutral-600 fs-small-200">{userData.userName}</p>
           </div>
           <div className="ml-auto">
-            {userAuth.user.uid !== state.userID ? (
+            {userAuth.user.uid !== state.userID && (
               <Button data_bg="google" data_type="container">
                 <div className="flex-row-justify-around">
                   <p>Follow </p>
-                </div>
-              </Button>
-            ) : (
-              <Button data_bg="google" data_type="container">
-                <div className="flex-row-justify-around">
-                  <Icon name="edit" size="xs" />
-                  <p>Edit </p>
                 </div>
               </Button>
             )}

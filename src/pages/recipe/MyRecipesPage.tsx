@@ -25,14 +25,13 @@ export const MyRecipesPage = () => {
         const userId: string = user.uid;
         try {
           const recipesData = await getAllRecipesByUserID(userId);
-          console.log(recipesData);
           setRecipes(recipesData);
           dispatch(setRecipesData(recipesData));
         } catch (error: any) {
           alert(messages.ERROR_IN_READING_RECIPIES_OF_USER + error);
         }
       } else {
-        console.log("no user");
+        console.log(messages.NO_LOGGED_IN_USER);
       }
     });
     return () => unsubscribe();
