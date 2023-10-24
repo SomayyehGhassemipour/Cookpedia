@@ -3,6 +3,7 @@ import {
   collection,
   addDoc,
   updateDoc,
+  deleteDoc,
   getDocs,
   query,
   where,
@@ -96,6 +97,16 @@ export const addRecipeId = async (recipeId: string | any) => {
   const recipeRef = doc(db, "recipes", recipeId);
   try {
     await updateDoc(recipeRef, { recipeID: recipeId });
+    return true;
+  } catch (error: any) {
+    return { error: error.message };
+  }
+};
+
+export const deleteRecipe = async (recipeId: string) => {
+  const recipeRef = doc(db, "recipes", recipeId);
+  try {
+    await deleteDoc(recipeRef);
     return true;
   } catch (error: any) {
     return { error: error.message };

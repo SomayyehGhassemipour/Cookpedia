@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Recipe } from "../../data/objects";
 import { useUserAuth } from "../../sevices/firebase/AthenicationService";
 import messages from "../../data/message.json";
-import { getRecipe } from "../../sevices/recipie/RecipieService";
+import { deleteRecipe, getRecipe } from "../../sevices/recipie/RecipieService";
 import { LineSeperator } from "../../sharedComponents/LineSeperator";
 import { Avatar } from "../../sharedComponents/Avatar";
 import { Shape } from "../../sharedComponents/Shape";
@@ -46,6 +46,14 @@ export const RecipeDetailsPage = () => {
     fetchRecipe(id);
   }, [id]);
 
+  const deleteRecipeHandler = async (event: React.MouseEvent<HTMLElement>) => {
+    try {
+      await deleteRecipe(state.recipeID);
+    } catch (error: any) {
+      alert(messages.ERROR_IN_DELETING_RECIPIE + error);
+    }
+    navigate("/user/my-recipes");
+  };
   return (
     <>
       <Header>
@@ -69,6 +77,16 @@ export const RecipeDetailsPage = () => {
                 <div className="flex-row-justify-around">
                   <Icon name="edit" size="xs" />
                   <p>Edit </p>
+                </div>
+              </Button>
+              <Button
+                data_bg="primary"
+                data_type="container"
+                clickHandler={deleteRecipeHandler}
+              >
+                <div className="flex-row-justify-around">
+                  <Icon name="trash" size="xs" />
+                  <p>Delete </p>
                 </div>
               </Button>
             </div>
