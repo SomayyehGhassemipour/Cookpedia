@@ -47,12 +47,16 @@ export const RecipeDetailsPage = () => {
   }, [id]);
 
   const deleteRecipeHandler = async (event: React.MouseEvent<HTMLElement>) => {
-    try {
-      await deleteRecipe(state.recipeID);
-    } catch (error: any) {
-      alert(messages.ERROR_IN_DELETING_RECIPIE + error);
+    if (
+      window.confirm("Are you sure you want to delete this recipe?") == true
+    ) {
+      try {
+        await deleteRecipe(state.recipeID);
+      } catch (error: any) {
+        alert(messages.ERROR_IN_DELETING_RECIPIE + error);
+      }
+      navigate("/user/my-recipes");
     }
-    navigate("/user/my-recipes");
   };
   return (
     <>
