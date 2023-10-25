@@ -1,11 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
-import {
-  doc,
-  DocumentSnapshot,
-  getDoc,
-  getFirestore,
-} from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { getFirestore } from "firebase/firestore";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../sevices/firebase/config";
 import { Avatar } from "../sharedComponents/Avatar";
@@ -23,15 +18,25 @@ import {
   setUserDataEmpty,
   setAllUserData,
 } from "../redux/features/users/currentUserSlice";
+import { Aboutme } from "../components/Aboutme";
+import { RecipeList } from "../components/recipe/RecipeList";
 
 export const ProfilePage = () => {
   const userAuth = useUserAuth();
   let navigate = useNavigate();
   const db = getFirestore();
   const dispatch = useDispatch();
+  const refRecipeBtn: any = useRef(null);
+  const refAboutBtn: any = useRef(null);
 
+  const [activeTab, setActiveTab] = useState("Recipes");
   const [userData, setUserData] = useState<User | null>(null);
+
   useEffect(() => {
+    activeTab === "Recipes"
+      ? refRecipeBtn.current.setAttribute("data-active", "active")
+      : refAboutBtn.current.setAttribute("data-active", "active");
+
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const userId: string = user.uid;
@@ -56,6 +61,17 @@ export const ProfilePage = () => {
       navigate("/");
     } catch (error: any) {
       alert(error.Message);
+    }
+  };
+  const activeTabHandler = (event: React.MouseEvent<HTMLElement>) => {
+    if (event.currentTarget.innerText === "Recipes") {
+      refAboutBtn.current.removeAttribute("data-active");
+      setActiveTab("Recipes");
+      refRecipeBtn.current.setAttribute("data-active", "active");
+    } else {
+      refRecipeBtn.current.removeAttribute("data-active");
+      setActiveTab("About");
+      refAboutBtn.current.setAttribute("data-active", "active");
     }
   };
   return (
@@ -124,44 +140,30 @@ export const ProfilePage = () => {
         </div>
         <LineSeperator type="horizontal" />
         <div className="flex-row-justify-around">
-          <Button data_type="container" data_bg="transparent">
+          <Button
+            data_type="container"
+            data_bg="transparent"
+            clickHandler={activeTabHandler}
+            reference={refRecipeBtn}
+          >
             <h4>Recipes</h4>
           </Button>
-          <Button data_type="container" data_bg="transparent">
+          <Button
+            data_type="container"
+            data_bg="transparent"
+            clickHandler={activeTabHandler}
+            reference={refAboutBtn}
+          >
             <h4>About</h4>
           </Button>
         </div>
 
         <LineSeperator type="horizontal" />
-        <h4>Description</h4>
-        <p>{userData?.aboutme}</p>
-        <LineSeperator type="horizontal" />
-        <div className="container flex-row-justify-around">
-          <Button data_type="container" data_bg="transparent">
-            <Icon name="facebook" />
-          </Button>
-          <Button data_type="container" data_bg="transparent">
-            <Icon name="instagram" />
-          </Button>
-          <Button data_type="container" data_bg="transparent">
-            <Icon name="twitter" />
-          </Button>
-          <Button data_type="container" data_bg="transparent">
-            <Icon name="whatsapp" />
-          </Button>
-        </div>
-        <LineSeperator type="horizontal" />
-        <h4>More Info</h4>
-        <div className="container flex-row-justify-start">
-          <Icon name="location" size="lg" />
-          <p>
-            {userData?.country}, {userData?.city}
-          </p>
-        </div>
-        <div className="container flex-row-justify-start">
-          <Icon name="info" size="lg" />
-          <p>Joined since {userData?.joinedDate}</p>
-        </div>
+        {activeTab === "About" ? (
+          <Aboutme userData={userData} />
+        ) : (
+          <RecipeList />
+        )}
       </CardBody>
     </>
   );

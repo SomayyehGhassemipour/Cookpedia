@@ -75,11 +75,14 @@
     }
   }
 
-  &:is(:hover, :focus) {
-    border-style: solid;
-    border-color: var(--clr-primary-300);
-  }
+  // &:is(:hover, :focus) {
+  //   border-style: solid;
+  //   border-color: var(--clr-primary-300);
+  // }
   &[data-bg="transparent"]:is(:hover, :focus) {
+    color: var(--clr-primary-500);
+  }
+  &[data-active="active"] {
     color: var(--clr-primary-500);
   }
 }
