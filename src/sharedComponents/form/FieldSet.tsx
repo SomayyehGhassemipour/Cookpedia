@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { InputField } from "../InputField";
 interface Props {
   label: string;
   placeholdertxt: string;
+  data_type?: string;
   inputType: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   name?: string;
@@ -15,6 +15,7 @@ export const FieldSet: React.FC<Props> = ({
   label,
   placeholdertxt,
   inputType,
+  data_type,
   onChange,
   name,
   value,
@@ -27,6 +28,7 @@ export const FieldSet: React.FC<Props> = ({
       <label>{label}</label>
       <InputField
         type={inputType}
+        data_type={data_type}
         placeholder={placeholdertxt}
         onChange={onChange}
         name={name}

@@ -3,6 +3,7 @@ interface Props {
   name: string;
   placeholdertxt: string;
   options: string[];
+  defaultValue?: string;
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
 }
 export const SelectInput: React.FC<Props> = ({
@@ -10,12 +11,18 @@ export const SelectInput: React.FC<Props> = ({
   name,
   placeholdertxt,
   options,
+  defaultValue,
   onChange,
 }) => {
   return (
     <div className="field-set">
       <label>{label}</label>
-      <select className="input-select" name={name} onChange={onChange}>
+      <select
+        className="input-select"
+        name={name}
+        defaultValue={defaultValue}
+        onChange={onChange}
+      >
         {options.map((item) =>
           item === "gender" ? (
             <option hidden disabled selected>
@@ -23,7 +30,7 @@ export const SelectInput: React.FC<Props> = ({
               {placeholdertxt}
             </option>
           ) : (
-            <option value={item}>{item}</option>
+            <option value={item}>{item} </option>
           )
         )}
       </select>

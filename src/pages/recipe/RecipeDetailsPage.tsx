@@ -4,7 +4,7 @@ import { CardBody } from "../../sharedComponents/card/CardBody";
 import { Header } from "../../sharedComponents/Header";
 import { Icon } from "../../sharedComponents/Icon";
 import { useEffect, useState } from "react";
-import { Recipe } from "../../data/objects";
+import { Recipe } from "../../model/Recipe";
 import { useUserAuth } from "../../sevices/firebase/AthenicationService";
 import messages from "../../data/message.json";
 import { deleteRecipe, getRecipe } from "../../sevices/recipie/RecipieService";

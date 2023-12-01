@@ -24,7 +24,7 @@
       "placeholdertxt": "Username",
       "inputType": "text",
       "name": "displayName",
-      "value": "{displayName}",
+      "value": "displayName",
       "errorMessage": "Username should be 3-16 characters.",
       "pattern": "^[A-Za-z0-9]{3,16}$",
       "required": true
@@ -69,8 +69,8 @@
       "inputType": "text",
       "name": "fullname",
       "value": "fullname",
-      "errorMessage": "Username should be 3-16 characters.",
-      "pattern": "^[A-Za-z ]{3,16}$",
+      "errorMessage": "Fullname should be 3-16 characters.",
+      "pattern": "^[A-Za-z ]{3,36}$",
       "required": true
     },
     {
@@ -127,5 +127,113 @@
       "errorMessage": "The password you’ve entered is incorrect.",
       "required": true
     }
-  ]
+  ],
+  "ProfileInputs": [
+    {
+      "id": "1",
+      "label": "Username",
+      "placeholdertxt": "Username",
+      "inputType": "text",
+      "name": "userName",
+      "value": "userName",
+      "errorMessage": "Username should be 3-16 characters.",
+      "pattern": "^[A-Za-z0-9]{3,16}$",
+      "required": true
+    },
+    {
+      "id": "2",
+      "label": "About Me",
+      "placeholdertxt": "Tell something about yourself",
+      "inputType": "text",
+      "name": "aboutme",
+      "value": "aboutme"
+    },
+    {
+      "id": "3",
+      "label": "Full Name",
+      "placeholdertxt": "Full Name",
+      "inputType": "text",
+      "name": "fullname",
+      "value": "fullname",
+      "errorMessage": "Fullname should be 3-16 characters.",
+      "pattern": "^[A-Za-z ]{3,16}$",
+      "required": true
+    },
+    {
+      "id": "4",
+      "label": "Email",
+      "placeholdertxt": "Email",
+      "inputType": "email",
+      "name": "email",
+      "value": "email",
+      "errorMessage": "It should be a valid email address.",
+      "required": true
+    },
+    {
+      "id": "5",
+      "label": "Phone Number",
+      "placeholdertxt": "+1 000 000 000",
+      "inputType": "phone",
+      "name": "phoneNumber",
+      "value": "phoneNumber",
+      "errorMessage": "It should be a valid number.",
+      "pattern": "^[0-9+]{12}$",
+      "required": true
+    },
+    {
+      "id": "6",
+      "label": "Country",
+      "placeholdertxt": "Poland",
+      "inputType": "text",
+      "name": "country",
+      "value": "country",
+      "errorMessage": "It should be a valid name of a country.",
+      "pattern": "^[0-9+]{12}$",
+      "required": true
+    },
+    {
+      "id": "7",
+      "label": "City",
+      "placeholdertxt": "Wroclaw",
+      "inputType": "text",
+      "name": "city",
+      "value": "city",
+      "errorMessage": "It should be a valid name of a city.",
+      "pattern": "^[0-9+]{12}$",
+      "required": true
+    },
+    {
+      "id": "8",
+      "label": "Facebook",
+      "placeholdertxt": "www.facebook.com/name",
+      "inputType": "text",
+      "name": "facebook",
+      "value": "facebook",
+      "errorMessage": "It should be a valid link.",
+      "pattern": "^[0-9+]{12}$"
+    },
+    {
+      "id": "9",
+      "label": "Twitter",
+      "placeholdertxt": "www.twitter.com/name",
+      "inputType": "text",
+      "name": "twitter",
+      "value": "twitter",
+      "errorMessage": "It should be a valid link.",
+      "pattern": "^[0-9+]{12}$"
+    },
+    {
+      "id": "10",
+      "label": "Instagram",
+      "placeholdertxt": "www.instagram.com/name",
+      "inputType": "text",
+      "name": "instagram",
+      "value": "instagram",
+      "errorMessage": "It should be a valid link.",
+      "pattern": "^[0-9+]{12}$"
+    }
+  ],
+  "ICON_SIZE_SM": "28px",
+  "AVATARS_IMAGES_LOCATION_IN_FIREBASE": "/images/avatars/",
+  "RECIPES_IMAGES_LOCATION_IN_FIREBASE": "/images/recipes/"
 }

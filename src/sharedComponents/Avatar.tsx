@@ -20,7 +20,6 @@ export const Avatar: React.FC<Props> = ({
   changeHandler,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
   return (
     <div className="profile-avatar">
       {editable ? (
@@ -43,7 +42,7 @@ export const Avatar: React.FC<Props> = ({
           </div>
           <input
             type="file"
-            accept="image/png, image/jpeg, image/jpg"
+            accept="image/png, image/jpeg, image/jpg, image/jfij"
             className="input-field"
             hidden
             ref={inputRef}
@@ -53,7 +52,7 @@ export const Avatar: React.FC<Props> = ({
       ) : (
         <img
           className={`${classname}`}
-          src={url}
+          src={typeof url == "string" ? url : URL.createObjectURL(url)}
           alt={name}
           data-size={size}
           data-type={type}

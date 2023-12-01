@@ -10,15 +10,15 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore";
-import { Recipe } from "../../data/objects";
+import { Recipe } from "../../model/Recipe";
 import { deleteImage, uploadImage } from "../image/ImageService";
+import mockData from "../../data/mockData.json";
 
 export const addRecipe = async (UserId: string, newRecipe: Recipe) => {
-  console.log(newRecipe);
   try {
     const uploadImageResult = await uploadImage(
       newRecipe.image,
-      "/images/recipes/",
+      mockData.RECIPES_IMAGES_LOCATION_IN_FIREBASE,
       "recipe_"
     );
     newRecipe.userID = UserId;

@@ -1,5 +1,5 @@
 interface Props {
-  children?: React.ReactNode[];
+  children?: React.ReactNode | React.ReactNode[];
   id?: string;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
 }

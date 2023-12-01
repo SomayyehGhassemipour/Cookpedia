@@ -1,15 +1,21 @@
 import { db } from "../firebase/config";
-import { setDoc, doc, getDoc } from "firebase/firestore";
-import { uploadImage } from "../image/ImageService";
+import { setDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import { deleteImage, uploadImage } from "../image/ImageService";
+import mockData from "../../data/mockData.json";
+import { User } from "../../model/User";
 
-export const addUser = async (userId: string, newUser: any) => {
+export const addUser = async (userId: string, newUser: User) => {
   try {
-    const uploadImageResult = await uploadImage(
+    console.log(newUser.avatar);
+    const uploadAvatarResult = await uploadImage(
       newUser.avatar,
-      "/images/avatars/",
+      mockData.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
       "avatar_" + newUser.userName + "_"
     );
-    newUser.avatar = uploadImageResult;
+    newUser.avatar = uploadAvatarResult;
+
+    console.log(newUser.avatar);
+
     try {
       console.log(newUser);
       const userRef = await setDoc(doc(db, "users", userId), newUser);
@@ -27,6 +33,35 @@ export const getUserData = async (userId: string) => {
     const userSnap = await getDoc(userRef);
     const userData = userSnap.data();
     return userData;
+  } catch (error: any) {
+    return { error: error.message };
+  }
+};
+export const updateUserData = async (
+  userId: any,
+  updatedUserData: User,
+  prevAvatar: any
+) => {
+  try {
+    if (updatedUserData.avatar instanceof Object) {
+      console.log(prevAvatar);
+      if (prevAvatar !== "") {
+        await deleteImage(prevAvatar);
+      }
+      const uploadAvatarResult = await uploadImage(
+        updatedUserData.avatar,
+        mockData.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
+        "avatar_" + updatedUserData.userName + "_"
+      );
+      updatedUserData.avatar = uploadAvatarResult;
+    }
+    const userRef = doc(db, "users", userId);
+    try {
+      await updateDoc(userRef, { ...updatedUserData });
+      return true;
+    } catch (error: any) {
+      return { error: error.message };
+    }
   } catch (error: any) {
     return { error: error.message };
   }

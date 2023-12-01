@@ -5,7 +5,7 @@ interface Props {
   classname?: string;
   data_type: String;
   data_bg?: string;
-  data_active?: string;
+  data_active?: boolean;
   clickHandler?: React.MouseEventHandler<HTMLButtonElement>;
   children?: JSX.Element | JSX.Element[];
   form?: string;

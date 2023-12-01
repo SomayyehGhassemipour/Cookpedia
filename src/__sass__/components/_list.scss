@@ -1,15 +1,14 @@
-@use '../abstract/mixins' as *;
+@use "../abstract/mixins" as *;
 
 .list-click-area {
   cursor: pointer;
   text-decoration: none;
-  background-color:transparent;
+  background-color: transparent;
   width: 100%;
   border: 0.08rem solid var(--clr-neutral-200);
   border-radius: var(--radius-inputBox);
-  padding: var(--spacer);  
- 
-  
+  padding: var(--spacer);
+
   &[data-type="unclickable"] {
     pointer-events: none;
     cursor: default;
@@ -19,14 +18,13 @@
     outline-width: 0.125rem;
     outline-color: var(--clr-primary-600);
   }
-  &[data-select=true] {
+  &[data-select="true"] {
     outline-style: solid;
     outline-width: 0.125rem;
     outline-color: var(--clr-primary-600);
   }
 }
 .list {
-  @include flx($justify:flex-start);
   width: 100%;
   overflow: scroll;
   padding: 0.2rem;
@@ -35,10 +33,9 @@
 .list-item {
   text-align: left;
   &[data-type="horizontal"] {
-    @include flx($justify:flex-start,$direction:row);
+    @include flx($justify: flex-start, $direction: row);
   }
   &[data-type="column"] {
-    @include flx($justify:flex-start,$direction:row);
+    @include flx($justify: flex-start, $direction: row);
   }
-  
 }

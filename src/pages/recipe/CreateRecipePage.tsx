@@ -4,11 +4,11 @@ import { CardBody } from "../../sharedComponents/card/CardBody";
 import { Header } from "../../sharedComponents/Header";
 import { Icon } from "../../sharedComponents/Icon";
 import { useState } from "react";
-import { Recipe } from "../../data/objects";
+import { Recipe } from "../../model/Recipe";
 import { addRecipe, addRecipeId } from "../../sevices/recipie/RecipieService";
 import { useUserAuth } from "../../sevices/firebase/AthenicationService";
 import messages from "../../data/message.json";
-import { RecipeForm } from "./RecipeForm";
+import { RecipeForm } from "../../components/recipe/RecipeForm";
 
 export const CreateRecipePage = () => {
   const userAuth = useUserAuth();

@@ -26,7 +26,7 @@ export default function WelcomePage() {
         <CardBody classname="flex-align-center">
           <p>The best cooking and food recipies app of the century</p>
         </CardBody>
-        <div className="flex-small-gap">
+        <section className="flex-small-gap">
           <Button
             data_bg="google"
             data_type="container"
@@ -50,7 +50,7 @@ export default function WelcomePage() {
           >
             <p>I Already Have an Account</p>
           </Button>
-        </div>
+        </section>
       </Card>
     </div>
   );

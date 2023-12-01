@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../sevices/firebase/config";
 import { Avatar } from "../sharedComponents/Avatar";
@@ -11,7 +11,7 @@ import { Icon } from "../sharedComponents/Icon";
 import { LineSeperator } from "../sharedComponents/LineSeperator";
 import { useUserAuth } from "../sevices/firebase/AthenicationService";
 import messages from "../data/message.json";
-import { User } from "../data/objects";
+import { User } from "../model/User";
 import { useDispatch } from "react-redux";
 import { getUserData } from "../sevices/user/UserService";
 import {
@@ -33,10 +33,6 @@ export const ProfilePage = () => {
   const [userData, setUserData] = useState<User | null>(null);
 
   useEffect(() => {
-    activeTab === "Recipes"
-      ? refRecipeBtn.current.setAttribute("data-active", "active")
-      : refAboutBtn.current.setAttribute("data-active", "active");
-
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const userId: string = user.uid;
@@ -52,7 +48,7 @@ export const ProfilePage = () => {
       }
     });
     return () => unsubscribe();
-  }, [db]);
+  }, [db, dispatch]);
 
   const signOutHandler = async () => {
     try {
@@ -64,15 +60,9 @@ export const ProfilePage = () => {
     }
   };
   const activeTabHandler = (event: React.MouseEvent<HTMLElement>) => {
-    if (event.currentTarget.innerText === "Recipes") {
-      refAboutBtn.current.removeAttribute("data-active");
-      setActiveTab("Recipes");
-      refRecipeBtn.current.setAttribute("data-active", "active");
-    } else {
-      refRecipeBtn.current.removeAttribute("data-active");
-      setActiveTab("About");
-      refAboutBtn.current.setAttribute("data-active", "active");
-    }
+    event.currentTarget.innerText === "Recipes"
+      ? setActiveTab("Recipes")
+      : setActiveTab("About");
   };
   return (
     <>
@@ -113,7 +103,11 @@ export const ProfilePage = () => {
             <p className="text-neutral-600">{userData?.userName}</p>
           </div>
           <div className="ml-auto">
-            <Button data_bg="google" data_type="container">
+            <Button
+              data_bg="google"
+              data_type="container"
+              clickHandler={() => navigate("/user/edit-profile")}
+            >
               <div className="flex-row-justify-around">
                 <Icon name="edit" size="xs" />
                 <p>Edit</p>
@@ -125,7 +119,7 @@ export const ProfilePage = () => {
         <div className="flex-row-justify-around">
           <div className="flex-column-center">
             <h3>125</h3>
-            <p className="text-neutral-600">recipies</p>
+            <p className="text-neutral-600">Recipes</p>
           </div>
           <LineSeperator type="vertical" />
           <div className="flex-column-center">
@@ -143,6 +137,7 @@ export const ProfilePage = () => {
           <Button
             data_type="container"
             data_bg="transparent"
+            data_active={activeTab === "Recipes" ? true : false}
             clickHandler={activeTabHandler}
             reference={refRecipeBtn}
           >
@@ -151,6 +146,7 @@ export const ProfilePage = () => {
           <Button
             data_type="container"
             data_bg="transparent"
+            data_active={activeTab === "About" ? true : false}
             clickHandler={activeTabHandler}
             reference={refAboutBtn}
           >

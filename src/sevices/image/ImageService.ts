@@ -5,6 +5,7 @@ import {
   uploadBytesResumable,
   deleteObject,
 } from "firebase/storage";
+import message from "../../data/message.json";
 
 export const uploadImage = (imageFile: any, url: string, prefix: string) => {
   return new Promise((resolve, reject) => {
@@ -47,6 +48,6 @@ export const deleteImage = (imageURL: string) => {
       return true;
     })
     .catch((error) => {
-      console.log("Uh-oh, an error occurred!");
+      console.log(message.ERROR_IN_DELETING_IMAGE);
     });
 };

@@ -1,22 +1,35 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../sharedComponents/Button";
 import { Icon } from "../../sharedComponents/Icon";
 
 export const Navbar = () => {
   let navigate = useNavigate();
+
+  const [activeMenu, setActiveMenu] = useState("Profile");
+
   return (
     <div className="navbar flex-row-justify-around">
       <Button
         data_type="container"
         data_bg="transparent"
+        data_active={activeMenu === "Home" ? true : false}
         clickHandler={() => {
+          setActiveMenu("Home");
           navigate("/user/home");
         }}
       >
         <Icon name="home" size="lg" />
         <p className="label">Home</p>
       </Button>
-      <Button data_type="container" data_bg="transparent">
+      <Button
+        data_type="container"
+        data_bg="transparent"
+        data_active={activeMenu === "Discover" ? true : false}
+        clickHandler={() => {
+          setActiveMenu("Discover");
+        }}
+      >
         <Icon name="discover" size="lg" />
         <p className="label">Discover</p>
       </Button>
@@ -25,6 +38,7 @@ export const Navbar = () => {
         data_type="container"
         data_bg="circle"
         clickHandler={() => {
+          setActiveMenu("CreateRecipe");
           navigate("create-recipe");
         }}
       >
@@ -33,7 +47,9 @@ export const Navbar = () => {
       <Button
         data_type="container"
         data_bg="transparent"
+        data_active={activeMenu === "MyRecipes" ? true : false}
         clickHandler={() => {
+          setActiveMenu("MyRecipes");
           navigate("/user/my-recipes");
         }}
       >
@@ -43,7 +59,9 @@ export const Navbar = () => {
       <Button
         data_type="container"
         data_bg="transparent"
+        data_active={activeMenu === "Profile" ? true : false}
         clickHandler={() => {
+          setActiveMenu("Profile");
           navigate("/user/profile");
         }}
       >

@@ -4,10 +4,10 @@ import { Button } from "../../sharedComponents/Button";
 import { CardBody } from "../../sharedComponents/card/CardBody";
 import { Header } from "../../sharedComponents/Header";
 import { Icon } from "../../sharedComponents/Icon";
-import { RecipeForm } from "./RecipeForm";
+import { RecipeForm } from "../../components/recipe/RecipeForm";
 import messages from "../../data/message.json";
 import { useNavigate, useParams } from "react-router-dom";
-import { Recipe } from "../../data/objects";
+import { Recipe } from "../../model/Recipe";
 
 export const EditRecipePage = () => {
   const navigate = useNavigate();
@@ -121,7 +121,7 @@ export const EditRecipePage = () => {
               form="myForm"
               type="submit"
             >
-              <p>Update</p>
+              <p>Save</p>
             </Button>
           </div>
         </div>

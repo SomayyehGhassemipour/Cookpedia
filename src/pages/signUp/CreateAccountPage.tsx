@@ -102,9 +102,9 @@ export const CreateAccountPage: React.FC = () => {
         <CardAction>
           <Button
             form="myform"
+            type="submit"
             data_type="container"
             data_bg="primary"
-            type="submit"
           >
             <p>Sign Up</p>
           </Button>

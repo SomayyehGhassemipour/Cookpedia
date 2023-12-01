@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "../data/objects";
+import { User } from "../model/User";
 import { Button } from "../sharedComponents/Button";
 import { Icon } from "../sharedComponents/Icon";
 import { LineSeperator } from "../sharedComponents/LineSeperator";

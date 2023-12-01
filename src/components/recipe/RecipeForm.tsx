@@ -115,6 +115,7 @@ export const RecipeForm: React.FC<Props> = ({
               <Button
                 data_type="container"
                 data_bg="transparent"
+                type="button"
                 clickHandler={(event) => deleteHandler(event, "ingredient")}
               >
                 <Icon name="trash" size="lg" />
@@ -153,6 +154,7 @@ export const RecipeForm: React.FC<Props> = ({
               <Button
                 data_type="container"
                 data_bg="transparent"
+                type="button"
                 clickHandler={(event) => deleteHandler(event, "instruction")}
               >
                 <Icon name="trash" size="lg" />

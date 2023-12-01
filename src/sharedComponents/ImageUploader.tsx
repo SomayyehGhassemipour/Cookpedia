@@ -12,7 +12,6 @@ export const ImageUploader: React.FC<Props> = ({
   changeHandler,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  console.log(image instanceof Object);
   return (
     <div
       className="flex-center image-frame"

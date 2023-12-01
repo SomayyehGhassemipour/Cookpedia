@@ -12,12 +12,10 @@ import { Icon } from "../sharedComponents/Icon";
 import { LineSeperator } from "../sharedComponents/LineSeperator";
 import { useUserAuth } from "../sevices/firebase/AthenicationService";
 import mockData from "../data/mockData.json";
-import { useDispatch } from "react-redux";
 
 export const SignInPage: React.FC = () => {
   const userAuth = useUserAuth();
   let navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [state, setstate] = useState({
     email: "",
@@ -80,49 +78,31 @@ export const SignInPage: React.FC = () => {
               <h5 className="text-primary-500">Forget Password</h5>
             </Button>
             <LineSeperator type="horizontal" content="or continue with" />
-            <div className="flex-column-center">
+            <section className="flex-column-center">
               <div className="flex-row-justify-around">
                 <Button
                   data_type="container"
                   data_bg="transparent"
-                  clickHandler={() => navigate("/")}
+                  type="button"
                 >
-                  <div
-                    style={{
-                      backgroundImage: "url(icons8-google-28.png)",
-                      height: 28,
-                      width: 28,
-                    }}
-                  />
+                  <Icon name="google" />
                 </Button>
                 <Button
                   data_type="container"
                   data_bg="transparent"
-                  clickHandler={() => navigate("/")}
+                  type="button"
                 >
-                  <div
-                    style={{
-                      backgroundImage: "url(icons8-facebook-28.png)",
-                      height: 28,
-                      width: 28,
-                    }}
-                  />
+                  <Icon name="facebook" />
                 </Button>
                 <Button
                   data_type="container"
                   data_bg="transparent"
-                  clickHandler={() => navigate("/")}
+                  type="button"
                 >
-                  <div
-                    style={{
-                      backgroundImage: "url(icons8-apple-logo-28.png)",
-                      height: 28,
-                      width: 28,
-                    }}
-                  />
+                  <Icon name="apple" />
                 </Button>
               </div>
-            </div>
+            </section>
           </Form>
         </CardBody>
         <CardAction>
