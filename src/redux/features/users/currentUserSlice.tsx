@@ -1,23 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "../../../model/User";
+import { User, initialUser } from "../../../model/User";
 
-const initialState: User = {
-  userName: "",
-  email: "",
-  fullname: "",
-  aboutme: "",
-  birthday: null,
-  cookLevel: "",
-  country: "",
-  city: "",
-  phoneNumber: "",
-  avatar: "",
-  gender: "",
-  facebook: "",
-  instagram: "",
-  twitter: "",
-  joinedDate: null,
-};
+const initialState: User = initialUser;
 export const currentUserSlice = createSlice({
   name: "currentUser",
   initialState,
@@ -63,7 +47,7 @@ export const currentUserSlice = createSlice({
       state.joinedDate = action.payload.joinedDate;
     },
     setUserDataEmpty: (state) => {
-      state = initialState;
+      state = initialUser;
     },
   },
 });
@@ -78,23 +62,5 @@ export const {
   setUserDataEmpty,
 } = currentUserSlice.actions;
 
-export const getUserData = (state: {
-  currentUser: {
-    userName: string;
-    email: string;
-    fullname: string;
-    aboutme: string;
-    birthday: Date | null;
-    cookLevel: string;
-    country: string;
-    city: string;
-    phoneNumber: string;
-    avatar?: string;
-    gender: string;
-    facebook?: string;
-    instagram?: string;
-    twitter?: string;
-    joinedDate: string | null;
-  };
-}) => state.currentUser;
+export const getUserData = (state: { currentUser: User }) => state.currentUser;
 export default currentUserSlice.reducer;

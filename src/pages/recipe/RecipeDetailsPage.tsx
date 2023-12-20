@@ -4,54 +4,48 @@ import { CardBody } from "../../sharedComponents/card/CardBody";
 import { Header } from "../../sharedComponents/Header";
 import { Icon } from "../../sharedComponents/Icon";
 import { useEffect, useState } from "react";
-import { Recipe } from "../../model/Recipe";
+import { Recipe, initialRecipe } from "../../model/Recipe";
 import { useUserAuth } from "../../sevices/firebase/AthenicationService";
 import messages from "../../data/message.json";
 import { deleteRecipe, getRecipe } from "../../sevices/recipie/RecipieService";
 import { LineSeperator } from "../../sharedComponents/LineSeperator";
-import { Avatar } from "../../sharedComponents/Avatar";
 import { Shape } from "../../sharedComponents/Shape";
-import { useSelector } from "react-redux";
-import { getUserData } from "../../redux/features/users/currentUserSlice";
+import { UserCard } from "../../components/user/UserCard";
+import { getUserDataByID } from "../../sevices/user/UserService";
+import { User, initialUser } from "../../model/User";
 
 export const RecipeDetailsPage = () => {
   const userAuth = useUserAuth();
   const navigate = useNavigate();
 
-  const userData = useSelector(getUserData);
   let { id } = useParams();
-  const initialState: Recipe = {
-    recipeID: "",
-    userID: "",
-    image: null,
-    title: "",
-    description: "",
-    cookTime: "",
-    serves: "",
-    origin: "",
-    ingredients: [],
-    instructions: [],
-  };
-  const [state, setState] = useState<Recipe>(initialState);
+
+  const [recipeData, setRecipeData] = useState<Recipe>(initialRecipe);
+  const [userData, setUserData] = useState<User>(initialUser);
 
   useEffect(() => {
     const fetchRecipe = async (id: any) => {
       try {
-        const recipeData = await getRecipe(id);
-        setState(recipeData);
+        const recipe = await getRecipe(id);
+        setRecipeData(recipe);
+
+        console.log(recipeData.userID);
+        const user = await getUserDataByID(recipeData.userID);
+        setUserData(user as User);
+        console.log(user);
       } catch (error) {
         console.log(messages.GET_RECIPE_ERROR_MESAGE, error);
       }
     };
     fetchRecipe(id);
-  }, [id]);
+  }, [id, recipeData.userID]);
 
   const deleteRecipeHandler = async (event: React.MouseEvent<HTMLElement>) => {
     if (
-      window.confirm("Are you sure you want to delete this recipe?") == true
+      window.confirm("Are you sure you want to delete this recipe?") === true
     ) {
       try {
-        await deleteRecipe(state.recipeID);
+        await deleteRecipe(recipeData.recipeID);
       } catch (error: any) {
         alert(messages.ERROR_IN_DELETING_RECIPIE + error);
       }
@@ -69,13 +63,13 @@ export const RecipeDetailsPage = () => {
           >
             <Icon name="back" size="lg" />
           </Button>
-          {userAuth.user.uid === state.userID && (
+          {userAuth.user.uid === recipeData.userID && (
             <div className="ml-auto flex-row">
               <Button
                 data_bg="google"
                 data_type="container"
                 clickHandler={() =>
-                  navigate(`/user/recipe-edit/${state.recipeID}`)
+                  navigate(`/user/recipe-edit/${recipeData.recipeID}`)
                 }
               >
                 <div className="flex-row-justify-around">
@@ -98,11 +92,11 @@ export const RecipeDetailsPage = () => {
         </div>
       </Header>
       <CardBody classname="flex-align-start">
-        <img className="br-sm" alt="uploaded_image" src={state.image} />
-        <h1>{state.title}</h1>
+        <img className="br-sm" alt="uploaded_image" src={recipeData.image} />
+        <h1>{recipeData.title}</h1>
         <LineSeperator type={"horizontal"} />
         <div className="container flex-row-justify-start">
-          <div className="profile-avatar">
+          {/* <div className="profile-avatar">
             <Avatar
               classname="avatar-profile"
               url={userData.avatar ? userData.avatar : "../../user.png"}
@@ -123,31 +117,41 @@ export const RecipeDetailsPage = () => {
                 </div>
               </Button>
             )}
-          </div>
+          </div> */}
+          <UserCard
+            avatar={userData.avatar}
+            fullname={userData.fullname}
+            userName={userData.userName}
+            type={userAuth.user.uid !== recipeData.userID ? "Follow" : "None"}
+            avatarSize="sm"
+            clickHandler={() => navigate("/user/edit-profile")}
+          />
         </div>
         <LineSeperator type={"horizontal"} />
-        <p>{state.description}</p>
+        <p>{recipeData.description}</p>
         <LineSeperator type={"horizontal"} />
         <div className="container flex-row-justify-around">
           <div
             className="flex-column-center br-sm bg-primary-900 pl-2 pr-2 pt-1 pb-1"
             style={{ flex: "1" }}
           >
-            <h5 className="text-primary-600">{state.cookTime}</h5>
+            <h5 className="text-primary-600">{recipeData.cookTime}</h5>
             <p className="fs-small-200 text-neutral-500">cook time</p>
           </div>
           <div
             className="flex-column-center br-sm bg-primary-900 pl-2 pr-2 pt-1 pb-1"
             style={{ flex: "1" }}
           >
-            <h5 className="text-primary-600">{state.serves + " serving"}</h5>
+            <h5 className="text-primary-600">
+              {recipeData.serves + " serving"}
+            </h5>
             <p className="fs-small-200 text-neutral-500">serves</p>
           </div>
           <div
             className="flex-column-center br-sm bg-primary-900 pl-2 pr-2 pt-1 pb-1"
             style={{ flex: "1" }}
           >
-            <h5 className="text-primary-600">{state.origin}</h5>
+            <h5 className="text-primary-600">{recipeData.origin}</h5>
             <p className="fs-small-200 text-neutral-500">origin</p>
           </div>
         </div>
@@ -155,7 +159,7 @@ export const RecipeDetailsPage = () => {
 
         <h3>Ingredients:</h3>
         <div>
-          {state.ingredients.map((ingredient, index) => (
+          {recipeData.ingredients.map((ingredient, index) => (
             <div className="flex-row-justify-start pb-1" key={index}>
               <Shape type="circle">
                 {" "}
@@ -169,7 +173,7 @@ export const RecipeDetailsPage = () => {
 
         <h3>Instruments:</h3>
         <div>
-          {state.instructions.map((instruction, index) => (
+          {recipeData.instructions.map((instruction, index) => (
             <div className="flex-row-justify-start pb-1" key={index}>
               <Shape type="circle">
                 {" "}

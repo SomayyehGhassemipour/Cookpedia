@@ -84,7 +84,7 @@ export const CountryPage = () => {
                 >
                   <Avatar
                     classname="avatar-image"
-                    url={item.image}
+                    image={item.image}
                     name={item.code}
                     type={"rectangle"}
                     size={"sm"}

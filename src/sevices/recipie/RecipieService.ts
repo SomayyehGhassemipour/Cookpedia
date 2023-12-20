@@ -112,3 +112,22 @@ export const deleteRecipe = async (recipeId: string) => {
     return { error: error.message };
   }
 };
+
+export const recipeQuery = async (searchedName: string) => {
+  const recipesData: any = [];
+  console.log(searchedName);
+  const recipesRef = collection(db, "recipes");
+
+  try {
+    const querySnapshot = await getDocs(recipesRef);
+    querySnapshot.forEach((doc) => {
+      const tempData = doc.data();
+      if (tempData.title.toLowerCase().startsWith(searchedName.toLowerCase())) {
+        recipesData.push(tempData);
+      }
+    });
+    return recipesData;
+  } catch (error: any) {
+    return { error: error.message };
+  }
+};

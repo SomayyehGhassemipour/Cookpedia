@@ -10,4 +10,18 @@ interface Recipe {
   ingredients: string[];
   instructions: string[];
 }
+
+const initialRecipe: Recipe = {
+  recipeID: "",
+  userID: "",
+  image: null,
+  title: "",
+  description: "",
+  cookTime: "",
+  serves: "",
+  origin: "",
+  ingredients: [],
+  instructions: [],
+};
 export type { Recipe };
+export { initialRecipe };

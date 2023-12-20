@@ -28,6 +28,7 @@ export const Navbar = () => {
         data_active={activeMenu === "Discover" ? true : false}
         clickHandler={() => {
           setActiveMenu("Discover");
+          navigate("/user/discover");
         }}
       >
         <Icon name="discover" size="lg" />

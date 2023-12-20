@@ -3,7 +3,7 @@ import { Icon } from "./Icon";
 
 interface Props {
   classname: string;
-  url: any;
+  image: any;
   name: string;
   type: "circle" | "rectangle";
   size: "xs" | "sm" | "lg";
@@ -12,7 +12,7 @@ interface Props {
 }
 export const Avatar: React.FC<Props> = ({
   classname,
-  url,
+  image,
   name,
   type,
   size,
@@ -20,18 +20,18 @@ export const Avatar: React.FC<Props> = ({
   changeHandler,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  console.log("iiiii", image instanceof Object);
   return (
     <div className="profile-avatar">
-      {editable ? (
+      <img
+        className={`${classname}`}
+        src={typeof image == "string" ? image : URL.createObjectURL(image)}
+        alt={name}
+        data-size={size}
+        data-type={type}
+      />
+      {editable && (
         <>
-          <img
-            className={`${classname}`}
-            src={url}
-            alt={name}
-            data-size={size}
-            data-type={type}
-          />
-
           <div
             className="edit-avatar"
             onClick={() => {
@@ -42,21 +42,13 @@ export const Avatar: React.FC<Props> = ({
           </div>
           <input
             type="file"
-            accept="image/png, image/jpeg, image/jpg, image/jfij"
+            accept="image/png, image/jpeg, image/jpg"
             className="input-field"
             hidden
             ref={inputRef}
             onChange={changeHandler}
           />
         </>
-      ) : (
-        <img
-          className={`${classname}`}
-          src={typeof url == "string" ? url : URL.createObjectURL(url)}
-          alt={name}
-          data-size={size}
-          data-type={type}
-        />
       )}
     </div>
   );

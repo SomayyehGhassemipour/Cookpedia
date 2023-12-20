@@ -11,5 +11,6 @@
   "NO_LOGGED_IN_USER": "There is no logged in user",
   "ERROR_IN_DELETING_RECIPIE": "There is an error in deleting the recipie.",
   "ERROR_IN_DELETING_IMAGE": "There is an error in deleting the image.",
-  "ERROR_IN_UPDATING_USER": "There is an error in updating the user"
+  "ERROR_IN_UPDATING_USER": "There is an error in updating the user",
+  "FETCH_RECIPES_SEARCHED_LIST_ERORR": " There is an error in query of searched recipes."
 }

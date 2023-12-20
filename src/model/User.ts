@@ -15,4 +15,22 @@ interface User {
   twitter?: string;
   joinedDate: string | null;
 }
+const initialUser: User = {
+  userName: "",
+  email: "",
+  fullname: "",
+  aboutme: "",
+  birthday: null,
+  cookLevel: "",
+  country: "",
+  city: "",
+  phoneNumber: "",
+  avatar: null,
+  gender: "",
+  facebook: "",
+  instagram: "",
+  twitter: "",
+  joinedDate: null,
+};
 export type { User };
+export { initialUser };

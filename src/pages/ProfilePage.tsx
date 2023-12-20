@@ -3,7 +3,6 @@ import { getFirestore } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../sevices/firebase/config";
-import { Avatar } from "../sharedComponents/Avatar";
 import { Button } from "../sharedComponents/Button";
 import { CardBody } from "../sharedComponents/card/CardBody";
 import { Header } from "../sharedComponents/Header";
@@ -13,13 +12,17 @@ import { useUserAuth } from "../sevices/firebase/AthenicationService";
 import messages from "../data/message.json";
 import { User } from "../model/User";
 import { useDispatch } from "react-redux";
-import { getUserData } from "../sevices/user/UserService";
+import { getUserDataByID } from "../sevices/user/UserService";
 import {
   setUserDataEmpty,
   setAllUserData,
 } from "../redux/features/users/currentUserSlice";
 import { Aboutme } from "../components/Aboutme";
 import { RecipeList } from "../components/recipe/RecipeList";
+import { UserCard } from "../components/user/UserCard";
+import { Recipe } from "../model/Recipe";
+import { getAllRecipesByUserID } from "../sevices/recipie/RecipieService";
+import { setRecipesData } from "../redux/features/recipes/recipesSlice";
 
 export const ProfilePage = () => {
   const userAuth = useUserAuth();
@@ -31,15 +34,20 @@ export const ProfilePage = () => {
 
   const [activeTab, setActiveTab] = useState("Recipes");
   const [userData, setUserData] = useState<User | null>(null);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const userId: string = user.uid;
         try {
-          const userData = await getUserData(userId);
+          const userData = await getUserDataByID(userId);
           setUserData(userData as User);
           dispatch(setAllUserData(userData));
+
+          const recipesData = await getAllRecipesByUserID(userId);
+          setRecipes(recipesData);
+          dispatch(setRecipesData(recipesData));
         } catch (error) {
           console.log(messages.FETCH_USER_INFO_ERORR);
         }
@@ -51,12 +59,14 @@ export const ProfilePage = () => {
   }, [db, dispatch]);
 
   const signOutHandler = async () => {
-    try {
-      await userAuth.logOut();
-      dispatch(setUserDataEmpty());
-      navigate("/");
-    } catch (error: any) {
-      alert(error.Message);
+    if (window.confirm("Are you sure you want to sign out?") === true) {
+      try {
+        await userAuth.logOut();
+        dispatch(setUserDataEmpty());
+        navigate("/");
+      } catch (error: any) {
+        alert(error.Message);
+      }
     }
   };
   const activeTabHandler = (event: React.MouseEvent<HTMLElement>) => {
@@ -77,44 +87,21 @@ export const ProfilePage = () => {
             >
               <Icon name="share" size="lg" />
             </Button>
-            <Button
-              data_type="container"
-              data_bg="transparent"
-              clickHandler={() => navigate("/")}
-            >
+            <Button data_type="container" data_bg="transparent">
               <Icon name="settings" size="lg" />
             </Button>
           </div>
         </div>
       </Header>
       <CardBody classname="flex-align-start">
-        <div className="container flex-row-justify-start">
-          <div className="profile-avatar">
-            <Avatar
-              classname="avatar-profile"
-              url={userData?.avatar ? userData.avatar : "../user.png"}
-              name="AC"
-              type={"circle"}
-              size={"lg"}
-            />
-          </div>
-          <div className="flex-align-start">
-            <h3>{userData?.fullname}</h3>
-            <p className="text-neutral-600">{userData?.userName}</p>
-          </div>
-          <div className="ml-auto">
-            <Button
-              data_bg="google"
-              data_type="container"
-              clickHandler={() => navigate("/user/edit-profile")}
-            >
-              <div className="flex-row-justify-around">
-                <Icon name="edit" size="xs" />
-                <p>Edit</p>
-              </div>
-            </Button>
-          </div>
-        </div>
+        <UserCard
+          avatar={userData?.avatar}
+          fullname={userData?.fullname}
+          userName={userData?.userName}
+          type="Edit"
+          avatarSize="lg"
+          clickHandler={() => navigate("/user/edit-profile")}
+        />
         <LineSeperator type="horizontal" />
         <div className="flex-row-justify-around">
           <div className="flex-column-center">
@@ -158,7 +145,7 @@ export const ProfilePage = () => {
         {activeTab === "About" ? (
           <Aboutme userData={userData} />
         ) : (
-          <RecipeList />
+          <RecipeList recipes={recipes} />
         )}
       </CardBody>
     </>

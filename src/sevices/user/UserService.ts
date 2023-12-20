@@ -1,5 +1,12 @@
 import { db } from "../firebase/config";
-import { setDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  setDoc,
+  doc,
+  getDoc,
+  updateDoc,
+  collection,
+  getDocs,
+} from "firebase/firestore";
 import { deleteImage, uploadImage } from "../image/ImageService";
 import mockData from "../../data/mockData.json";
 import { User } from "../../model/User";
@@ -27,7 +34,7 @@ export const addUser = async (userId: string, newUser: User) => {
     return { error: error.message };
   }
 };
-export const getUserData = async (userId: string) => {
+export const getUserDataByID = async (userId: string) => {
   const userRef = doc(db, "users", userId);
   try {
     const userSnap = await getDoc(userRef);
@@ -42,18 +49,24 @@ export const updateUserData = async (
   updatedUserData: User,
   prevAvatar: any
 ) => {
+  console.log(prevAvatar instanceof Object);
+  console.log(updatedUserData.avatar instanceof Object);
   try {
     if (updatedUserData.avatar instanceof Object) {
-      console.log(prevAvatar);
       if (prevAvatar !== "") {
         await deleteImage(prevAvatar);
       }
-      const uploadAvatarResult = await uploadImage(
-        updatedUserData.avatar,
-        mockData.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
-        "avatar_" + updatedUserData.userName + "_"
-      );
-      updatedUserData.avatar = uploadAvatarResult;
+      try {
+        const uploadAvatarResult = await uploadImage(
+          updatedUserData.avatar,
+          mockData.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
+          "avatar_" + updatedUserData.userName + "_"
+        );
+        console.log(uploadAvatarResult);
+        updatedUserData.avatar = uploadAvatarResult;
+      } catch (error: any) {
+        return { error: error.message };
+      }
     }
     const userRef = doc(db, "users", userId);
     try {
@@ -62,6 +75,28 @@ export const updateUserData = async (
     } catch (error: any) {
       return { error: error.message };
     }
+  } catch (error: any) {
+    return { error: error.message };
+  }
+};
+
+export const userQuery = async (searchedName: string) => {
+  const usersData: any = [];
+  console.log(searchedName);
+  const usersRef = collection(db, "users");
+
+  try {
+    const querySnapshot = await getDocs(usersRef);
+    querySnapshot.forEach((doc) => {
+      const tempData = doc.data();
+      if (
+        tempData.fullname.toLowerCase().startsWith(searchedName.toLowerCase())
+      ) {
+        usersData.push(tempData);
+      }
+    });
+    console.log(usersData);
+    return usersData;
   } catch (error: any) {
     return { error: error.message };
   }

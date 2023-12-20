@@ -10,6 +10,7 @@ import { Navbar } from "../navbar/Navbar";
 import { RecipeDetailsPage } from "../../pages/recipe/RecipeDetailsPage";
 import { EditRecipePage } from "../../pages/recipe/EditRecipePage";
 import { EditProfilePage } from "../../pages/EditProfilePage";
+import { DiscoverPage } from "../../pages/DiscoverPage";
 
 export const User = () => {
   return (
@@ -18,6 +19,7 @@ export const User = () => {
         <Routes>
           <Route index path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/discover" element={<DiscoverPage />} />
           <Route path="/edit-profile" element={<EditProfilePage />} />
           <Route path="/my-recipes" element={<MyRecipesPage />} />
           <Route path="/create-recipe" element={<CreateRecipePage />} />

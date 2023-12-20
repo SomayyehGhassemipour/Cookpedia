@@ -13,32 +13,16 @@ import { Form } from "../sharedComponents/form/Form";
 import { auth } from "../sevices/firebase/config";
 import { updateUserData } from "../sevices/user/UserService";
 import messages from "../data/message.json";
-import { User } from "../model/User";
+import { User, initialUser } from "../model/User";
 
 export const EditProfilePage = () => {
   const navigate = useNavigate();
   const userData = useSelector(getUserData);
-  const [state, setState] = useState(userData);
-  const [prevUserAvatar, setprevUserAvatar] = useState<string | undefined>("");
+  const [state, setState] = useState<User>(userData);
+  const [prevUserAvatar, setprevUserAvatar] = useState("");
 
   const userID = auth.currentUser?.uid;
-  const initialState: User = {
-    avatar: "",
-    fullname: "",
-    email: "",
-    userName: "",
-    phoneNumber: "",
-    aboutme: "",
-    birthday: null,
-    cookLevel: "",
-    country: "",
-    city: "",
-    gender: "",
-    facebook: "",
-    twitter: "",
-    instagram: "",
-    joinedDate: null,
-  };
+
   const {
     avatar,
     fullname,
@@ -66,10 +50,11 @@ export const EditProfilePage = () => {
   useEffect(() => {
     setprevUserAvatar(userData.avatar);
   }, []);
+
   const getImage = (event: any) => {
     const image = event.target.files[0];
     if (image) {
-      setState({ ...state, avatar: URL.createObjectURL(image) });
+      setState({ ...state, avatar: image });
       event.target.files = null;
     }
   };
@@ -86,7 +71,7 @@ export const EditProfilePage = () => {
     } catch (error: any) {
       alert(messages.ERROR_IN_UPDATING_USER + error);
     }
-    setState(initialState);
+    setState(initialUser);
     navigate("/user/profile");
   };
 
@@ -118,7 +103,7 @@ export const EditProfilePage = () => {
         <div className="flex-row-justify-around">
           <Avatar
             classname="avatar-profile"
-            url={avatar}
+            image={avatar}
             name="avatar-photo"
             type={"circle"}
             size={"lg"}

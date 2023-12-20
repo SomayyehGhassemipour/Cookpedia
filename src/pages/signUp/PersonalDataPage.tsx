@@ -34,7 +34,7 @@ export const PersonalDataPage = () => {
   const getImage = (event: any) => {
     const image = event.target.files[0];
     if (image) {
-      setState({ ...state, avatar: URL.createObjectURL(image) });
+      setState({ ...state, avatar: image });
       event.target.files = null;
     }
   };
@@ -77,7 +77,7 @@ export const PersonalDataPage = () => {
           <div className="flex-row-justify-around">
             <Avatar
               classname="avatar-profile"
-              url={avatar ? avatar : "user.png"}
+              image={avatar ? avatar : "user.png"}
               name="avatar-photo"
               type={"circle"}
               size={"lg"}
