@@ -6,6 +6,7 @@ interface Props {
   data_type: String;
   data_bg?: string;
   data_active?: boolean;
+  data_width?: "full";
   clickHandler?: React.MouseEventHandler<HTMLButtonElement>;
   children?: JSX.Element | JSX.Element[];
   form?: string;
@@ -18,6 +19,7 @@ export const Button: React.FC<Props> = ({
   data_type,
   data_bg,
   data_active,
+  data_width,
   clickHandler,
   children,
   reference,
@@ -30,6 +32,7 @@ export const Button: React.FC<Props> = ({
       data-type={data_type}
       data-bg={data_bg}
       data-active={data_active}
+      data-width={data_width}
       type={type}
       onClick={clickHandler}
       ref={reference}

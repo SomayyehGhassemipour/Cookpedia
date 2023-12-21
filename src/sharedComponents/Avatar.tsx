@@ -20,7 +20,6 @@ export const Avatar: React.FC<Props> = ({
   changeHandler,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  console.log("iiiii", image instanceof Object);
   return (
     <div className="profile-avatar">
       <img

@@ -9,16 +9,19 @@ import { InputField } from "../sharedComponents/InputField";
 import { LineSeperator } from "../sharedComponents/LineSeperator";
 import messages from "../data/message.json";
 import { RecipeList } from "../components/recipe/RecipeList";
+import { UserList } from "../components/user/UserList";
+import { User } from "../model/User";
 
 export const DiscoverPage = () => {
-  const [activeTab, setActiveTab] = useState("Recipes");
+  const [activeTab, setActiveTab] = useState<string>("Recipes");
   const [searchItem, setSearchItem] = useState<string>("");
-  const [searchedList, setSearchedlist] = useState<Recipe[]>([]);
+  const [searchedList, setSearchedlist] = useState<Recipe[] | User[]>([]);
 
   const refRecipeBtn: any = useRef(null);
   const refPeopleBtn: any = useRef(null);
 
   const activeTabHandler = (event: React.MouseEvent<HTMLElement>) => {
+    setSearchedlist([]);
     event.currentTarget.innerText === "Recipes"
       ? setActiveTab("Recipes")
       : setActiveTab("People");
@@ -26,17 +29,16 @@ export const DiscoverPage = () => {
 
   const handleOnChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchItem(event.target.value);
+
     if (activeTab === "Recipes") {
       try {
         const recipes = await recipeQuery(event.target.value);
-        console.log(recipes);
         setSearchedlist(recipes);
       } catch (error) {
         console.log(messages.FETCH_RECIPES_SEARCHED_LIST_ERORR);
       }
     } else {
       const people = await userQuery(event.target.value);
-      console.log(people);
       setSearchedlist(people);
     }
   };
@@ -83,7 +85,12 @@ export const DiscoverPage = () => {
           </Button>
         </div>
         <LineSeperator type="horizontal" />
-        <RecipeList recipes={searchedList} />
+        {searchedList &&
+          (activeTab === "Recipes" ? (
+            <RecipeList recipes={searchedList as Recipe[]} />
+          ) : (
+            <UserList users={searchedList as User[]} />
+          ))}
       </CardBody>
     </>
   );

@@ -82,22 +82,21 @@ export const updateUserData = async (
 
 export const userQuery = async (searchedName: string) => {
   const usersData: any = [];
-  console.log(searchedName);
   const usersRef = collection(db, "users");
-
-  try {
-    const querySnapshot = await getDocs(usersRef);
-    querySnapshot.forEach((doc) => {
-      const tempData = doc.data();
-      if (
-        tempData.fullname.toLowerCase().startsWith(searchedName.toLowerCase())
-      ) {
-        usersData.push(tempData);
-      }
-    });
-    console.log(usersData);
-    return usersData;
-  } catch (error: any) {
-    return { error: error.message };
+  if (searchedName) {
+    try {
+      const querySnapshot = await getDocs(usersRef);
+      querySnapshot.forEach((doc) => {
+        const tempData = doc.data();
+        if (
+          tempData.fullname.toLowerCase().startsWith(searchedName.toLowerCase())
+        ) {
+          usersData.push(tempData);
+        }
+      });
+      return usersData;
+    } catch (error: any) {
+      return { error: error.message };
+    }
   }
 };

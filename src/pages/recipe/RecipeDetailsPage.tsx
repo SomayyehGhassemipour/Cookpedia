@@ -28,11 +28,12 @@ export const RecipeDetailsPage = () => {
       try {
         const recipe = await getRecipe(id);
         setRecipeData(recipe);
-
-        console.log(recipeData.userID);
-        const user = await getUserDataByID(recipeData.userID);
-        setUserData(user as User);
-        console.log(user);
+        try {
+          const user = await getUserDataByID(recipeData.userID);
+          setUserData(user as User);
+        } catch (error) {
+          console.log(messages.FETCH_USER_INFO_ERORR, error);
+        }
       } catch (error) {
         console.log(messages.GET_RECIPE_ERROR_MESAGE, error);
       }
@@ -96,28 +97,6 @@ export const RecipeDetailsPage = () => {
         <h1>{recipeData.title}</h1>
         <LineSeperator type={"horizontal"} />
         <div className="container flex-row-justify-start">
-          {/* <div className="profile-avatar">
-            <Avatar
-              classname="avatar-profile"
-              url={userData.avatar ? userData.avatar : "../../user.png"}
-              name="AC"
-              type={"circle"}
-              size={"sm"}
-            />
-          </div>
-          <div className="flex-align-start">
-            <h5>{userData.fullname}</h5>
-            <p className="text-neutral-600 fs-small-200">{userData.userName}</p>
-          </div>
-          <div className="ml-auto">
-            {userAuth.user.uid !== state.userID && (
-              <Button data_bg="google" data_type="container">
-                <div className="flex-row-justify-around">
-                  <p>Follow </p>
-                </div>
-              </Button>
-            )}
-          </div> */}
           <UserCard
             avatar={userData.avatar}
             fullname={userData.fullname}

@@ -30,7 +30,6 @@ export const SignInPage: React.FC = () => {
   const submitHandler = async (event: any) => {
     event.preventDefault();
     const response = await userAuth.logIn(email, password);
-    console.log(response);
     if (response.error) {
       alert(response.error);
     } else navigate("/user/profile");

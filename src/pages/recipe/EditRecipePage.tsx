@@ -11,8 +11,8 @@ import { Recipe } from "../../model/Recipe";
 
 export const EditRecipePage = () => {
   const navigate = useNavigate();
-
   let { id } = useParams();
+
   const initialState: Recipe = {
     recipeID: "",
     userID: "",
