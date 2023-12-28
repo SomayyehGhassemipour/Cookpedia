@@ -9,7 +9,7 @@ interface Props {
   userName: string | undefined;
   type: "Follow" | "Following" | "Edit" | "None";
   avatarSize: "xs" | "sm" | "lg";
-  clickHandler: any;
+  clickHandler?: any;
 }
 export const UserCard: React.FC<Props> = ({
   avatar,

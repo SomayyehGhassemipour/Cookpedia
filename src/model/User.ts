@@ -1,5 +1,6 @@
 interface User {
   userName: string;
+  userID: string;
   email: string;
   fullname: string;
   aboutme: string;
@@ -17,6 +18,7 @@ interface User {
 }
 const initialUser: User = {
   userName: "",
+  userID: "",
   email: "",
   fullname: "",
   aboutme: "",

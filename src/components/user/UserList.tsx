@@ -20,17 +20,14 @@ export const UserList: React.FC<Props> = ({ users }) => {
               data_type="container"
               data_bg="transparent"
               data_width="full"
-              // clickHandler={() =>
-              //   navigate(`/user/recipe-details/${recipe.recipeID}`)
-              // }
+              clickHandler={() => navigate(`/user/user-profile/${user.userID}`)}
             >
               <UserCard
                 avatar={user?.avatar}
                 fullname={user?.fullname}
                 userName={user?.userName}
-                type="Edit"
+                type="None"
                 avatarSize="sm"
-                clickHandler={() => navigate("/user/edit-profile")}
               />
             </Button>
             <LineSeperator type="horizontal" />

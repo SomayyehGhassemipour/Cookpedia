@@ -1,6 +1,6 @@
 interface Recipe {
   userID: string;
-  recipeID: any;
+  recipeID: string;
   image: any;
   title: string;
   description: string;

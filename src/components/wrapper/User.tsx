@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { CreateRecipePage } from "../../pages/recipe/CreateRecipePage";
 import { HomePage } from "../../pages/HomePage";
 import { ProfilePage } from "../../pages/ProfilePage";
@@ -11,8 +11,18 @@ import { RecipeDetailsPage } from "../../pages/recipe/RecipeDetailsPage";
 import { EditRecipePage } from "../../pages/recipe/EditRecipePage";
 import { EditProfilePage } from "../../pages/EditProfilePage";
 import { DiscoverPage } from "../../pages/DiscoverPage";
+import { UserProfile } from "../../pages/UserProfile";
+import { useUserAuth } from "../../sevices/firebase/AthenicationService";
 
 export const User = () => {
+  const userAuth = useUserAuth();
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userAuth.user.uid) {
+      navigate("/");
+    }
+  }, []);
   return (
     <div className="container">
       <Card classname="flex-justify-start">
@@ -25,6 +35,7 @@ export const User = () => {
           <Route path="/create-recipe" element={<CreateRecipePage />} />
           <Route path="/recipe-details/:id" element={<RecipeDetailsPage />} />
           <Route path="/recipe-edit/:id" element={<EditRecipePage />} />
+          <Route path="/user-profile/:id" element={<UserProfile />} />
         </Routes>
         <CardAction>
           <Navbar />

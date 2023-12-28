@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getUserData } from "../redux/features/users/currentUserSlice";
 import { Avatar } from "../sharedComponents/Avatar";
 import { Button } from "../sharedComponents/Button";
 import { CardBody } from "../sharedComponents/card/CardBody";
@@ -11,34 +9,17 @@ import { SelectInput } from "../sharedComponents/SelectInput";
 import { FieldSet } from "../sharedComponents/form/FieldSet";
 import { Form } from "../sharedComponents/form/Form";
 import { auth } from "../sevices/firebase/config";
-import { updateUserData } from "../sevices/user/UserService";
+import { getUserDataByID, updateUserData } from "../sevices/user/UserService";
 import messages from "../data/message.json";
 import { User, initialUser } from "../model/User";
 
 export const EditProfilePage = () => {
   const navigate = useNavigate();
-  const userData = useSelector(getUserData);
-  const [state, setState] = useState<User>(userData);
-  const [prevUserAvatar, setprevUserAvatar] = useState("");
+  const [state, setState] = useState<User>();
+  const [prevUserAvatar, setprevUserAvatar] = useState<any>();
 
-  const userID = auth.currentUser?.uid;
+  const userId = auth.currentUser?.uid;
 
-  const {
-    avatar,
-    fullname,
-    email,
-    userName,
-    phoneNumber,
-    aboutme,
-    birthday,
-    cookLevel,
-    country,
-    city,
-    gender,
-    facebook,
-    twitter,
-    instagram,
-  } = state;
   const genderOptions = ["gender", "male", "female", "other"];
   const cookLevelOptions = [
     "Novice",
@@ -48,13 +29,22 @@ export const EditProfilePage = () => {
   ];
 
   useEffect(() => {
-    setprevUserAvatar(userData.avatar);
-  }, []);
+    const fetchUser = async (id: any) => {
+      try {
+        const Data = await getUserDataByID(id as string);
+        setState(Data as User);
+      } catch (error) {
+        console.log(messages.FETCH_USER_INFO_ERORR);
+      }
+    };
+    fetchUser(userId);
+    setprevUserAvatar(state?.avatar);
+  }, [userId, state?.avatar]);
 
   const getImage = (event: any) => {
     const image = event.target.files[0];
     if (image) {
-      setState({ ...state, avatar: image });
+      setState({ ...(state as User), avatar: image });
       event.target.files = null;
     }
   };
@@ -62,19 +52,19 @@ export const EditProfilePage = () => {
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     let { name, value } = event.target;
-    setState({ ...state, [name]: value });
+    setState({ ...(state as User), [name]: value });
   };
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      await updateUserData(userID, state, prevUserAvatar);
+      await updateUserData(state?.userID, state as User, prevUserAvatar);
     } catch (error: any) {
       alert(messages.ERROR_IN_UPDATING_USER + error);
     }
     setState(initialUser);
     navigate("/user/profile");
   };
-
+  if (!state) return <div>Loading...</div>;
   return (
     <>
       <Header>
@@ -99,11 +89,12 @@ export const EditProfilePage = () => {
           </div>
         </div>
       </Header>
+
       <CardBody classname="flex-align-start">
         <div className="flex-row-justify-around">
           <Avatar
             classname="avatar-profile"
-            image={avatar}
+            image={state?.avatar}
             name="avatar-photo"
             type={"circle"}
             size={"lg"}
@@ -117,7 +108,7 @@ export const EditProfilePage = () => {
             placeholdertxt="Username"
             inputType="text"
             name="userName"
-            value={userName}
+            value={state?.userName}
             errorMessage="Username should be 3-16 characters."
             pattern="^[A-Za-z0-9\-_]{3,16}$"
             onChange={changeHandler}
@@ -128,7 +119,7 @@ export const EditProfilePage = () => {
             inputType="text"
             data_type="textarea"
             name="aboutme"
-            value={aboutme}
+            value={state?.aboutme}
             errorMessage="aboutme field should be up to 100 characters."
             pattern="^[A-Za-z ]{16}$"
             onChange={changeHandler}
@@ -138,7 +129,7 @@ export const EditProfilePage = () => {
             placeholdertxt="Full Name"
             inputType="text"
             name="fullname"
-            value={fullname}
+            value={state?.fullname}
             errorMessage="Username should be 3-16 characters."
             pattern="^[A-Za-z ]{3,16}$"
             onChange={changeHandler}
@@ -148,7 +139,7 @@ export const EditProfilePage = () => {
             placeholdertxt="Email"
             inputType="email"
             name="email"
-            value={email}
+            value={state?.email}
             errorMessage="It should be a valid email address."
             onChange={changeHandler}
           />
@@ -158,7 +149,7 @@ export const EditProfilePage = () => {
             placeholdertxt="+1 000 000 000"
             inputType="phone"
             name={"phoneNumber"}
-            value={phoneNumber}
+            value={state?.phoneNumber}
             errorMessage="It should be a valid number."
             pattern="^[0-9+]{12}$"
             onChange={changeHandler}
@@ -168,7 +159,7 @@ export const EditProfilePage = () => {
             label="Gender"
             name="gender"
             placeholdertxt="Gender"
-            defaultValue={gender}
+            defaultValue={state?.gender}
             options={genderOptions}
             onChange={changeHandler}
           />
@@ -177,7 +168,7 @@ export const EditProfilePage = () => {
             placeholdertxt="MM/DD?YYYY"
             inputType="date"
             name="birthday"
-            value={String(birthday)}
+            value={String(state?.birthday)}
             errorMessage="Please put your birthday"
             onChange={changeHandler}
           />
@@ -186,7 +177,7 @@ export const EditProfilePage = () => {
             placeholdertxt="Poland"
             inputType="text"
             name="country"
-            value={country}
+            value={state?.country}
             errorMessage="Please put your country"
             onChange={changeHandler}
           />
@@ -195,7 +186,7 @@ export const EditProfilePage = () => {
             placeholdertxt="Wroclaw"
             inputType="text"
             name="city"
-            value={city}
+            value={state?.city}
             errorMessage="Please put your city"
             onChange={changeHandler}
           />
@@ -204,7 +195,7 @@ export const EditProfilePage = () => {
             name="cooklevel"
             placeholdertxt="Cook Level"
             options={cookLevelOptions}
-            defaultValue={cookLevel}
+            defaultValue={state?.cookLevel}
             onChange={changeHandler}
           />
           <FieldSet
@@ -212,7 +203,7 @@ export const EditProfilePage = () => {
             placeholdertxt="www.facebook.com/name"
             inputType="text"
             name="facebook"
-            value={facebook}
+            value={state?.facebook}
             errorMessage="Please put your Facebook account link"
             onChange={changeHandler}
           />
@@ -221,7 +212,7 @@ export const EditProfilePage = () => {
             placeholdertxt="www.twitter.com/name"
             inputType="text"
             name="twitter"
-            value={twitter}
+            value={state?.twitter}
             errorMessage="Please put your Twitter account link"
             onChange={changeHandler}
           />
@@ -230,7 +221,7 @@ export const EditProfilePage = () => {
             placeholdertxt="www.instagram.com/name"
             inputType="text"
             name="instagram"
-            value={instagram}
+            value={state?.instagram}
             errorMessage="Please put your Instagram account link"
             onChange={changeHandler}
           />

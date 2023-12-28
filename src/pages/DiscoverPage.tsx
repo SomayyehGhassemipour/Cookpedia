@@ -22,6 +22,7 @@ export const DiscoverPage = () => {
 
   const activeTabHandler = (event: React.MouseEvent<HTMLElement>) => {
     setSearchedlist([]);
+    setSearchItem("");
     event.currentTarget.innerText === "Recipes"
       ? setActiveTab("Recipes")
       : setActiveTab("People");

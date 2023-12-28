@@ -97,14 +97,25 @@ export const RecipeDetailsPage = () => {
         <h1>{recipeData.title}</h1>
         <LineSeperator type={"horizontal"} />
         <div className="container flex-row-justify-start">
-          <UserCard
-            avatar={userData.avatar}
-            fullname={userData.fullname}
-            userName={userData.userName}
-            type={userAuth.user.uid !== recipeData.userID ? "Follow" : "None"}
-            avatarSize="sm"
-            clickHandler={() => navigate("/user/edit-profile")}
-          />
+          <Button
+            data_type="container"
+            data_bg="transparent"
+            data_width="full"
+            clickHandler={() =>
+              navigate(`/user/user-profile/${userData.userID}`)
+            }
+            // clickHandler={() =>
+            //   navigate(`/user/recipe-details/${recipe.recipeID}`)
+            // }
+          >
+            <UserCard
+              avatar={userData.avatar}
+              fullname={userData.fullname}
+              userName={userData.userName}
+              type="None"
+              avatarSize="sm"
+            />
+          </Button>
         </div>
         <LineSeperator type={"horizontal"} />
         <p>{recipeData.description}</p>

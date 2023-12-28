@@ -13,18 +13,15 @@ import { User } from "../../model/User";
 
 export const addUser = async (userId: string, newUser: User) => {
   try {
-    console.log(newUser.avatar);
     const uploadAvatarResult = await uploadImage(
       newUser.avatar,
       mockData.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
       "avatar_" + newUser.userName + "_"
     );
     newUser.avatar = uploadAvatarResult;
-
-    console.log(newUser.avatar);
+    newUser.userID = userId;
 
     try {
-      console.log(newUser);
       const userRef = await setDoc(doc(db, "users", userId), newUser);
       return userRef;
     } catch (error: any) {
@@ -34,7 +31,7 @@ export const addUser = async (userId: string, newUser: User) => {
     return { error: error.message };
   }
 };
-export const getUserDataByID = async (userId: string) => {
+export const getUserDataByID = async (userId: any) => {
   const userRef = doc(db, "users", userId);
   try {
     const userSnap = await getDoc(userRef);
@@ -49,8 +46,6 @@ export const updateUserData = async (
   updatedUserData: User,
   prevAvatar: any
 ) => {
-  console.log(prevAvatar instanceof Object);
-  console.log(updatedUserData.avatar instanceof Object);
   try {
     if (updatedUserData.avatar instanceof Object) {
       if (prevAvatar !== "") {
@@ -62,7 +57,6 @@ export const updateUserData = async (
           mockData.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
           "avatar_" + updatedUserData.userName + "_"
         );
-        console.log(uploadAvatarResult);
         updatedUserData.avatar = uploadAvatarResult;
       } catch (error: any) {
         return { error: error.message };
