@@ -35,7 +35,6 @@ export const addRecipe = async (UserId: string, newRecipe: Recipe) => {
 };
 
 export const getAllRecipesByUserID = async (userId: string) => {
-  console.log(userId);
   try {
     const recipesData: any = [];
     const recipesRef = query(

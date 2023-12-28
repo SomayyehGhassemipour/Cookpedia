@@ -13,6 +13,7 @@ import { Shape } from "../../sharedComponents/Shape";
 import { UserCard } from "../../components/user/UserCard";
 import { getUserDataByID } from "../../sevices/user/UserService";
 import { User, initialUser } from "../../model/User";
+import { Loading } from "../../sharedComponents/Loading";
 
 export const RecipeDetailsPage = () => {
   const userAuth = useUserAuth();
@@ -53,6 +54,7 @@ export const RecipeDetailsPage = () => {
       navigate("/user/my-recipes");
     }
   };
+  if (!recipeData) return <Loading />;
   return (
     <>
       <Header>
@@ -155,7 +157,7 @@ export const RecipeDetailsPage = () => {
                 {" "}
                 <div>{index + 1}</div>
               </Shape>
-              <p>{ingredient}</p>
+              <p className="flex-row-justify-start">{ingredient}</p>
             </div>
           ))}
         </div>

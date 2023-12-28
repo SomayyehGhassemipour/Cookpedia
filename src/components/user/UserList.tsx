@@ -16,7 +16,7 @@ export const UserList: React.FC<Props> = ({ users }) => {
         {users.map((user, index) => (
           <>
             <Button
-              key={index}
+              key={user.userID}
               data_type="container"
               data_bg="transparent"
               data_width="full"

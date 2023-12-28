@@ -12,6 +12,7 @@ import { auth } from "../sevices/firebase/config";
 import { getUserDataByID, updateUserData } from "../sevices/user/UserService";
 import messages from "../data/message.json";
 import { User, initialUser } from "../model/User";
+import { Loading } from "../sharedComponents/Loading";
 
 export const EditProfilePage = () => {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ export const EditProfilePage = () => {
     setState(initialUser);
     navigate("/user/profile");
   };
-  if (!state) return <div>Loading...</div>;
+  if (!state) return <Loading />;
   return (
     <>
       <Header>

@@ -10,11 +10,12 @@ import { CardBody } from "../../sharedComponents/card/CardBody";
 import { Header } from "../../sharedComponents/Header";
 import { Icon } from "../../sharedComponents/Icon";
 import messages from "../../data/message.json";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
+import { Loading } from "../../sharedComponents/Loading";
 
 export const MyRecipesPage = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -23,7 +24,7 @@ export const MyRecipesPage = () => {
         try {
           const recipesData = await getAllRecipesByUserID(userId);
           setRecipes(recipesData);
-          dispatch(setRecipesData(recipesData));
+          // dispatch(setRecipesData(recipesData));
         } catch (error: any) {
           alert(messages.ERROR_IN_READING_RECIPIES_OF_USER + error);
         }
@@ -32,8 +33,8 @@ export const MyRecipesPage = () => {
       }
     });
     return () => unsubscribe();
-  }, [dispatch]);
-
+  }, []);
+  if (!recipes) return <Loading />;
   return (
     <>
       <Header>

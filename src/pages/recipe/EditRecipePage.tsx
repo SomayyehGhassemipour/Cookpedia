@@ -8,6 +8,7 @@ import { RecipeForm } from "../../components/recipe/RecipeForm";
 import messages from "../../data/message.json";
 import { useNavigate, useParams } from "react-router-dom";
 import { Recipe } from "../../model/Recipe";
+import { Loading } from "../../sharedComponents/Loading";
 
 export const EditRecipePage = () => {
   const navigate = useNavigate();
@@ -102,6 +103,8 @@ export const EditRecipePage = () => {
     const field = event.target.name;
     setState({ ...state, [field]: event.target.value });
   };
+
+  if (!state) return <Loading />;
   return (
     <>
       <Header>

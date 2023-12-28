@@ -11,6 +11,7 @@ import { Aboutme } from "../Aboutme";
 import { RecipeList } from "../recipe/RecipeList";
 import { UserCard } from "./UserCard";
 import messages from "../../data/message.json";
+import { Loading } from "../../sharedComponents/Loading";
 interface Props {
   userId: string;
 }
@@ -49,7 +50,7 @@ export const Profile: React.FC<Props> = ({ userId }) => {
       ? setActiveTab("Recipes")
       : setActiveTab("About");
   };
-  if (!userData) return <div>Loading...</div>;
+  if (!userData) return <Loading />;
   return (
     <>
       <UserCard
@@ -58,7 +59,10 @@ export const Profile: React.FC<Props> = ({ userId }) => {
         userName={userData?.userName}
         type={userAuth.user.uid === userData?.userID ? "Edit" : "Follow"}
         avatarSize="lg"
-        clickHandler={() => navigate("/user/edit-profile")}
+        clickHandler={() =>
+          userAuth.user.uid === userData?.userID &&
+          navigate("/user/edit-profile")
+        }
       />
       <LineSeperator type="horizontal" />
       <div className="flex-row-justify-around">
