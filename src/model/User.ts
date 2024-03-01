@@ -14,7 +14,7 @@ interface User {
   facebook?: string;
   instagram?: string;
   twitter?: string;
-  joinedDate: string | null;
+  joinedOn: number | null;
 }
 const initialUser: User = {
   userName: "",
@@ -32,7 +32,7 @@ const initialUser: User = {
   facebook: "",
   instagram: "",
   twitter: "",
-  joinedDate: null,
+  joinedOn: null,
 };
 export type { User };
 export { initialUser };

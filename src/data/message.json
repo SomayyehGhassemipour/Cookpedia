@@ -12,5 +12,8 @@
   "ERROR_IN_DELETING_RECIPIE": "There is an error in deleting the recipie.",
   "ERROR_IN_DELETING_IMAGE": "There is an error in deleting the image.",
   "ERROR_IN_UPDATING_USER": "There is an error in updating the user",
-  "FETCH_RECIPES_SEARCHED_LIST_ERORR": " There is an error in query of searched recipes."
+  "FETCH_RECIPES_SEARCHED_LIST_ERORR": " There is an error in query of searched recipes.",
+  "ERROR_IN_FOLLOW_USER": "There is an error in following the user.",
+  "ERROR_IN_READING_FOLLOWERS_OF_USER": "There is an error in reading followes of current user.",
+  "ERROR_IN_READING_FOLLOWING_OF_USER": "There is an error in reading following of current user."
 }

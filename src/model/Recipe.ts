@@ -9,6 +9,7 @@ interface Recipe {
   origin: string;
   ingredients: string[];
   instructions: string[];
+  createdOn: number | null;
 }
 
 const initialRecipe: Recipe = {
@@ -22,6 +23,7 @@ const initialRecipe: Recipe = {
   origin: "",
   ingredients: [],
   instructions: [],
+  createdOn: null,
 };
 export type { Recipe };
 export { initialRecipe };

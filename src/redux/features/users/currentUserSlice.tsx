@@ -44,7 +44,7 @@ export const currentUserSlice = createSlice({
       state.facebook = action.payload.facebook;
       state.instagram = action.payload.instagram;
       state.twitter = action.payload.twitter;
-      state.joinedDate = action.payload.joinedDate;
+      state.joinedOn = action.payload.joinedOn;
     },
     setUserDataEmpty: (state) => {
       state = initialUser;

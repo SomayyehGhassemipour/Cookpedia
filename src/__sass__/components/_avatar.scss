@@ -7,10 +7,10 @@
 
 .avatar-profile {
   &[data-size="xs"] {
-    min-width: 40px;
-    min-height: 40px;
-    max-width: 40px;
-    max-height: 40px;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
   }
   &[data-size="sm"] {
     min-width: 60px;

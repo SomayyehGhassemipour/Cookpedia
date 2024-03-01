@@ -16,6 +16,8 @@ import {
 import {
   faShareFromSquare,
   faTrashCan,
+  faBookmark,
+  faBell,
 } from "@fortawesome/free-regular-svg-icons";
 import mockData from "../data/mockData.json";
 
@@ -25,6 +27,18 @@ interface Props {
 }
 export const Icon: React.FC<Props> = ({ name, size }) => {
   switch (name) {
+    case "bookmark":
+      return (
+        <div>
+          <FontAwesomeIcon icon={faBookmark} size={size} />
+        </div>
+      );
+    case "notification":
+      return (
+        <div>
+          <FontAwesomeIcon icon={faBell} size={size} />
+        </div>
+      );
     case "commnet":
       return (
         <div>

@@ -20,7 +20,6 @@ export const addUser = async (userId: string, newUser: User) => {
     );
     newUser.avatar = uploadAvatarResult;
     newUser.userID = userId;
-
     try {
       const userRef = await setDoc(doc(db, "users", userId), newUser);
       return userRef;

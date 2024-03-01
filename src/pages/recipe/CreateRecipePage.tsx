@@ -4,7 +4,7 @@ import { CardBody } from "../../sharedComponents/card/CardBody";
 import { Header } from "../../sharedComponents/Header";
 import { Icon } from "../../sharedComponents/Icon";
 import { useState } from "react";
-import { Recipe } from "../../model/Recipe";
+import { Recipe, initialRecipe } from "../../model/Recipe";
 import { addRecipe, addRecipeId } from "../../sevices/recipie/RecipieService";
 import { useUserAuth } from "../../sevices/firebase/AthenicationService";
 import messages from "../../data/message.json";
@@ -16,19 +16,7 @@ export const CreateRecipePage = () => {
 
   const navigate = useNavigate();
 
-  const initialState: Recipe = {
-    recipeID: "",
-    userID: "",
-    image: null,
-    title: "",
-    description: "",
-    cookTime: "",
-    serves: "",
-    origin: "",
-    ingredients: [],
-    instructions: [],
-  };
-  const [state, setState] = useState<Recipe>(initialState);
+  const [state, setState] = useState<Recipe>(initialRecipe);
 
   const getImage = (event: any) => {
     const image = event.target.files[0];
@@ -82,7 +70,7 @@ export const CreateRecipePage = () => {
     } catch (error: any) {
       alert(messages.ERROR_IN_ADDING_RECIPIE + error);
     }
-    setState(initialState);
+    setState(initialRecipe);
     navigate("/user/my-recipes");
   };
 

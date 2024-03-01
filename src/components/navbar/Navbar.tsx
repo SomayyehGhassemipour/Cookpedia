@@ -6,7 +6,7 @@ import { Icon } from "../../sharedComponents/Icon";
 export const Navbar = () => {
   let navigate = useNavigate();
 
-  const [activeMenu, setActiveMenu] = useState("Profile");
+  const [activeMenu, setActiveMenu] = useState("Home");
 
   return (
     <div className="navbar flex-row-justify-around">

@@ -32,7 +32,7 @@ export const SignInPage: React.FC = () => {
     const response = await userAuth.logIn(email, password);
     if (response.error) {
       alert(response.error);
-    } else navigate("/user/profile");
+    } else navigate("/user/home");
   };
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +58,7 @@ export const SignInPage: React.FC = () => {
         </Header>
         <CardBody classname="flex-align-start">
           <h1>Hello there</h1>
-          <p>Please Enter your username/email & password to sign in.</p>
+          <p>Please Enter your email & password to sign in.</p>
           <Form id="myform" onSubmit={submitHandler}>
             {signInInputs.map((input) => (
               <FieldSet key={input.id} {...input} onChange={changeHandler} />
@@ -72,7 +72,7 @@ export const SignInPage: React.FC = () => {
             <Button
               data_type="container"
               data_bg="transparent"
-              clickHandler={() => navigate("/signup-create-account")}
+              clickHandler={() => navigate("/")}
             >
               <h5 className="text-primary-500">Forget Password</h5>
             </Button>

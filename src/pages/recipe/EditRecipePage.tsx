@@ -7,26 +7,14 @@ import { Icon } from "../../sharedComponents/Icon";
 import { RecipeForm } from "../../components/recipe/RecipeForm";
 import messages from "../../data/message.json";
 import { useNavigate, useParams } from "react-router-dom";
-import { Recipe } from "../../model/Recipe";
+import { Recipe, initialRecipe } from "../../model/Recipe";
 import { Loading } from "../../sharedComponents/Loading";
 
 export const EditRecipePage = () => {
   const navigate = useNavigate();
   let { id } = useParams();
 
-  const initialState: Recipe = {
-    recipeID: "",
-    userID: "",
-    image: null,
-    title: "",
-    description: "",
-    cookTime: "",
-    serves: "",
-    origin: "",
-    ingredients: [],
-    instructions: [],
-  };
-  const [state, setState] = useState<Recipe>(initialState);
+  const [state, setState] = useState<Recipe>(initialRecipe);
   const [prevRecipeImage, setPrevRecipeImage] = useState("");
 
   useEffect(() => {
@@ -93,7 +81,7 @@ export const EditRecipePage = () => {
     } catch (error: any) {
       alert(messages.ERROR_IN_ADDING_RECIPIE + error);
     }
-    setState(initialState);
+    setState(initialRecipe);
     navigate("/user/my-recipes");
   };
 

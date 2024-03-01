@@ -6,7 +6,7 @@ import {
 } from "../../sevices/firebase/AthenicationService";
 
 describe("Authenication tests", () => {
-  let userAuth = useUserAuth();
+  const userAuth = useUserAuth();
 
   beforeEach(async () => {
     await userAuth.signUp();

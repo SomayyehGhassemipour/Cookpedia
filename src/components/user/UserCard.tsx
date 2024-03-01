@@ -4,10 +4,10 @@ import { Button } from "../../sharedComponents/Button";
 import { Icon } from "../../sharedComponents/Icon";
 
 interface Props {
-  avatar: string;
-  fullname: string | undefined;
-  userName: string | undefined;
-  type: "Follow" | "Following" | "Edit" | "None";
+  avatar?: string;
+  fullname?: string | undefined;
+  userName?: string | undefined;
+  type: "Follow" | "Unfollow" | "Edit" | "None";
   avatarSize: "xs" | "sm" | "lg";
   clickHandler?: any;
 }
@@ -31,8 +31,8 @@ export const UserCard: React.FC<Props> = ({
         />
       </div>
       <div className="flex-align-start">
-        <h3>{fullname}</h3>
-        <p className="text-neutral-600">{userName}</p>
+        {fullname && <h3>{fullname}</h3>}
+        {userName && <p className="text-neutral-600">{userName}</p>}
       </div>
       {type !== "None" && (
         <div className="ml-auto">

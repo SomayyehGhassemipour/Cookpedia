@@ -106,9 +106,6 @@ export const RecipeDetailsPage = () => {
             clickHandler={() =>
               navigate(`/user/user-profile/${userData.userID}`)
             }
-            // clickHandler={() =>
-            //   navigate(`/user/recipe-details/${recipe.recipeID}`)
-            // }
           >
             <UserCard
               avatar={userData.avatar}

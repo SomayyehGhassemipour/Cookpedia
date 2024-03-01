@@ -12,6 +12,13 @@ import { RecipeList } from "../recipe/RecipeList";
 import { UserCard } from "./UserCard";
 import messages from "../../data/message.json";
 import { Loading } from "../../sharedComponents/Loading";
+import {
+  followUser,
+  getAllFollowing,
+  getAllFollowers,
+  isFollowedBy,
+  unFollowUser,
+} from "../../sevices/user/FollowingService";
 interface Props {
   userId: string;
 }
@@ -21,6 +28,11 @@ export const Profile: React.FC<Props> = ({ userId }) => {
 
   const [userData, setUserData] = useState<User | null>(null);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [following, setFollowing] = useState<[]>([]);
+  const [followers, setFollowers] = useState<[]>([]);
+  const [followUnfollowStatus, setFollowUnfollowStatus] = useState<
+    "Unfollow" | "Follow"
+  >("Unfollow");
 
   useEffect(() => {
     const fetchUser = async (id: any) => {
@@ -37,8 +49,33 @@ export const Profile: React.FC<Props> = ({ userId }) => {
         console.log(messages.FETCH_USER_INFO_ERORR);
       }
     };
+    const isFollowing = async (userId: any) => {
+      const status = await isFollowedBy(userId, userAuth.user.uid);
+      if (status) setFollowUnfollowStatus("Unfollow");
+      else setFollowUnfollowStatus("Follow");
+    };
+
+    const fetchFollowing = async (userId: any) => {
+      try {
+        const followingData = await getAllFollowing(userId);
+        setFollowing(followingData);
+      } catch (error) {
+        console.log(messages.ERROR_IN_READING_FOLLOWING_OF_USER);
+      }
+    };
+    const fetchFollowers = async (userId: any) => {
+      try {
+        const followersData = await getAllFollowers(userId);
+        setFollowers(followersData);
+      } catch (error) {
+        console.log(messages.ERROR_IN_READING_FOLLOWERS_OF_USER);
+      }
+    };
     fetchUser(userId);
-  }, [userId]);
+    if (userAuth.user.uid !== userData?.userID) isFollowing(userId);
+    fetchFollowing(userId);
+    fetchFollowers(userId);
+  }, [userId, followUnfollowStatus]);
 
   const refRecipeBtn: any = useRef(null);
   const refAboutBtn: any = useRef(null);
@@ -50,6 +87,26 @@ export const Profile: React.FC<Props> = ({ userId }) => {
       ? setActiveTab("Recipes")
       : setActiveTab("About");
   };
+
+  const followUfollowClickHandler = async (
+    event: React.MouseEvent<HTMLElement>,
+    followerUserId: string,
+    followingUserId: string
+  ) => {
+    event.preventDefault();
+    try {
+      if (followUnfollowStatus == "Follow") {
+        await followUser(followerUserId, followingUserId);
+        setFollowUnfollowStatus("Unfollow");
+      } else {
+        await unFollowUser(followerUserId, followingUserId);
+        setFollowUnfollowStatus("Follow");
+      }
+    } catch (error: any) {
+      alert(messages.ERROR_IN_FOLLOW_USER + error);
+    }
+  };
+
   if (!userData) return <Loading />;
   return (
     <>
@@ -57,27 +114,34 @@ export const Profile: React.FC<Props> = ({ userId }) => {
         avatar={userData?.avatar}
         fullname={userData?.fullname}
         userName={userData?.userName}
-        type={userAuth.user.uid === userData?.userID ? "Edit" : "Follow"}
+        type={
+          userAuth.user.uid === userData?.userID ? "Edit" : followUnfollowStatus
+        }
         avatarSize="lg"
-        clickHandler={() =>
-          userAuth.user.uid === userData?.userID &&
-          navigate("/user/edit-profile")
+        clickHandler={(event: React.MouseEvent<HTMLElement>) =>
+          userAuth.user.uid === userData?.userID
+            ? navigate("/user/edit-profile")
+            : followUfollowClickHandler(
+                event,
+                userAuth.user.uid,
+                userData?.userID
+              )
         }
       />
       <LineSeperator type="horizontal" />
       <div className="flex-row-justify-around">
         <div className="flex-column-center">
-          <h3>125</h3>
+          <h3>{recipes.length}</h3>
           <p className="text-neutral-600">Recipes</p>
         </div>
         <LineSeperator type="vertical" />
         <div className="flex-column-center">
-          <h3>104</h3>
+          <h3>{following.length}</h3>
           <p className="text-neutral-600">following</p>
         </div>
         <LineSeperator type="vertical" />
         <div className="flex-column-center">
-          <h3>2k</h3>
+          <h3>{followers.length}</h3>
           <p className="text-neutral-600">followers</p>
         </div>
       </div>

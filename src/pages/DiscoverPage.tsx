@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Recipe } from "../model/Recipe";
 import { recipeQuery } from "../sevices/recipie/RecipieService";
 import { userQuery } from "../sevices/user/UserService";
@@ -11,6 +11,7 @@ import messages from "../data/message.json";
 import { RecipeList } from "../components/recipe/RecipeList";
 import { UserList } from "../components/user/UserList";
 import { User } from "../model/User";
+import { useLocation } from "react-router-dom";
 
 export const DiscoverPage = () => {
   const [activeTab, setActiveTab] = useState<string>("Recipes");

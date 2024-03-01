@@ -6,6 +6,7 @@ import {
   deleteDoc,
   getDocs,
   query,
+  orderBy,
   where,
   doc,
   getDoc,
@@ -40,6 +41,27 @@ export const getAllRecipesByUserID = async (userId: string) => {
     const recipesRef = query(
       collection(db, "recipes"),
       where("userID", "==", userId)
+    );
+
+    const querySnapshot = await getDocs(recipesRef);
+    querySnapshot.forEach((doc) => {
+      const tempData = doc.data();
+      tempData.recipeID = doc.id;
+      recipesData.push(tempData);
+    });
+
+    return recipesData;
+  } catch (error: any) {
+    return { error: error.message };
+  }
+};
+
+export const getAllRecipesByOrder = async () => {
+  try {
+    const recipesData: any = [];
+    const recipesRef = query(
+      collection(db, "recipes"),
+      orderBy("createdOn", "desc")
     );
 
     const querySnapshot = await getDocs(recipesRef);
