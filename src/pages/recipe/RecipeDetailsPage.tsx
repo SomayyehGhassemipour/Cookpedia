@@ -6,7 +6,7 @@ import { Icon } from "../../sharedComponents/Icon";
 import { useEffect, useState } from "react";
 import { Recipe, initialRecipe } from "../../model/Recipe";
 import { useUserAuth } from "../../sevices/firebase/AthenicationService";
-import messages from "../../data/message.json";
+import MESSAGES from "../../data/message.json";
 import { deleteRecipe, getRecipe } from "../../sevices/recipie/RecipieService";
 import { LineSeperator } from "../../sharedComponents/LineSeperator";
 import { Shape } from "../../sharedComponents/Shape";
@@ -33,10 +33,10 @@ export const RecipeDetailsPage = () => {
           const user = await getUserDataByID(recipeData.userID);
           setUserData(user as User);
         } catch (error) {
-          console.log(messages.FETCH_USER_INFO_ERORR, error);
+          console.log(MESSAGES.FETCH_USER_INFO_ERORR, error);
         }
       } catch (error) {
-        console.log(messages.GET_RECIPE_ERROR_MESAGE, error);
+        console.log(MESSAGES.GET_RECIPE_ERROR_MESAGE, error);
       }
     };
     fetchRecipe(id);
@@ -49,7 +49,7 @@ export const RecipeDetailsPage = () => {
       try {
         await deleteRecipe(recipeData.recipeID);
       } catch (error: any) {
-        alert(messages.ERROR_IN_DELETING_RECIPIE + error);
+        alert(MESSAGES.ERROR_IN_DELETING_RECIPIE + error);
       }
       navigate("/user/my-recipes");
     }

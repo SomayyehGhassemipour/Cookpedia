@@ -11,7 +11,6 @@ interface Props {
 }
 export const UserList: React.FC<Props> = ({ users }) => {
   const navigate = useNavigate();
-
   if (!users) return <Loading />;
   return (
     <List>

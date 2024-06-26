@@ -9,13 +9,12 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
+
 export const followUser = async (
   followerUserId: string,
   followingUserId: string
 ) => {
   try {
-    // const followingCollectionRef = collection(db, "following");
-    // const userFollowingDocRef = doc(followingCollectionRef, followingUserId);
     const followingCollectionRef = collection(
       doc(collection(db, "following"), followerUserId),
       "following"
@@ -102,10 +101,9 @@ export const getAllFollowing = async (userId: string) => {
     const followingSnap = await getDocs(query(followingRef));
     followingSnap.forEach((doc) => {
       const tempData = doc.data();
-      tempData.recipeID = doc.id;
+      tempData.userID = doc.id;
       following.push(tempData);
     });
-    console.log(following);
     return following;
   } catch (error: any) {
     return { error: error.message };
@@ -129,10 +127,9 @@ export const getAllFollowers = async (userId: string) => {
     const followerSnap = await getDocs(query(followersRef));
     followerSnap.forEach((doc) => {
       const tempData = doc.data();
-      tempData.recipeID = doc.id;
+      tempData.userID = doc.id;
       followers.push(tempData);
     });
-    console.log(followers);
     return followers;
   } catch (error: any) {
     return { error: error.message };

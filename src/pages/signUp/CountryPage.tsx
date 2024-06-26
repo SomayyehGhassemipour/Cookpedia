@@ -14,7 +14,7 @@ import data from "../../data/allCountries.json";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUserCountry } from "../../redux/features/users/currentUserSlice";
-import messages from "../../data/message.json";
+import MESSAGES from "../../data/message.json";
 
 export const CountryPage = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export const CountryPage = () => {
   };
 
   const countinueFn = () => {
-    if (!selectedCountry) alert(messages.SELECT_COUNTRY);
+    if (!selectedCountry) alert(MESSAGES.SELECT_COUNTRY);
     else {
       dispatch(setUserCountry({ country: selectedCountry }));
       navigate("/signup-cooking");

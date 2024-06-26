@@ -14,7 +14,7 @@ import { getUserData } from "../../redux/features/users/currentUserSlice";
 import { useUserAuth } from "../../sevices/firebase/AthenicationService";
 import { addUser } from "../../sevices/user/UserService";
 import mockData from "../../data/mockData.json";
-import messages from "../../data/message.json";
+import MESSAGES from "../../data/message.json";
 
 export const CreateAccountPage: React.FC = () => {
   const [state, setState] = useState({
@@ -35,7 +35,7 @@ export const CreateAccountPage: React.FC = () => {
     event.preventDefault();
 
     if (password !== passwordConfirm) {
-      alert(messages.NOT_MATCH_PASSWORDS);
+      alert(MESSAGES.NOT_MATCH_PASSWORDS);
     } else {
       try {
         const credentioalUser = await userAuth.signUp(email, password);
@@ -49,13 +49,13 @@ export const CreateAccountPage: React.FC = () => {
 
         try {
           await addUser(credentioalUser.uid, completeUserData);
-          console.log(messages.SUCCESSFUL_UPDATE);
+          console.log(MESSAGES.SUCCESSFUL_UPDATE);
           navigate("/signin");
         } catch (error: any) {
-          alert(messages.ERROR_IN_ADDING_USER + error);
+          alert(MESSAGES.ERROR_IN_ADDING_USER + error);
         }
       } catch (error: any) {
-        alert(messages.ERROR_IN_SIGN_UP + error);
+        alert(MESSAGES.ERROR_IN_SIGN_UP + error);
       }
 
       setState({

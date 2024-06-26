@@ -46,6 +46,12 @@ export const currentUserSlice = createSlice({
       state.twitter = action.payload.twitter;
       state.joinedOn = action.payload.joinedOn;
     },
+    setUserFollowings: (state, action) => {
+      state.followings = action.payload.followings;
+    },
+    setUserFollowers: (state, action) => {
+      state.followers = action.payload.followers;
+    },
     setUserDataEmpty: (state) => {
       state = initialUser;
     },
@@ -60,6 +66,8 @@ export const {
   setUserPersonalData,
   setAllUserData,
   setUserDataEmpty,
+  setUserFollowings,
+  setUserFollowers,
 } = currentUserSlice.actions;
 
 export const getUserData = (state: { currentUser: User }) => state.currentUser;

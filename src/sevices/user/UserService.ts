@@ -8,14 +8,14 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { deleteImage, uploadImage } from "../image/ImageService";
-import mockData from "../../data/mockData.json";
+import MOCK_DATA from "../../data/mockData.json";
 import { User } from "../../model/User";
 
 export const addUser = async (userId: string, newUser: User) => {
   try {
     const uploadAvatarResult = await uploadImage(
       newUser.avatar,
-      mockData.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
+      MOCK_DATA.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
       "avatar_" + newUser.userName + "_"
     );
     newUser.avatar = uploadAvatarResult;
@@ -53,7 +53,7 @@ export const updateUserData = async (
       try {
         const uploadAvatarResult = await uploadImage(
           updatedUserData.avatar,
-          mockData.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
+          MOCK_DATA.AVATARS_IMAGES_LOCATION_IN_FIREBASE,
           "avatar_" + updatedUserData.userName + "_"
         );
         updatedUserData.avatar = uploadAvatarResult;

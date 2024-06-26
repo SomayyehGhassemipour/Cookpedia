@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Recipe } from "../../model/Recipe";
 import { Avatar } from "../../sharedComponents/Avatar";
-import messages from "../../data/message.json";
+import MESSAGES from "../../data/message.json";
 import { getUserDataByID } from "../../sevices/user/UserService";
 import { initialUser, User } from "../../model/User";
 import { useLocation } from "react-router-dom";
@@ -28,11 +28,11 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
         const user = await getUserDataByID(id);
         setUserData(user as User);
       } catch (error) {
-        console.log(messages.FETCH_USER_INFO_ERORR, error);
+        console.log(MESSAGES.FETCH_USER_INFO_ERORR, error);
       }
     };
     activeUserInfo && getUser(recipe.userID);
-  }, [recipe.userID]);
+  }, [recipe.userID, activeUserInfo]);
 
   return (
     <div

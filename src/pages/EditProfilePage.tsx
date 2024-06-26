@@ -10,7 +10,7 @@ import { FieldSet } from "../sharedComponents/form/FieldSet";
 import { Form } from "../sharedComponents/form/Form";
 import { auth } from "../sevices/firebase/config";
 import { getUserDataByID, updateUserData } from "../sevices/user/UserService";
-import messages from "../data/message.json";
+import MESSAGES from "../data/message.json";
 import { User, initialUser } from "../model/User";
 import { Loading } from "../sharedComponents/Loading";
 
@@ -35,7 +35,7 @@ export const EditProfilePage = () => {
         const Data = await getUserDataByID(id as string);
         setState(Data as User);
       } catch (error) {
-        console.log(messages.FETCH_USER_INFO_ERORR);
+        console.log(MESSAGES.FETCH_USER_INFO_ERORR);
       }
     };
     fetchUser(userId);
@@ -60,7 +60,7 @@ export const EditProfilePage = () => {
     try {
       await updateUserData(state?.userID, state as User, prevUserAvatar);
     } catch (error: any) {
-      alert(messages.ERROR_IN_UPDATING_USER + error);
+      alert(MESSAGES.ERROR_IN_UPDATING_USER + error);
     }
     setState(initialUser);
     navigate("/user/profile");
