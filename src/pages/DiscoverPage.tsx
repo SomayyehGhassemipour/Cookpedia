@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Recipe } from "../model/Recipe";
 import { recipeQuery } from "../sevices/recipie/RecipieService";
 import { userQuery } from "../sevices/user/UserService";
@@ -7,11 +7,10 @@ import { CardBody } from "../sharedComponents/card/CardBody";
 import { Header } from "../sharedComponents/Header";
 import { InputField } from "../sharedComponents/InputField";
 import { LineSeperator } from "../sharedComponents/LineSeperator";
-import messages from "../data/message.json";
+import MESSAGES from "../data/message.json";
 import { RecipeList } from "../components/recipe/RecipeList";
 import { UserList } from "../components/user/UserList";
 import { User } from "../model/User";
-import { useLocation } from "react-router-dom";
 
 export const DiscoverPage = () => {
   const [activeTab, setActiveTab] = useState<string>("Recipes");
@@ -37,7 +36,7 @@ export const DiscoverPage = () => {
         const recipes = await recipeQuery(event.target.value);
         setSearchedlist(recipes);
       } catch (error) {
-        console.log(messages.FETCH_RECIPES_SEARCHED_LIST_ERORR);
+        console.log(MESSAGES.FETCH_RECIPES_SEARCHED_LIST_ERORR);
       }
     } else {
       const people = await userQuery(event.target.value);

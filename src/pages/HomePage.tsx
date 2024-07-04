@@ -3,7 +3,7 @@ import { Recipe } from "../model/Recipe";
 import { getAllRecipesByOrder } from "../sevices/recipie/RecipieService";
 import { CardBody } from "../sharedComponents/card/CardBody";
 import { Header } from "../sharedComponents/Header";
-import messages from "../data/message.json";
+import MESSAGES from "../data/message.json";
 import { RecipeList } from "../components/recipe/RecipeList";
 import { Button } from "../sharedComponents/Button";
 import { Icon } from "../sharedComponents/Icon";
@@ -16,7 +16,7 @@ export const HomePage: React.FC = () => {
         const recipesData = await getAllRecipesByOrder();
         setRecipes(recipesData as Recipe[]);
       } catch (error) {
-        console.log(messages.ERROR_IN_READING_RECIPIES_OF_USER);
+        console.log(MESSAGES.ERROR_IN_READING_RECIPIES_OF_USER);
       }
     };
     fetchRecipes();

@@ -5,7 +5,7 @@ import { CardBody } from "../../sharedComponents/card/CardBody";
 import { Header } from "../../sharedComponents/Header";
 import { Icon } from "../../sharedComponents/Icon";
 import { RecipeForm } from "../../components/recipe/RecipeForm";
-import messages from "../../data/message.json";
+import MESSAGES from "../../data/message.json";
 import { useNavigate, useParams } from "react-router-dom";
 import { Recipe, initialRecipe } from "../../model/Recipe";
 import { Loading } from "../../sharedComponents/Loading";
@@ -24,7 +24,7 @@ export const EditRecipePage = () => {
         setState(recipeData);
         setPrevRecipeImage(recipeData.image);
       } catch (error) {
-        console.log(messages.GET_RECIPE_ERROR_MESAGE, error);
+        console.log(MESSAGES.GET_RECIPE_ERROR_MESAGE, error);
       }
     };
     fetchRecipe(id);
@@ -79,7 +79,7 @@ export const EditRecipePage = () => {
     try {
       await updateRecipe(state.recipeID, state, prevRecipeImage);
     } catch (error: any) {
-      alert(messages.ERROR_IN_ADDING_RECIPIE + error);
+      alert(MESSAGES.ERROR_IN_ADDING_RECIPIE + error);
     }
     setState(initialRecipe);
     navigate("/user/my-recipes");

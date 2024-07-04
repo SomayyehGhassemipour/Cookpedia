@@ -14,6 +14,8 @@ interface User {
   facebook?: string;
   instagram?: string;
   twitter?: string;
+  followings: [];
+  followers: [];
   joinedOn: number | null;
 }
 const initialUser: User = {
@@ -32,6 +34,8 @@ const initialUser: User = {
   facebook: "",
   instagram: "",
   twitter: "",
+  followings: [],
+  followers: [],
   joinedOn: null,
 };
 export type { User };

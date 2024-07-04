@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Recipe, initialRecipe } from "../../model/Recipe";
 import { addRecipe, addRecipeId } from "../../sevices/recipie/RecipieService";
 import { useUserAuth } from "../../sevices/firebase/AthenicationService";
-import messages from "../../data/message.json";
+import MESSAGES from "../../data/message.json";
 import { RecipeForm } from "../../components/recipe/RecipeForm";
 
 export const CreateRecipePage = () => {
@@ -68,7 +68,7 @@ export const CreateRecipePage = () => {
       const recipeId = await addRecipe(UserID, state);
       addRecipeId(recipeId);
     } catch (error: any) {
-      alert(messages.ERROR_IN_ADDING_RECIPIE + error);
+      alert(MESSAGES.ERROR_IN_ADDING_RECIPIE + error);
     }
     setState(initialRecipe);
     navigate("/user/my-recipes");

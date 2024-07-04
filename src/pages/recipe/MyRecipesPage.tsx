@@ -2,20 +2,18 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { RecipeList } from "../../components/recipe/RecipeList";
 import { Recipe } from "../../model/Recipe";
-import { setRecipesData } from "../../redux/features/recipes/recipesSlice";
 import { auth } from "../../sevices/firebase/config";
 import { getAllRecipesByUserID } from "../../sevices/recipie/RecipieService";
 import { Button } from "../../sharedComponents/Button";
 import { CardBody } from "../../sharedComponents/card/CardBody";
 import { Header } from "../../sharedComponents/Header";
 import { Icon } from "../../sharedComponents/Icon";
-import messages from "../../data/message.json";
-// import { useDispatch } from "react-redux";
+import MESSAGES from "../../data/message.json";
+
 import { Loading } from "../../sharedComponents/Loading";
 
 export const MyRecipesPage = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  // const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -24,12 +22,11 @@ export const MyRecipesPage = () => {
         try {
           const recipesData = await getAllRecipesByUserID(userId);
           setRecipes(recipesData);
-          // dispatch(setRecipesData(recipesData));
         } catch (error: any) {
-          alert(messages.ERROR_IN_READING_RECIPIES_OF_USER + error);
+          alert(MESSAGES.ERROR_IN_READING_RECIPIES_OF_USER + error);
         }
       } else {
-        console.log(messages.NO_LOGGED_IN_USER);
+        console.log(MESSAGES.NO_LOGGED_IN_USER);
       }
     });
     return () => unsubscribe();
