@@ -155,3 +155,4 @@ export const recipeQuery = async (searchedName: string) => {
     }
   }
 };
+

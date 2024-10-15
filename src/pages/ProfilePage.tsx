@@ -35,9 +35,9 @@ export const ProfilePage = () => {
             >
               <Icon name="share" size="lg" />
             </Button>
-            <Button data_type="container" data_bg="transparent">
+            {/* <Button data_type="container" data_bg="transparent">
               <Icon name="settings" size="lg" />
-            </Button>
+            </Button> */}
           </div>
         </div>
       </Header>

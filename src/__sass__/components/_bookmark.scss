@@ -1,0 +1,19 @@
+@use "../abstract/mixins" as *;
+
+.bookmark-image {
+  position: relative;
+
+  .bookmark-button {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: 10px;
+    top: 10px;
+    background-color: var(--clr-primary-500);
+    // border-radius: var(--radius-card);
+    padding: 0.1rem;
+    text-align: center;
+    justify-content: center;
+    color: var(--clr-neutral-100);
+  }
+}

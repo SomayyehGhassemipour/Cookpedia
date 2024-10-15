@@ -10,6 +10,7 @@ interface Props {
   errorMessage?: string;
   required?: boolean;
   pattern?: string;
+  handleKeyDown?: any;
 }
 export const FieldSet: React.FC<Props> = ({
   label,
@@ -22,6 +23,7 @@ export const FieldSet: React.FC<Props> = ({
   errorMessage,
   required,
   pattern,
+  handleKeyDown,
 }) => {
   return (
     <div className="field-set">
@@ -35,6 +37,7 @@ export const FieldSet: React.FC<Props> = ({
         value={value}
         required={required}
         pattern={pattern}
+        handleKeyDown={handleKeyDown}
       />
       <span className="span-error">{errorMessage}</span>
     </div>

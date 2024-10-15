@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../sharedComponents/Button";
 import { Card } from "../sharedComponents/card/Card";
@@ -16,6 +16,16 @@ import mockData from "../data/mockData.json";
 export const SignInPage: React.FC = () => {
   const userAuth = useUserAuth();
   let navigate = useNavigate();
+
+  const signInRef = useRef<HTMLButtonElement | null>(null);
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      if (signInRef.current)
+        signInRef.current.focus()
+    }
+  };
+
 
   const [state, setstate] = useState({
     email: "",
@@ -61,7 +71,7 @@ export const SignInPage: React.FC = () => {
           <p>Please Enter your email & password to sign in.</p>
           <Form id="myform" onSubmit={submitHandler}>
             {signInInputs.map((input) => (
-              <FieldSet key={input.id} {...input} onChange={changeHandler} />
+              <FieldSet key={input.id} {...input} onChange={changeHandler} handleKeyDown={handleKeyDown} />
             ))}
             <CheckBox
               label="Remember me"
@@ -105,7 +115,7 @@ export const SignInPage: React.FC = () => {
           </Form>
         </CardBody>
         <CardAction>
-          <Button form="myform" data_type="container" data_bg="primary">
+          <Button form="myform" data_type="container" data_bg="primary" reference={signInRef}>
             <p>Sign In</p>
           </Button>
         </CardAction>

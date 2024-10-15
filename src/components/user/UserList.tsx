@@ -15,7 +15,7 @@ export const UserList: React.FC<Props> = ({ users }) => {
   return (
     <List>
       <div className="flex-row-wrap">
-        {users.map((user) => (
+        {users.length === 0 ? <p className="fs-small-200 text-neutral-400">No user to display</p> : users.map((user) => (
           <>
             <Button
               key={user.userID}

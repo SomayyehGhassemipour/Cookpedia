@@ -4,10 +4,8 @@ import { RecipeList } from "../../components/recipe/RecipeList";
 import { Recipe } from "../../model/Recipe";
 import { auth } from "../../sevices/firebase/config";
 import { getAllRecipesByUserID } from "../../sevices/recipie/RecipieService";
-import { Button } from "../../sharedComponents/Button";
 import { CardBody } from "../../sharedComponents/card/CardBody";
 import { Header } from "../../sharedComponents/Header";
-import { Icon } from "../../sharedComponents/Icon";
 import MESSAGES from "../../data/message.json";
 
 import { Loading } from "../../sharedComponents/Loading";
@@ -37,11 +35,11 @@ export const MyRecipesPage = () => {
       <Header>
         <div className="flex-row-justify-start ">
           <h2>My Recipes</h2>
-          <div className="ml-auto flex-row">
+          {/* <div className="ml-auto flex-row">
             <Button data_type="container" data_bg="transparent">
               <Icon name="search" size="lg" />
             </Button>
-          </div>
+          </div> */}
         </div>
       </Header>
       <CardBody>

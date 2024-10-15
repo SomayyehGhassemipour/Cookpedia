@@ -9,7 +9,10 @@ export default function WelcomePage() {
   let navigate = useNavigate();
   const userAuth = useUserAuth();
 
-  const clickHandlerGoogle = async () => {
+  const signInClickHandler = () => {
+    navigate("/signin");
+  }
+  const googleClickHandler = async () => {
     const response = await userAuth.logInWithGoogle();
     if (response) navigate("/user/home");
     else console.log(response.error);
@@ -30,7 +33,7 @@ export default function WelcomePage() {
           <Button
             data_bg="google"
             data_type="container"
-            clickHandler={clickHandlerGoogle}
+            clickHandler={googleClickHandler}
           >
             <p>Continue With Google</p>
           </Button>
@@ -46,7 +49,7 @@ export default function WelcomePage() {
           <Button
             data_bg="secondary"
             data_type="container"
-            clickHandler={() => navigate("/signin")}
+            clickHandler={signInClickHandler}
           >
             <p>I Already Have an Account</p>
           </Button>

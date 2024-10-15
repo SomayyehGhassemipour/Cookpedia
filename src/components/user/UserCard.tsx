@@ -37,7 +37,8 @@ export const UserCard: React.FC<Props> = ({
       {type !== "None" && (
         <div className="ml-auto">
           <Button
-            data_bg="google"
+            data_bg={type === "Follow" ? "primary" : "google"}
+
             data_type="container"
             clickHandler={clickHandler}
           >

@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { UserList } from "../components/user/UserList";
 import { getFollowersFollowingsData } from "../helpers/getFollowersFollowingsData";
-import { User } from "../model/User";
 import { getUserData } from "../redux/features/users/currentUserSlice";
 import { Button } from "../sharedComponents/Button";
 import { CardBody } from "../sharedComponents/card/CardBody";

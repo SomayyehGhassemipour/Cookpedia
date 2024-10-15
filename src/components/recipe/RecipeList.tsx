@@ -15,7 +15,7 @@ export const RecipeList: React.FC<Props> = ({ recipes }) => {
   return (
     <>
       <div className="flex-row-wrap">
-        {recipes.map((recipe, index) => (
+        {recipes.length === 0 ? <p className="fs-small-200 text-neutral-400 "> There is no recipe to be shown</p> : recipes.map((recipe, index) => (
           <Button
             key={index}
             data_type="container"

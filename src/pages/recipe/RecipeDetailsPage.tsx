@@ -14,33 +14,44 @@ import { UserCard } from "../../components/user/UserCard";
 import { getUserDataByID } from "../../sevices/user/UserService";
 import { User, initialUser } from "../../model/User";
 import { Loading } from "../../sharedComponents/Loading";
+import { bookmarkRecipe, unbookmarkRecipe, isBookmarked } from "../../sevices/recipie/BookmarkService";
 
 export const RecipeDetailsPage = () => {
   const userAuth = useUserAuth();
   const navigate = useNavigate();
+  const [bookmarkStatus, setBookmarkStatus] = useState<true | false>(true);
 
+  let userId: string = userAuth.user.uid;
   let { id } = useParams();
 
   const [recipeData, setRecipeData] = useState<Recipe>(initialRecipe);
   const [userData, setUserData] = useState<User>(initialUser);
 
-  useEffect(() => {
-    const fetchRecipe = async (id: any) => {
+  const fetchRecipe = async (id: any) => {
+    try {
+      const recipe = await getRecipe(id);
+      setRecipeData(recipe);
       try {
-        const recipe = await getRecipe(id);
-        setRecipeData(recipe);
-        try {
-          const user = await getUserDataByID(recipeData.userID);
-          setUserData(user as User);
-        } catch (error) {
-          console.log(MESSAGES.FETCH_USER_INFO_ERORR, error);
-        }
+        const user = await getUserDataByID(recipeData.userID);
+        setUserData(user as User);
       } catch (error) {
-        console.log(MESSAGES.GET_RECIPE_ERROR_MESAGE, error);
+        console.log(MESSAGES.FETCH_USER_INFO_ERORR, error);
       }
-    };
+    } catch (error) {
+      console.log(MESSAGES.GET_RECIPE_ERROR_MESAGE, error);
+    }
+  };
+
+  const fetchBookmarkStatus = async (userId: string, recipeId: string) => {
+    const status = await isBookmarked(userId, recipeId);
+    if (status) setBookmarkStatus(true);
+    else setBookmarkStatus(false);
+  };
+
+  useEffect(() => {
     fetchRecipe(id);
-  }, [id, recipeData.userID]);
+    fetchBookmarkStatus(userId, recipeData.recipeID);
+  }, [id, userId, recipeData.userID]);
 
   const deleteRecipeHandler = async (event: React.MouseEvent<HTMLElement>) => {
     if (
@@ -54,6 +65,25 @@ export const RecipeDetailsPage = () => {
       navigate("/user/my-recipes");
     }
   };
+
+  const bookmarkClickHandler = async (
+    event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    try {
+      if (bookmarkStatus) {
+        await unbookmarkRecipe(userId, recipeData.recipeID);
+        setBookmarkStatus(false);
+      } else {
+        await bookmarkRecipe(userId, recipeData.recipeID);
+        setBookmarkStatus(true);
+      }
+    } catch (error: any) {
+      alert(MESSAGES.ERROR_IN_FOLLOW_USER + error);
+    }
+  };
+
+
+
   if (!recipeData) return <Loading />;
   return (
     <>
@@ -95,7 +125,17 @@ export const RecipeDetailsPage = () => {
         </div>
       </Header>
       <CardBody classname="flex-align-start">
-        <img className="br-sm" alt="uploaded_image" src={recipeData.image} />
+        <div className="bookmark-image">
+          <Button
+            classname="btn small-circle-button bookmark-button"
+            data_type="container"
+            data_bg="circle"
+            clickHandler={bookmarkClickHandler}
+          >
+            <Icon name={bookmarkStatus ? "unbookmark" : "bookmark"} size="lg" />
+          </Button>
+          <img className="br-sm" alt="uploaded_image" src={recipeData.image} />
+        </div>
         <h1>{recipeData.title}</h1>
         <LineSeperator type={"horizontal"} />
         <div className="container flex-row-justify-start">

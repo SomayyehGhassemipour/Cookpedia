@@ -10,6 +10,7 @@ interface Props {
   value?: string;
   required?: boolean;
   pattern?: string;
+  handleKeyDown?: any;
 }
 export const InputField: React.FC<Props> = ({
   type,
@@ -21,6 +22,7 @@ export const InputField: React.FC<Props> = ({
   value,
   required,
   pattern,
+  handleKeyDown,
 }) => {
   const [focused, setFocused] = useState(false);
   const focusHandler = () => {
@@ -37,6 +39,7 @@ export const InputField: React.FC<Props> = ({
       rows={4}
       required={required}
       onChange={onChange}
+      onKeyDown={handleKeyDown}
       onBlur={focusHandler}
     />
   ) : (
@@ -52,6 +55,7 @@ export const InputField: React.FC<Props> = ({
       required={required}
       pattern={pattern}
       onChange={onChange}
+      onKeyDown={handleKeyDown}
       onBlur={focusHandler}
     />
   );

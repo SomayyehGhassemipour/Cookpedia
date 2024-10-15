@@ -14,6 +14,7 @@ import { DiscoverPage } from "../../pages/DiscoverPage";
 import { UserProfile } from "../../pages/UserProfile";
 import { useUserAuth } from "../../sevices/firebase/AthenicationService";
 import { FollowingsFollowersPage } from "../../pages/FollowingsFollowersPage";
+import { MyBookmarksPage } from "../../pages/MyBookmarksPage";
 
 export const User = () => {
   const userAuth = useUserAuth();
@@ -37,6 +38,7 @@ export const User = () => {
           <Route path="/recipe-details/:id" element={<RecipeDetailsPage />} />
           <Route path="/recipe-edit/:id" element={<EditRecipePage />} />
           <Route path="/user-profile/:id" element={<UserProfile />} />
+          <Route path="/bookmarks" element={<MyBookmarksPage />} />
           <Route path="/following" element={<FollowingsFollowersPage />} />
           <Route path="/followers" element={<FollowingsFollowersPage />} />
         </Routes>

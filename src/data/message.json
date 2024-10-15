@@ -15,5 +15,6 @@
   "FETCH_RECIPES_SEARCHED_LIST_ERORR": " There is an error in query of searched recipes.",
   "ERROR_IN_FOLLOW_USER": "There is an error in following the user.",
   "ERROR_IN_READING_FOLLOWERS_OF_USER": "There is an error in reading followes of current user.",
-  "ERROR_IN_READING_FOLLOWING_OF_USER": "There is an error in reading following of current user."
+  "ERROR_IN_READING_FOLLOWING_OF_USER": "There is an error in reading following of current user.",
+  "ERROR_IN_READING_BOOKMARKS_OF_USER": "There is an error in reading bookmarks of current user."
 }

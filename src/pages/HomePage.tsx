@@ -7,8 +7,11 @@ import MESSAGES from "../data/message.json";
 import { RecipeList } from "../components/recipe/RecipeList";
 import { Button } from "../sharedComponents/Button";
 import { Icon } from "../sharedComponents/Icon";
+import { useNavigate } from "react-router-dom";
 
 export const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -27,10 +30,12 @@ export const HomePage: React.FC = () => {
         <div className="flex-row-justify-start">
           <h2>Cookpedia</h2>
           <div className="ml-auto flex-row">
-            <Button data_type="container" data_bg="transparent">
+            {/* <Button data_type="container" data_bg="transparent">
               <Icon name="notification" size="lg" />
-            </Button>
-            <Button data_type="container" data_bg="transparent">
+            </Button> */}
+            <Button data_type="container" data_bg="transparent" clickHandler={() =>
+              navigate("/user/bookmarks")
+            }>
               <Icon name="bookmark" size="lg" />
             </Button>
           </div>

@@ -12,6 +12,7 @@ import {
   faSearch,
   faXmark,
   faCommentAlt,
+  faBookmark as faBookmarked
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faShareFromSquare,
@@ -27,6 +28,12 @@ interface Props {
 }
 export const Icon: React.FC<Props> = ({ name, size }) => {
   switch (name) {
+    case "unbookmark":
+      return (
+        <div>
+          <FontAwesomeIcon icon={faBookmarked} size={size} />
+        </div>
+      );
     case "bookmark":
       return (
         <div>

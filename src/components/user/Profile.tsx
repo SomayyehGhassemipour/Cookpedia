@@ -97,8 +97,8 @@ export const Profile: React.FC<Props> = ({ userId }) => {
 
   const [activeTab, setActiveTab] = useState("Recipes");
 
-  const activeTabHandler = (event: React.MouseEvent<HTMLElement>) => {
-    event.currentTarget.innerText === "Recipes"
+  const activeTabHandler = (activeTab: string) => (event: React.MouseEvent<HTMLElement>) => {
+    activeTab === "Recipes"
       ? setActiveTab("Recipes")
       : setActiveTab("About");
   };
@@ -135,16 +135,17 @@ export const Profile: React.FC<Props> = ({ userId }) => {
           userAuth.user.uid === userData?.userID
             ? navigate("/user/edit-profile")
             : followUfollowClickHandler(
-                event,
-                userAuth.user.uid,
-                userData?.userID
-              )
+              event,
+              userAuth.user.uid,
+              userData?.userID
+            )
         }
       />
       <LineSeperator type="horizontal" />
       <div className="flex-row-justify-around">
         <div className="flex-column-center">
-          <Button data_type="container" data_bg="transparent">
+          <Button data_type="container" data_bg="transparent"
+            clickHandler={activeTabHandler("Recipes")}>
             <h3>{recipes.length}</h3>
             <p className="text-neutral-600">Recipes</p>
           </Button>
@@ -178,7 +179,7 @@ export const Profile: React.FC<Props> = ({ userId }) => {
           data_type="container"
           data_bg="transparent"
           data_active={activeTab === "Recipes" ? true : false}
-          clickHandler={activeTabHandler}
+          clickHandler={activeTabHandler("Recipes")}
           reference={recipeButtonRef}
         >
           <h4>Recipes</h4>
@@ -187,7 +188,7 @@ export const Profile: React.FC<Props> = ({ userId }) => {
           data_type="container"
           data_bg="transparent"
           data_active={activeTab === "About" ? true : false}
-          clickHandler={activeTabHandler}
+          clickHandler={activeTabHandler("About")}
           reference={aboutButtonRef}
         >
           <h4>About</h4>

@@ -14,8 +14,8 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
   const location = useLocation();
   const activeUserInfo: boolean =
     location.pathname === "/user/profile" ||
-    location.pathname === "/user/my-recipes" ||
-    location.pathname.includes("user-profile")
+      location.pathname === "/user/my-recipes" ||
+      location.pathname.includes("user-profile")
       ? false
       : true;
 
